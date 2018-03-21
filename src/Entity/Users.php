@@ -13,24 +13,23 @@ class Users
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @ORM\OneToMany(targetEntity="App\Entity\Role", mappedBy="userId")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Name;
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Firstname;
+    private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Mail;
+    private $mail;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -40,7 +39,15 @@ class Users
     /**
      * @ORM\Column(type="boolean")
      */
-    private $Newsletter;
+    private $newsletter;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\OneToMany(targetEntity="App\Entity\Roles", mappedBy="userID")
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="userID")
+     * @ORM\OneToMany(targetEntity="App\Entity\Birds", mappedBy="userID")
+     */
+    private $userID;
 
     public function getId()
     {
@@ -49,36 +56,36 @@ class Users
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): self
+    public function setName(string $name): self
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }
 
     public function getFirstname(): ?string
     {
-        return $this->Firstname;
+        return $this->firstname;
     }
 
-    public function setFirstname(string $Firstname): self
+    public function setFirstname(string $firstname): self
     {
-        $this->Firstname = $Firstname;
+        $this->firstname = $firstname;
 
         return $this;
     }
 
     public function getMail(): ?string
     {
-        return $this->Mail;
+        return $this->mail;
     }
 
-    public function setMail(string $Mail): self
+    public function setMail(string $mail): self
     {
-        $this->Mail = $Mail;
+        $this->mail = $mail;
 
         return $this;
     }
@@ -97,12 +104,24 @@ class Users
 
     public function getNewsletter(): ?bool
     {
-        return $this->Newsletter;
+        return $this->newsletter;
     }
 
-    public function setNewsletter(bool $Newsletter): self
+    public function setNewsletter(bool $newsletter): self
     {
-        $this->Newsletter = $Newsletter;
+        $this->newsletter = $newsletter;
+
+        return $this;
+    }
+
+    public function getUserID(): ?int
+    {
+        return $this->userID;
+    }
+
+    public function setUserID(int $userID): self
+    {
+        $this->userID = $userID;
 
         return $this;
     }

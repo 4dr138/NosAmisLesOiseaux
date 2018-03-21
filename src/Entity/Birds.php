@@ -13,19 +13,13 @@ class Birds
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="BirdsID")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Name;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Observation;
+    private $name;
 
     /**
      * @ORM\Column(type="integer")
@@ -35,7 +29,17 @@ class Birds
     /**
      * @ORM\Column(type="integer")
      */
+    private $size;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $latitude;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $observation;
 
     /**
      * @ORM\Column(type="integer")
@@ -48,14 +52,15 @@ class Birds
     private $altitude;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="string", length=255)
      */
-    private $date;
+    private $url;
 
     /**
      * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="userID")
      */
-    private $size;
+    private $userID;
 
     public function getId()
     {
@@ -64,24 +69,12 @@ class Birds
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): self
+    public function setName(string $name): self
     {
-        $this->Name = $Name;
-
-        return $this;
-    }
-
-    public function getObservation(): ?string
-    {
-        return $this->Observation;
-    }
-
-    public function setObservation(string $Observation): self
-    {
-        $this->Observation = $Observation;
+        $this->name = $name;
 
         return $this;
     }
@@ -98,14 +91,38 @@ class Birds
         return $this;
     }
 
-    public function getLatitude(): ?int
+    public function getSize(): ?int
+    {
+        return $this->size;
+    }
+
+    public function setSize(int $size): self
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    public function getLatitude(): ?string
     {
         return $this->latitude;
     }
 
-    public function setLatitude(int $latitude): self
+    public function setLatitude(string $latitude): self
     {
         $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getObservation(): ?string
+    {
+        return $this->observation;
+    }
+
+    public function setObservation(string $observation): self
+    {
+        $this->observation = $observation;
 
         return $this;
     }
@@ -134,26 +151,26 @@ class Birds
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getUrl(): ?string
     {
-        return $this->date;
+        return $this->url;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setUrl(string $url): self
     {
-        $this->date = $date;
+        $this->url = $url;
 
         return $this;
     }
 
-    public function getSize(): ?int
+    public function getUserID(): ?int
     {
-        return $this->size;
+        return $this->userID;
     }
 
-    public function setSize(int $size): self
+    public function setUserID(int $userID): self
     {
-        $this->size = $size;
+        $this->userID = $userID;
 
         return $this;
     }
