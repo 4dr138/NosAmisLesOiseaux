@@ -1,0 +1,15 @@
+easy_admin:
+   site_name: 'NosAmisLesOiseaux'
+   # design:
+   #      form_theme:
+   #          - '@App/form/custom_layout.html.twig'
+   #          - 'form_div_layout.html.twig'
+   entities:
+       Users:
+            class: App\Entity\Users
+       Article:
+            class: App\Entity\Article
+       Comments:
+            class: App\Entity\Comments
+       Birds:
+            class: App\Entity\Birds
