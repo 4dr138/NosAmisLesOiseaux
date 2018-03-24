@@ -3,16 +3,21 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
+ * @ORM\Table(name="app_users")
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
  */
-class Users
+class Users implements AdvancedUserInterface, \Serializable
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @ORM\OneToMany(targetEntity="App\Entity\Roles", mappedBy="userID")
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="userID")
+     * @ORM\OneToMany(targetEntity="App\Entity\Birds", mappedBy="userID")
      */
     private $id;
 
@@ -25,6 +30,11 @@ class Users
      * @ORM\Column(type="string", length=255)
      */
     private $firstname;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -42,12 +52,25 @@ class Users
     private $newsletter;
 
     /**
-     * @ORM\Column(type="integer")
-     * @ORM\OneToMany(targetEntity="App\Entity\Roles", mappedBy="userID")
-     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="userID")
-     * @ORM\OneToMany(targetEntity="App\Entity\Birds", mappedBy="userID")
+     * @ORM\Column(type="boolean")
      */
-    private $userID;
+    private $isActive;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Role;
+
+    public function __construct()
+    {
+        $this->isActive = true;
+        $this->newsletter = true;
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
 
     public function getId()
     {
@@ -102,6 +125,18 @@ class Users
         return $this;
     }
 
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
     public function getNewsletter(): ?bool
     {
         return $this->newsletter;
@@ -114,14 +149,70 @@ class Users
         return $this;
     }
 
-    public function getUserID(): ?int
+    public function getIsActive(): ?bool
     {
-        return $this->userID;
+        return $this->isActive;
     }
 
-    public function setUserID(int $userID): self
+    public function setIsActive(bool $isActive): self
     {
-        $this->userID = $userID;
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->isActive;
+    }
+
+    // serialize and unserialize must be updated - see below
+    public function serialize()
+    {
+        return serialize(array(
+            // ...
+            $this->isActive,
+        ));
+    }
+    public function unserialize($serialized)
+    {
+        list (
+            // ...
+            $this->isActive,
+            ) = unserialize($serialized);
+    }
+
+    public function getRole(): ?string
+    {
+        return $this->Role;
+    }
+
+    public function setRole(string $Role): self
+    {
+        $this->Role = $Role;
 
         return $this;
     }
