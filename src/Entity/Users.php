@@ -65,6 +65,8 @@ class Users implements AdvancedUserInterface, \Serializable
     {
         $this->isActive = true;
         $this->newsletter = true;
+        $this->username = "admin";
+        $this->password= "kitten";
     }
 
     public function getSalt()
