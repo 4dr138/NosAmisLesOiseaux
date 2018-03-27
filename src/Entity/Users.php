@@ -164,7 +164,7 @@ class Users implements AdvancedUserInterface, \Serializable
     }
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return array('ROLE_ADMIN');
     }
 
     public function eraseCredentials()
@@ -195,14 +195,28 @@ class Users implements AdvancedUserInterface, \Serializable
     public function serialize()
     {
         return serialize(array(
-            // ...
+            $this->username,
+            $this->newsletter,
+            $this->firstname,
+            $this->id,
+            $this->mail,
+            $this->name,
+            $this->password,
+            $this->Role,
             $this->isActive,
         ));
     }
     public function unserialize($serialized)
     {
         list (
-            // ...
+            $this->username,
+            $this->newsletter,
+            $this->firstname,
+            $this->id,
+            $this->mail,
+            $this->name,
+            $this->password,
+            $this->Role,
             $this->isActive,
             ) = unserialize($serialized);
     }
