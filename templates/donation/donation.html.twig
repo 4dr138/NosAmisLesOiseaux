@@ -1,0 +1,22 @@
+{% block content %}
+  {% if app.session.flashBag.has('chargeFailed') %}
+                  <div class="alert alert-danger">
+                      {% for msg in app.session.flashBag.get('chargeFailed') %}
+                          {{ msg }}
+                      {% endfor %}
+                  </div>
+  {% endif %}
+  <form action="{{ path('gift') }}" method="post">
+          <input type="text" name="data-amount" placeholder="faire un don"><br>
+          <input type="hidden" name="commandId" value="">
+    		<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="{{ publishable_key }}"
+          data-description="{{ description }}"
+          data-amount= "data-amount*100"
+          data-email=""
+          data-currency="eur"
+          data-image=""
+          data-locale="fr">  	
+        </script>
+	</form>
+{% endblock %}

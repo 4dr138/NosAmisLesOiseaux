@@ -1,0 +1,14 @@
+{% block content %}
+<form action="{{ path('donation') }}" method="post">
+        <input type="hidden" name="commandId" value="{{ command.id }}">
+  		<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="{{ publishable_key }}"
+          data-description="{{ description }}"
+          data-amount= "{{ command.totalOrder*100 }}"
+          data-email="{{ command.mail }}"
+          data-currency="eur"
+          data-image="{{ asset('images/logo-louvre.png') }}"
+          data-locale="fr">  	
+        </script>
+	</form>
+{% endblock %}
