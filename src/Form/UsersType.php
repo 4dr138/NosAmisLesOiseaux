@@ -14,10 +14,12 @@ class UsersType extends AbstractType
         $builder
             ->add('name')
             ->add('firstname')
+            ->add('username')
             ->add('mail')
             ->add('password')
-            ->add('newsletter')
-            ->add('userID')
+            //->add('newsletter')
+            //->add('isActive')
+            //->add('Role')
         ;
     }
 
