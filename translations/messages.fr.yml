@@ -1,0 +1,24 @@
+users.id: Identifiant
+users.name: Nom
+users.firstname: Prénom
+users.username: Pseudonyme
+users.mail: Mail
+users.password: Mot de passe
+users.newsletter: Newsletter
+users.actif: Actif ?
+users.role: Role
+
+
+article.id: Identifiant de l'article
+article.title: Titre de l'article
+article.content: Contenu de l'article
+article.user_id: ID de l'auteur (users)
+
+comments.id: Identifiant du commentaire
+comments.content: Contenu du commentaire
+comments.article_id: ID de l'article
+
+Users: Utilisateurs
+Article : Article
+Comments: Commentaires
+Birds: Oiseaux
