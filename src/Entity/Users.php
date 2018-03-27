@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
- * @ORM\Table(name="app_users")
+ * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
  */
 class Users implements AdvancedUserInterface, \Serializable
@@ -15,7 +15,6 @@ class Users implements AdvancedUserInterface, \Serializable
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @ORM\OneToMany(targetEntity="App\Entity\Roles", mappedBy="userID")
      * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="userID")
      * @ORM\OneToMany(targetEntity="App\Entity\Birds", mappedBy="userID")
      */
@@ -65,6 +64,7 @@ class Users implements AdvancedUserInterface, \Serializable
     {
         $this->isActive = true;
         $this->newsletter = true;
+        $this->Role ='ROLE_AMATEUR';
     }
 
     public function getSalt()
@@ -162,7 +162,7 @@ class Users implements AdvancedUserInterface, \Serializable
     }
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return array('ROLE_AMATEUR');
     }
 
     public function eraseCredentials()
