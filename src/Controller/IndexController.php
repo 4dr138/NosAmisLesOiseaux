@@ -17,11 +17,11 @@ class IndexController extends Controller
 {
 
     /**
-     * @Route("/", name="homepage")
+     * @Route("/homepage", name="homepage")
      */
     public function indexAction()
     {
-        return $this->render('index/index.html.twig');
+        return $this->render('homepage/homepage.html.twig');
     }
 
 }
