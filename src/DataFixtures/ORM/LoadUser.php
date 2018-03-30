@@ -23,7 +23,7 @@ class LoadUser implements ORMFixtureInterface
             $user->setFirstname($name);
             $user->setmail($name);
             // On définit uniquement le role ROLE_USER qui est le role de base
-            $user->setRole('ROLE_ADMIN');
+            $user->setRoles(['ROLE_ADMIN']);
             // On le persiste
             $manager->persist($user);
         }
