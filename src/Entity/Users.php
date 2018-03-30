@@ -56,9 +56,9 @@ class Users implements AdvancedUserInterface, \Serializable
     private $isActive;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="array")
      */
-    private $Role;
+    private $roles;
 
     public function __construct()
     {
@@ -162,7 +162,7 @@ class Users implements AdvancedUserInterface, \Serializable
     }
     public function getRoles()
     {
-        return array('ROLE_AMATEUR');
+        return $this->roles;
     }
 
     public function eraseCredentials()
@@ -200,7 +200,7 @@ class Users implements AdvancedUserInterface, \Serializable
             $this->mail,
             $this->name,
             $this->password,
-            $this->Role,
+            $this->roles,
             $this->isActive,
         ));
     }
@@ -214,19 +214,14 @@ class Users implements AdvancedUserInterface, \Serializable
             $this->mail,
             $this->name,
             $this->password,
-            $this->Role,
+            $this->roles,
             $this->isActive,
             ) = unserialize($serialized);
     }
 
-    public function getRole(): ?string
+    public function setRoles(array $roles): self
     {
-        return $this->Role;
-    }
-
-    public function setRole(string $Role): self
-    {
-        $this->Role = $Role;
+        $this->roles = $roles;
 
         return $this;
     }
