@@ -1,0 +1,26 @@
+<head><style type = text/css>
+        header
+        {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<html>
+<header><strong>Nos Amis Les Oiseaux (NAO)</strong></header>
+<body>
+<h2>Bravo, votre inscription a bien été enregistrée !</h2><br />
+
+Ci-dessous les informations récapitulatives relatives à votre inscription :<br /><br />
+- Nom : {{ name }}
+- Prénom : {{ firstname }}
+- Pseudonyme : {{ username }}
+- Abonné(e) à notre newsletter ? {% if newsletter == true %} Oui {% else %} Non
+
+<p>Note : Si vous voulez faire partie de nos naturalistes et pouvoir valider les soumissions d'oiseaux des autres utilisateurs
+    de l'application, n'hésitez pas à nous envoyer un document attestant de vos compétences dans le domaine</p>
+
+
+</body>
+<footer>A bientôt sur notre site ! </footer>
+</html>
