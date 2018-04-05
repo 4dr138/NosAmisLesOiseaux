@@ -9,5 +9,8 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production"
+    },
+    "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^1.0.0-beta.1"
     }
 }

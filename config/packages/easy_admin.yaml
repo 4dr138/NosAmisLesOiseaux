@@ -1,9 +1,11 @@
 easy_admin:
    site_name: 'NosAmisLesOiseaux'
-#    design:
-#         form_theme:
-#             - '@App/form/custom_layout.html.twig'
-#             - 'form_div_layout.html.twig'
+   design:
+      form_theme: 'horizontal'
+      assets:
+          js:
+            - 'https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=zfywjcekks6ajywpq2nnrrms2h311dpnzudvvkal0bp06ep0'
+            - '/assets/js/test.js'
    entities:
        Users:
             class: App\Entity\Users
@@ -22,10 +24,19 @@ easy_admin:
             class: App\Entity\Article
             list:
               fields:
-                - { property: 'id', label: 'article.id' }
+                - id
                 - { property: 'title', label: 'article.title' }
                 - { property: 'content', label: 'article.content' }
-                - { property: 'user_id', label: 'article.user_id' }
+            new:
+              fields:
+                - '-id'
+                - { property: 'title', label: 'article.title' }
+                - { property: 'content', type: 'textarea', label: 'article.content' }
+            edit:
+              fields:
+                - { property: 'title', label: 'article.title' }
+                - { property: 'content', type: 'textarea', label: 'article.content' }
+
        Comments:
             class: App\Entity\Comments
             list:

@@ -17,12 +17,6 @@ class Article
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="userID")
-     */
-    private $userID;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $title;
@@ -32,25 +26,14 @@ class Article
      */
     private $content;
 
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="articleID")
-     */
-    private $articleID;
-
     public function getId()
     {
         return $this->id;
     }
 
-    public function getUserID(): ?int
+    public function setId(int $id): self
     {
-        return $this->userID;
-    }
-
-    public function setUserID(int $userID): self
-    {
-        $this->userID = $userID;
+        $this->id = $id;
 
         return $this;
     }
@@ -75,18 +58,6 @@ class Article
     public function setContent(string $content): self
     {
         $this->content = $content;
-
-        return $this;
-    }
-
-    public function getArticleID(): ?int
-    {
-        return $this->articleID;
-    }
-
-    public function setArticleID(int $articleID): self
-    {
-        $this->articleID = $articleID;
 
         return $this;
     }
