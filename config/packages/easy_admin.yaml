@@ -22,16 +22,15 @@ easy_admin:
                 - { property: 'role', label: 'users.role' }
        Article:
             class: App\Entity\Article
+            new:
+              fields:
+                - { property: 'title', label: 'article.title' }
+                - { property: 'content', type: 'textarea', label: 'article.content' }
             list:
               fields:
                 - id
                 - { property: 'title', label: 'article.title' }
                 - { property: 'content', label: 'article.content' }
-            new:
-              fields:
-                - '-id'
-                - { property: 'title', label: 'article.title' }
-                - { property: 'content', type: 'textarea', label: 'article.content' }
             edit:
               fields:
                 - { property: 'title', label: 'article.title' }
