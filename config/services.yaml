@@ -30,3 +30,7 @@ services:
     AppBundle\DataFixtures\:
         resource: '../src/DataFixtures/ORM/LoadUser.php'
         tags: ['doctrine.fixture.orm']
+
+    appbundle.mailservice:
+        class: App\Service\MailService
+        public: true

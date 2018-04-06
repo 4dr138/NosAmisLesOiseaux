@@ -143,6 +143,9 @@
             "ref": "aaddfdf43cdecd4cf91f992052d76c2cadc04543"
         }
     },
+    "stfalcon/tinymce-bundle": {
+        "version": "v2.3.0"
+    },
     "swiftmailer/swiftmailer": {
         "version": "v6.0.2"
     },
@@ -400,6 +403,9 @@
     },
     "symfony/yaml": {
         "version": "v4.0.6"
+    },
+    "twbs/bootstrap": {
+        "version": "v4.0.0"
     },
     "twig/extensions": {
         "version": "1.0",

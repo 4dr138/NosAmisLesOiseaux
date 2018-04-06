@@ -40,8 +40,8 @@
                 <td>{{ user.isActive ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
-                <th>Role</th>
-                <td>{{ user.Role }}</td>
+                <th>Roles</th>
+                <td>{{ user.roles ? user.roles|join(', ') : '' }}</td>
             </tr>
         </tbody>
     </table>

@@ -9,10 +9,8 @@ users.actif: Actif ?
 users.role: Role
 
 
-article.id: Identifiant de l'article
 article.title: Titre de l'article
 article.content: Contenu de l'article
-article.user_id: ID de l'auteur (users)
 
 comments.id: Identifiant du commentaire
 comments.content: Contenu du commentaire
