@@ -28,15 +28,20 @@ class DonationController extends AbstractController
     */
     public function gift(Request $request, StripeGift $StripeGift)
     {
-        $token  = $_POST['stripeToken'];
-        $email  = $_POST['stripeEmail'];
-        $amount = $_POST['data-amount'];
+
+        $token  = $request->get('stripeToken');
+        $email  = $request->get('stripeEmail');
+        $amount = $request->get('data-amount');
+        $name = $request->get('name');
+        $firstname = $request->get('firstname');
+        
+
 
         try {
             
             $StripeGift->chargeVisa($token, $email, $amount);
             
-            return $this->render('donation/sucess.html.twig');
+            return $this->render('donation/sucess.html.twig', array('amount'=> $amount, 'name'=> $name, 'firstname'=> $firstname));
         } catch(\Stripe\Error\Card $e) {
 
             $this->addFlash("chargeFailed","Oups, le paiement a echoué !!! Veuillez recommencer.");

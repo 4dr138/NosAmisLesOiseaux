@@ -1,4 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<h3>Merci</h3>
+<h3>Certification de donation</h3>
+<p>
+	Félicitations, l'association Nos Amis les Oiseaux atteste avoir reçu la somme de  {{ amount }}€ de la part de {{ firstname|capitalize }} {{ name |upper}} dans le cadre d'une donation privée.
+</p>
+<p>
+	Ce message est à présenter à votre centre financier pour avoir une réduction fiscale.
+</p>
 {% endblock %}
