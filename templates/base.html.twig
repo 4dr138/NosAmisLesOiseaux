@@ -2,16 +2,13 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Page d'accueil{% endblock %}</title>
+        <title>{% block title %}{% endblock %}</title>
         {% block stylesheets %}
             <link rel="icon" href = '{{ asset('assets/img/logofav.png') }}' />
             <link type = "text/css" rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
             <link rel = 'stylesheet' href = "{{ asset('bundles/easyadmin/stylesheet/bootstrap.min.css') }}" />
-            <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
             <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-            <!-- <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'> -->
-
+            <style type = 'text/css'>body {background-color: rgb(245,245,245);}</style>
         {% endblock %}
     </head>
         {% include 'header/header.html.twig' %}
