@@ -24,4 +24,13 @@ class IndexController extends Controller
         return $this->render('homepage/homepage.html.twig');
     }
 
+
+    /**
+     * @Route("/mentions", name="mentions")
+     */
+    public function showMention()
+    {
+        return $this->render('footer/mentions.html.twig');
+    }
+
 }
