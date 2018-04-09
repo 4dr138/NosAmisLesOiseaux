@@ -1,6 +1,8 @@
 <?php
 namespace App\Service;
 
+use Stripe\Stripe;
+
 class StripeGift
 {
 

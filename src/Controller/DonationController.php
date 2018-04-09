@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\StripeGift;
+use App\Service\Mail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,17 +27,23 @@ class DonationController extends AbstractController
     /**
     * @Route("/donation/gift", name="gift")
     */
-    public function gift(Request $request, StripeGift $StripeGift)
+    public function gift(Request $request, StripeGift $StripeGift, Mail $Mail)
     {
-        $token  = $_POST['stripeToken'];
-        $email  = $_POST['stripeEmail'];
-        $amount = $_POST['data-amount'];
+
+        $token  = $request->get('stripeToken');
+        $email  = $request->get('stripeEmail');
+        $amount = $request->get('data-amount');
+        $name = $request->get('name');
+        $firstname = $request->get('firstname');
+        
+
 
         try {
             
             $StripeGift->chargeVisa($token, $email, $amount);
+            $Mail->sendMail($email, $amount, $name, $firstname);
             
-            return $this->render('donation/sucess.html.twig');
+            return $this->render('donation/sucess.html.twig', array('amount'=> $amount, 'name'=> $name, 'firstname'=> $firstname));
         } catch(\Stripe\Error\Card $e) {
 
             $this->addFlash("chargeFailed","Oups, le paiement a echoué !!! Veuillez recommencer.");
