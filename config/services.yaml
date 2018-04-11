@@ -34,3 +34,12 @@ services:
     appbundle.mailservice:
         class: App\Service\MailService
         public: true
+
+    appbundle.articlesservice:
+        class: App\Service\ArticlesService
+        public: true
+
+    appbundle.commentsservice:
+        class: App\Service\CommentsService
+        public: true
+

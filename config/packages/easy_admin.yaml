@@ -5,7 +5,7 @@ easy_admin:
       assets:
           js:
             - 'https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=zfywjcekks6ajywpq2nnrrms2h311dpnzudvvkal0bp06ep0'
-            - '/assets/js/test.js'
+            - '/assets/js/easy_admin.js'
    entities:
        Users:
             class: App\Entity\Users
@@ -47,3 +47,15 @@ easy_admin:
             class: App\Entity\Birds
 framework:
   translator: { fallbacks: [ "fr" ] }
+  templating:
+      engines: ['twig']
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: App\Entity\Users
+    from_email:
+        address: "contact@nos-amis-les-oiseaux.fr"
+        sender_name: "contact@nos-amis-les-oiseaux.fr"
+
+
