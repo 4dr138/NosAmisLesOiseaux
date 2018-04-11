@@ -1,4 +1,4 @@
-tinymce.init({
-    selector: 'textarea.tinymce',
-    theme: 'modern'
-});
+// tinymce.init({
+//     selector: 'textarea.tinymce',
+//     theme: 'modern'
+// });

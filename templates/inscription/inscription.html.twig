@@ -1,14 +1,19 @@
 {% extends "base.html.twig" %}
 {% block title %}Inscription{% endblock %}
-
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
-{{ form_start(form) }}
+    <h4 id ='h4'>Si vous n'avez pas de compte enregistré chez nous, n'hésitez pas à vous inscrire dès maintenant !</h4>
+    <div class = 'container'>
+        <div id = 'formInscription' class = 'row'>
+            {{ form_start(form)}}
 
-{{ form_end(form) }}
-    {% for message in app.flashes('success') %}
-        <div class="flash-notice">
-            <strong>{{ message }}</strong>
+            {{ form_end(form) }}
+            {% for message in app.flashes('success') %}
+                <div class="flash-notice">
+                    <strong>{{ message }}</strong>
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+    </div>
 
 {% endblock %}
