@@ -10,11 +10,11 @@ body
 #NAOTitle
 {
     color: rgb(64,137,242);
-    /*font-size: 1.3em;*/
     font-weight: bold;
 }
 footer {
-    position: fixed;
+    /*position: absolute;*/
+    margin-top: 15px;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -27,4 +27,37 @@ footer {
     color: white;
     background-color: rgb(0,188,213);
     border-radius: 2px;
+}
+.obligatoire
+{
+    color:red;
+}
+.stripe-button-el
+{
+    margin-left:40%;
+}
+header, #actualites
+{
+    text-align:center;
+}
+#nextArticle, #prevArticle
+{
+    text-align:center;
+}
+#prevArticle
+{
+    height:30px;
+    background-color: rgb(239,239,239);
+    color: rgb(180,180,180);
+    padding-top: 5px;
+    border-radius:6px;
+}
+#nextArticle
+{
+    height:30px;
+    background-color: rgb(189,189,189);
+    color: white;
+    padding-top: 5px;
+    border-radius: 6px;
+
 }

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actualités{% endblock %}
+{% block body %}
+
+    <div class = 'container'>
+        <header class="row">
+            <div class="col-lg-12">
+                <h1>Actualités</h1>
+            </div>
+        </header>
+
+            <div id = 'actualites' class="row">
+                {% for article in articles %}
+                    <section class="col-lg-5">
+                        {#{{ article.image }}#}
+                    </section>
+
+                    <section id = 'article' class="col-lg-5">
+                        {{ article.title }}<br />
+                        {{ article.content }}
+                        {{ article.id }}
+                        <p><a href = "{{ path('blog',{'id': article.id }) }}">Voir la totalité de l'article...</a></p>
+                        <hr />
+                    </section>
+                {% endfor %}
+            </div>
+{% endblock %}

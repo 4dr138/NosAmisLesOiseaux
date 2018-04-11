@@ -22,10 +22,21 @@ class Comments
     private $content;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $author;
+
+
+    /**
      * @ORM\Column(type="integer")
      * @ORM\ManyToOne(targetEntity="App\Entity\Article", inversedBy="articleID")
      */
     private $articleID;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $datecomment;
 
     public function getId()
     {
@@ -52,6 +63,30 @@ class Comments
     public function setArticleID(int $articleID): self
     {
         $this->articleID = $articleID;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?string
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(string $author): self
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    public function getDatecomment(): ?\DateTimeInterface
+    {
+        return $this->datecomment;
+    }
+
+    public function setDatecomment(\DateTimeInterface $datecomment): self
+    {
+        $this->datecomment = $datecomment;
 
         return $this;
     }

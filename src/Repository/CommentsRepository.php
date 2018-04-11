@@ -19,32 +19,12 @@ class CommentsRepository extends ServiceEntityRepository
         parent::__construct($registry, Comments::class);
     }
 
-//    /**
-//     * @return Comments[] Returns an array of Comments objects
-//     */
-    /*
-    public function findByExampleField($value)
+    public function getCommentsById($id)
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $qb = $this->createQueryBuilder('c');
+        $qb
+            ->select('c.author, c.content, c.datecomment')
+            ->where('c.articleID =' .$id);
+        return $qb->getQuery()->execute();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Comments
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

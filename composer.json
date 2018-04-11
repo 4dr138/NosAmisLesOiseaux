@@ -6,6 +6,10 @@
         "ext-iconv": "*",
         "doctrine/doctrine-bundle": "^1.8",
         "easycorp/easyadmin-bundle": "^1.17",
+        "ezyang/htmlpurifier": "^4.10",
+        "friendsofsymfony/jsrouting-bundle": "^2.2",
+        "friendsofsymfony/user-bundle": "^2.1",
+        "hillrange/ckeditor": "^0.1.20",
         "sensio/framework-extra-bundle": "^5.1",
         "stfalcon/tinymce-bundle": "^2.3",
         "stripe/stripe-php": "^6.5",
@@ -21,17 +25,22 @@
         "symfony/monolog-bundle": "^3.1",
         "symfony/orm-pack": "^1.0",
         "symfony/process": "^4.0",
+        "symfony/property-access": "^4.0",
         "symfony/security-bundle": "^4.0",
         "symfony/serializer-pack": "*",
         "symfony/swiftmailer-bundle": "^3.1",
+        "symfony/templating": "^4.0",
         "symfony/translation": "^4.0",
         "symfony/twig-bridge": "^4.0",
+        "symfony/twig-bundle": "^4.0",
         "symfony/validator": "^4.0",
         "symfony/web-link": "^4.0",
         "symfony/web-server-bundle": "^4.0",
         "symfony/webpack-encore-pack": "*",
         "symfony/yaml": "^4.0",
-        "twbs/bootstrap": "^4.0"
+        "twbs/bootstrap": "^4.0",
+        "twig/extensions": "^1.5",
+        "twig/twig": "^2.4"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.0",
@@ -64,6 +73,9 @@
         "symfony/polyfill-php56": "*"
     },
     "scripts": {
+        "symfony-scripts":[
+            "Hillrange\\CKEditorBundle\\Composer\\CKEditorScriptHandler::install"
+        ],
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
@@ -79,6 +91,7 @@
         "symfony/symfony": "*"
     },
     "extra": {
+        "ckeditor-release": "basic",
         "symfony": {
             "id": "01C91V53VM493PCRW7GSQRFNKZ",
             "allow-contrib": false

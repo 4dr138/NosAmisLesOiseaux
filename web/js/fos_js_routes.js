@@ -1,0 +1,1 @@
+fos.Router.setData({"base_url":"","routes":{"checkID":{"tokens":[["variable","\/","[^\/]++","id"],["text","\/checkID"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":[],"schemes":[]}},"prefix":"","host":"localhost","scheme":"http"});
