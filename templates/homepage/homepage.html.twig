@@ -73,18 +73,114 @@
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-	            <div class="col-md-12">
-	            	<hr>
-	            </div>
-	        </div>
+            <br /><br />
 
 	        <div class="row">
-	            <div class="col-md-12">
+	            <div class="col-lg-7">
 	            	<div id="map"></div>
 	            </div>
+                <div id = 'addObs' class = 'col-lg-5'>
+                    <div class = 'row' id = 'titreObs'>
+                        <h3>Carte des observations</h3>
+                    </div>
+                    <div class = 'row'>
+                        <a href ='#' id ='btnAddObs' class="btn btn-default">Ajouter une observation</a>
+                    </div>
+                    <br />
+                    <div class = 'row'>
+                        <div class="input-group">
+                            <input id = 'searchBird' type="text" class="form-control" placeholder="Espèces, lieux, etc...">
+                            <span class="input-group-btn">
+                        </span>
+                        </div>
+                    </div>
+                    <br />
+                    <div class = 'row'>
+                        <a href ='#' id ='searchObs' class="btn btn-default">Rechercher</a>
+                    </div>
+                </div>
 	        </div>
+        <hr />
+            <div class = 'row'>
+                <div class = 'col-lg-12'>
+                    <h3 id = 'top10'>Les 10 dernières espèces observées</h3>
+                    <div class = 'col-lg-12'>
+                        <div class = 'row'>
+                            <div class = 'col-lg-1'></div>
+                            <div class = 'col-lg-2'>
+                                <img src = '{{ asset('assets/img/oiseauHP.jpg') }}' />
+                            </div>
+                            <div class = 'col-lg-2'>
+                                <img src = '{{ asset('assets/img/oiseauHP.jpg') }}' />
+                            </div>
+                            <div class = 'col-lg-2'>
+                                <img src = '{{ asset('assets/img/oiseauHP.jpg') }}' />
+                            </div>
+                            <div class = 'col-lg-2'>
+                                <img src = '{{ asset('assets/img/oiseauHP.jpg') }}' />
+                            </div>
+                            <div class = 'col-lg-2'>
+                                <img src = '{{ asset('assets/img/oiseauHP.jpg') }}' />
+                            </div>
+                            <div class = 'col-lg-1'></div>
+
+                        </div>
+                        <br />
+                    </div>
+                    <div class = 'col-lg-12'>
+                        <br />
+                        <div class = 'row'>
+                            <div class = 'col-lg-1'></div>
+                            <div class = 'col-lg-2'>
+                                <img src = '{{ asset('assets/img/oiseauHP.jpg') }}' />
+                            </div>
+                            <div class = 'col-lg-2'>
+                                <img src = '{{ asset('assets/img/oiseauHP.jpg') }}' />
+                            </div>
+                            <div class = 'col-lg-2'>
+                                <img src = '{{ asset('assets/img/oiseauHP.jpg') }}' />
+                            </div>
+                            <div class = 'col-lg-2'>
+                                <img src = '{{ asset('assets/img/oiseauHP.jpg') }}' />
+                            </div>
+                            <div class = 'col-lg-2'>
+                                <img src = '{{ asset('assets/img/oiseauHP.jpg') }}' />
+                            </div>
+                            <div class = 'col-lg-1'></div>
+
+                        </div>
+                        <br />
+                    </div>
+                    <br />
+                    <div id = 'newsHome' class = 'col-lg-12'>
+                        <div class = 'col-lg-1'>
+
+                        </div>
+                        <div class = 'col-lg-3'>
+                            <h3 id = 'titleNews' >Newsletter</h3>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        </div>
+                        <div class = 'col-lg-5'>
+                            <div class = 'row'>
+                                <div class="input-group">
+                                    <input id = 'searchNews' type="text" class="form-control" placeholder="Entrez votre e-mail...">
+                                    <span class="input-group-btn"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = 'col-lg-1'>
+
+                        </div>
+                        <div class = 'col-lg-1'>
+                            <div class = 'row'>
+                                <a href ='{{ path('inscription') }}' id ='btnInscriptionHomePage' class="btn btn-default">S'inscrire </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     {% block javascripts %}
     <script type = "text/javascript" src = "{{ asset('assets/js/homepage.js') }}"> </script>
