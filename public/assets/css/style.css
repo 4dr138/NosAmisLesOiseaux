@@ -14,7 +14,7 @@ body{
 }
 #map
 {
-    height: 300px;
+    height: 500px;
     position: relative;
 }
 #NAOTitle
@@ -72,10 +72,6 @@ header, #actualites
     border-radius: 6px;
 
 }
-#validLogin
-{
-    margin-left: 25%;
-}
 #h4
 {
     text-align: center;
@@ -93,14 +89,109 @@ h2
     text-align:center;
     margin-bottom: 50%;
 }
-h4, #formLogin
+#formLogin
 {
-    margin-top: 30px;
-    margin-left:35%;
-    width: 300px;
+    text-align:center;
+    padding-right: 30%;
+    padding-left: 30%;
 }
 #formInscription
 {
     margin-left:35%;
-    width: 300px;
+    width: 350px;
+}
+#titreAssociation, #titreProfils, #titreDon, #addObs, #top10
+{
+    text-align:center;
+    color: grey;
+}
+#titreHist, #titreRecherche
+{
+    text-align:right;
+    color:grey;
+}
+#histoireAssoc, #progRecherche
+{
+    background-color: rgb(230,230,230);
+    text-align:right;
+    padding: 5%;
+}
+#descProfils, #blocDon
+{
+    background-color: rgb(230,230,230);
+    text-align:center;
+    padding: 5%;
+
+}
+#assocDemande, #btnDon
+{
+    color: white;
+    background-color: rgb(0,188,213);
+    border-radius: 5px;
+}
+#imgOiseau1
+{
+    float:left;
+}
+#loginUser, #nonInscrit
+{
+    text-align:center;
+    color: rgb(150,150,150);
+}
+#validLogin, #btnInscription, #btnAddObs
+{
+    color: white;
+    background-color: rgb(0,188,213);
+    border-radius: 5px;
+    font-size: 1.7em;
+}
+.unmask
+{
+    background-color:#F5F5F5;
+    border:none;
+}
+#titreObs
+{
+    height:300px;
+}
+.input-group
+{
+    margin-left: 21%;
+    margin-right: 21%;
+    width: 58%;
+    border:none;
+}
+#searchObs
+{
+    color: white;
+    background-color: rgb(0,188,213);
+    border-radius: 2px;
+    font-size: 1.5em;
+    width:56%;
+}
+#newsHome
+{
+    background-color: rgb(200,200,200);
+    padding: 13px;
+}
+#titleNews
+{
+    color: grey;
+}
+#searchNews
+{
+    margin-top: 22%;
+    border-radius: 10px;
+}
+#searchBird
+{
+    border-radius: 10px;
+}
+#btnInscriptionHomePage
+{
+    color: white;
+    background-color: rgb(0,188,213);
+    border-radius: 5px;
+    font-size: 1.2em;
+    margin-top:55%;
 }
