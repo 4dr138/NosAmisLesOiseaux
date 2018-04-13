@@ -13,9 +13,11 @@
         "sensio/framework-extra-bundle": "^5.1",
         "stfalcon/tinymce-bundle": "^2.3",
         "stripe/stripe-php": "^6.5",
+        "symfony/apache-pack": "^1.0",
         "symfony/asset": "^4.0",
         "symfony/console": "^4.0",
         "symfony/debug-pack": "*",
+        "symfony/dotenv": "^4.0",
         "symfony/expression-language": "^4.0",
         "symfony/flex": "^1.0",
         "symfony/form": "^4.0",
@@ -46,7 +48,6 @@
         "doctrine/doctrine-fixtures-bundle": "^3.0",
         "symfony/browser-kit": "^4.0",
         "symfony/css-selector": "^4.0",
-        "symfony/dotenv": "^4.0",
         "symfony/phpunit-bridge": "^4.0",
         "symfony/profiler-pack": "*"
     },
@@ -94,7 +95,7 @@
         "ckeditor-release": "basic",
         "symfony": {
             "id": "01C91V53VM493PCRW7GSQRFNKZ",
-            "allow-contrib": false
+            "allow-contrib": "true"
         }
     }
 }

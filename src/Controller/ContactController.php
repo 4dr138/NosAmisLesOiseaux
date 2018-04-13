@@ -6,7 +6,7 @@ namespace App\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class Contact extends Controller
+class ContactController extends Controller
 {
 
     /**
