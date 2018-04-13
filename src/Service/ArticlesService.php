@@ -38,8 +38,7 @@ class ArticlesService extends Controller
 
     /**
      *
-     * @Route("/checkID/{id}",  name="checkID", options={"expose"=true})
-     * @Method("POST")
+     * @Route("/checkID/{id}", name="checkID", options={"expose"=true})
      */
     public function checkID($id)
     {

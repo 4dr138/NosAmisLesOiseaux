@@ -8,7 +8,7 @@ body{
     position:relative;
 }
 .container{
-    height:70%;
+    min-height:70%;
     position:relative;
     margin-top: 40px;
 }
@@ -133,7 +133,7 @@ h2
 {
     float:left;
 }
-#loginUser, #nonInscrit
+#loginUser
 {
     text-align:center;
     color: rgb(150,150,150);
@@ -194,4 +194,39 @@ h2
     border-radius: 5px;
     font-size: 1.2em;
     margin-top:55%;
+}
+#nonInscrit
+{
+    text-align:center;
+    color: rgb(150,150,150);
+    margin-top: 20%;
+}
+@media screen and (max-width: 1023px)
+{
+    #titreObs
+    {
+        height:auto;
+    }
+    #top5Img, #top10img
+    {
+        display: inline-flex;
+        margin-left: -20%;
+    }
+    #btnInscriptionHomePage
+    {
+        margin-left:40%;
+        margin-top: 5%;
+    }
+    #searchNews
+    {
+        margin-top: 5%;
+    }
+    #loginUser, #nonInscrit
+    {
+        width: 100%;
+    }
+    #newsHome
+    {
+        margin-top: 5%;
+    }
 }
