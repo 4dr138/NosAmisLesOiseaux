@@ -1,7 +1,10 @@
 var nextArticle = $("#nextArticle");
 var prevArticle = $("#prevArticle");
 var articleId = $('#articleID').val();
-function checkArticle(articleId)
+var nextArticleID = Number(articleId) + 1;
+var prevArticleID = Number(articleId) - 1;
+var type = '';
+function checkArticle(articleId, type)
 {
     var url = Routing.generate('checkID', {id: articleId});
     $.ajax(
@@ -10,11 +13,34 @@ function checkArticle(articleId)
         type: 'POST',
         data: articleId,
         success: function(data){
-            console.log('hello');
+            console.log(type);
+            if(type == 'next')
+            {
+                if(data !== '-99')
+                {
+                    nextArticle.show()
+                }
+                else
+                {
+                    nextArticle.hide();
+                }
+            }
+            else
+            {
+                if(data !== '-99')
+                {
+                    prevArticle.show()
+                }
+                else
+                {
+                    prevArticle.hide();
+                }
+            }
         },
         error: function(data){
-            alert('No Data');
+            alert('no data');
         }
     });
 }
-checkArticle(articleId);
+checkArticle(nextArticleID, 'next');
+checkArticle(prevArticleID, 'prev');

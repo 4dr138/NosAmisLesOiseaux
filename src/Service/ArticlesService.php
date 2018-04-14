@@ -3,8 +3,6 @@
 namespace App\Service;
 
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,15 +34,11 @@ class ArticlesService extends Controller
         return $article;
     }
 
-    /**
-     *
-     * @Route("/checkID/{id}", name="checkID", options={"expose"=true})
-     */
-    public function checkID($id)
+    public function getarticleID($id)
     {
         $em = $this->getDoctrine()->getManager();
         $articleID = $em->getRepository('App:Article')->getArticleId($id);
 
-        return new Response('ok');
+        return $articleID;
     }
 }

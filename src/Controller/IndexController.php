@@ -17,7 +17,7 @@ class IndexController extends Controller
 {
 
     /**
-     * @Route("/homepage", name="homepage")
+     * @Route("/", name="homepage")
      */
     public function indexAction()
     {

@@ -6,9 +6,3 @@ logout:
 
 fos_js_routing:
   resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
-
-checkID:
-  path: /checkID/{id}
-  controller: App/Service/ArticlesService::checkID
-  options:
-      expose: true
