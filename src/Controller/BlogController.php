@@ -7,6 +7,7 @@ use App\Form\Comments1Type;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class BlogController extends Controller
@@ -40,6 +41,24 @@ class BlogController extends Controller
         }
 
         return $this->render('blog/blog.html.twig', array('article' => $article, 'comments' => $comments, 'form' => $form->createView()));
+    }
+
+    /**
+     *
+     * @Route("/checkID/{id}", name="checkID", options={"expose"=true})
+     */
+    public function checkID($id)
+    {
+        $articleID = $this->container->get('appbundle.articlesservice')->getarticleID($id);
+        if(!empty($articleID)) {
+            foreach ($articleID[0] as $values) {
+                $articleID = $values;
+            }
+        }
+        else{
+            $articleID = -99;
+        }
+        return new Response($articleID);
     }
 
 }
