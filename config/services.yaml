@@ -43,3 +43,7 @@ services:
         class: App\Service\CommentsService
         public: true
 
+    appbundle.checkconnexion:
+        class: App\Service\ConnexionService
+        public: true
+
