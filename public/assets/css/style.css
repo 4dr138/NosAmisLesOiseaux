@@ -8,7 +8,7 @@ body{
     position:relative;
 }
 .container{
-    min-height:66%;
+    min-height:67%;
     position:relative;
     margin-top: 40px;
 }
@@ -229,8 +229,8 @@ h2
     {
         margin-top: 5%;
     }
-    .container
-    {
-        min-height: 67%;
-    }
+}
+.flash-notice
+{
+    color:red;
 }

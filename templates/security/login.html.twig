@@ -1,12 +1,11 @@
 {% extends "base.html.twig" %}
-{% block title %}Formulaire de connexion{% endblock %}
+{% block title %}Espace Administration{% endblock %}
 {% block body %}
 <div class = 'container'>
     <div class = 'row'>
-        <div id = 'loginUser' class = 'col-sm-6'>
-            <br /><br /><br />
-            <img src = '{{ asset('assets/img/imgUser.png') }}' />
-            <br /><br />
+        <div id = 'loginUser' class = 'col-sm-12'>
+            <h1>Espace Administration</h1>
+            <br />
             <form id = 'formLogin' class = 'form-horizontal' action="{{ path('login') }}" method="post">
                 <div class = 'form-group'>
                     <label for="username">Nom d'utilisateur :</label>
@@ -24,11 +23,6 @@
             {% if error %}
                 <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
-        </div>
-        <div id = 'nonInscrit' class = 'col-sm-6'>
-            <h1>Pas encore inscrit ? </h1>
-            <br /><br /><br />
-            <a href ='{{ path('inscription') }}' id ='btnInscription' class="btn btn-default">S'inscrire</a>
         </div>
     </div>
 </div>

@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+{% block title %}Connexion{% endblock %}
+{% block body %}
+    <div class = 'container'>
+        <div class = 'row'>
+            <div id = 'loginUser' class = 'col-sm-6'>
+                <br /><br /><br />
+                <img src = '{{ asset('assets/img/imgUser.png') }}' />
+                <br /><br />
+                <form id = 'formLogin' class = 'form-horizontal' action="{{ path('checkUser') }}" method="post">
+                    <div class = 'form-group'>
+                        <label for="username">Nom d'utilisateur :</label>
+                        <input type="text" class="form-control" id="username" name="username" />
+                    </div>
+                    <div class = 'form-group'>
+                        <label for="password">Mot de passe :</label>
+                        <input class="form-control" type="password" name = "password" id="password" /><button class = 'unmask' type = 'button' >Afficher le mot de passe</button>
+                    </div>
+                    <div class = 'form-group'>
+                        <button type="submit" id ='validLogin' class="btn btn-default">Se connecter</button>
+                    </div>
+                </form>
+                {% for messages in app.flashes('error') %}
+                    <div class = "flash-notice" >
+                        {{ messages }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div id = 'nonInscrit' class = 'col-sm-6'>
+                <h1>Pas encore inscrit ? </h1>
+                <br /><br /><br />
+                <a href ='{{ path('inscription') }}' id ='btnInscription' class="btn btn-default">S'inscrire</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src = '{{ asset('assets/js/inscription.js') }}'></script>
+{% endblock %}
