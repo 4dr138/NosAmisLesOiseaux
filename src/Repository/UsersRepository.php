@@ -31,4 +31,29 @@ class UsersRepository extends ServiceEntityRepository
 
         return $query->execute();
     }
+
+    public function getMail($mail)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT u.mail
+            FROM App\Entity\Users u
+            WHERE u.mail = :mail')
+            ->setParameter('mail', $mail);
+
+        return $query->execute();
+    }
+
+    public function updateMail($mail, $code)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'UPDATE App\Entity\Users u
+            SET u.password = :code
+            WHERE u.mail = :mail')
+            ->setParameter('mail', $mail)
+            ->setParameter('code', $code);
+
+        $query->execute();
+    }
 }

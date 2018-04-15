@@ -26,6 +26,8 @@ easy_admin:
               fields:
                 - { property: 'title', label: 'article.title' }
                 - { property: 'content', type: 'textarea', label: 'article.content' }
+                - { property: 'imageFile', type: 'vich_image' }
+
             list:
               fields:
                 - id
@@ -35,7 +37,7 @@ easy_admin:
               fields:
                 - { property: 'title', label: 'article.title' }
                 - { property: 'content', type: 'textarea', label: 'article.content' }
-
+                - { property: 'imageFile', type: 'vich_image' }
        Comments:
             class: App\Entity\Comments
             list:
