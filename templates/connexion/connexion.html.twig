@@ -20,6 +20,7 @@
                         <button type="submit" id ='validLogin' class="btn btn-default">Se connecter</button>
                     </div>
                 </form>
+                <a href = '{{ path('forgotpass') }}'>Mot de passe oublié ? </a>
                 {% for messages in app.flashes('error') %}
                     <div class = "flash-notice" >
                         {{ messages }}

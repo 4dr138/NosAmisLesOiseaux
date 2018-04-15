@@ -47,4 +47,7 @@ services:
         class: App\Service\ConnexionService
         public: true
 
+    appbundle.forgotmail:
+        class: App\Service\ForgotMail
+        public: true
 

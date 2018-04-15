@@ -23,7 +23,7 @@ class ArticleRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('a');
         $qb
-            ->select('a.title, a.content, a.id')
+            ->select('a.title, a.content, a.id, a.image')
             ->orderBy('a.id', 'DESC');
         return $qb->getQuery()->execute();
     }

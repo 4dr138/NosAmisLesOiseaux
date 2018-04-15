@@ -234,3 +234,14 @@ h2
 {
     color:red;
 }
+#panelh1, #titreRecup
+{
+    text-align:center;
+    color: rgb(150,150,150);
+}
+#formForgotPass
+{
+    width:40%;
+    text-align:center;
+    margin-left:30%;
+}
