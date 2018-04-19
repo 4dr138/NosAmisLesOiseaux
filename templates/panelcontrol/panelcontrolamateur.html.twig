@@ -1,9 +1,21 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Tableau de bord{% endblock %}
 {% block body %}
 <div class = 'container'>
     <div id = 'panelh1' class = 'row'>
         <h1>Bienvenue sur votre profil personnel <strong>{{ username }}</strong> ! </h1>
+    </div>
+    <div class = 'col-lg-12'>
+        <div class = 'col-lg-4'>
+            Profil utilisateur
+        </div>
+        <div class = 'col-lg-4'>
+            Gestion des articles
+        </div>
+        <div class = 'col-lg-4'>
+            Consultation de mes trouvailles
+        </div>
     </div>
 
 </div>

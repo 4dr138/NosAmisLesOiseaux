@@ -14,11 +14,17 @@ class Comments1Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('author', TextType::class, array('label' => 'Pseudonyme : '))
-            ->add('content', TextareaType::class, array('label' => 'Commentaire : ', 'required' => true, 'attr' => array('rows' => '10', 'cols' => '100')))
-            ->add('submit', SubmitType::class, array('label' => 'Poster'))
-        ;
+        if(isset($_SESSION['username'])) {
+            $builder
+                ->add('content', TextareaType::class, array('label' => 'Commentaire : ', 'required' => true, 'attr' => array('rows' => '10', 'cols' => '100')))
+                ->add('submit', SubmitType::class, array('label' => 'Poster'));
+        }
+        else {
+            $builder
+                ->add('author', TextType::class, array('label' => 'Pseudonyme : '))
+                ->add('content', TextareaType::class, array('label' => 'Commentaire : ', 'required' => true, 'attr' => array('rows' => '10', 'cols' => '100')))
+                ->add('submit', SubmitType::class, array('label' => 'Poster'));
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)

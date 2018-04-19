@@ -33,6 +33,9 @@ class BlogController extends Controller
             $em = $this->getDoctrine()->getManager();
             $newcomment->setArticleID($id);
             $newcomment->setDatecomment(new \DateTime());
+            if(isset($_SESSION['username'])){
+                $newcomment->setAuthor($_SESSION['username']);
+            }
 
             $em->persist($newcomment);
             $em->flush();

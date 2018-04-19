@@ -21,6 +21,11 @@ class IndexController extends Controller
      */
     public function indexAction()
     {
+//        session_destroy();
+        if(!isset($_SESSION))
+        {
+            session_start();
+        }
         return $this->render('homepage/homepage.html.twig');
     }
 

@@ -14,7 +14,20 @@ class ConnexionController extends Controller
      */
     public function connexionAction()
     {
-        return $this->render('connexion/connexion.html.twig');
+        if(isset($_SESSION['username']))
+        {
+            $user = $this->container->get('appbundle.checkconnexion')->checkUser($_SESSION['username'], $_SESSION['password']);
+            $username = $user[0]['username'];
+            $role = $user[0]['roles'];
+            $role = $role[0];
+
+            if ($role = 'ROLE_AMATEUR') {
+                return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('username' => $_SESSION['username']));
+            }
+        }
+        else {
+            return $this->render('connexion/connexion.html.twig');
+        }
     }
 
     /**
@@ -26,6 +39,8 @@ class ConnexionController extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = htmlentities($_POST['username']);
             $password = htmlentities($_POST['password']);
+            $_SESSION['username'] = $username;
+            $_SESSION['password'] = $username;
 
             $user = $this->container->get('appbundle.checkconnexion')->checkUser($username, $password);
 
