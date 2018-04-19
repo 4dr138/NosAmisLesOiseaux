@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\Users;
+use App\Service\CodeGodFatherService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +16,7 @@ class InscriptionController extends Controller
     /**
      * @Route("/inscription", name="inscription")
      */
-    public function inscriptionAction(Request $request)
+    public function inscriptionAction(Request $request, CodeGodFatherService $CodeGodFatherService)
     {
         $user = new Users();
         $form = $this->createForm("App\Form\UsersType", $user);
@@ -27,6 +28,7 @@ class InscriptionController extends Controller
             if($mailExistant == false) {
                 $em = $this->getDoctrine()->getManager();
                 $user->setRoles(['ROLE_AMATEUR']);
+                $user->setGodfatherCode($CodeGodFatherService->generateCode());
                 $em->persist($user);
                 $em->flush();
 
