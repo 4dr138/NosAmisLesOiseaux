@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Entity\Users;
+use App\Service\ExperienceService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -22,10 +23,11 @@ class ConnexionController extends Controller
             
             $user = $session->get('users');
             //$username = $user[0]['username'];
+            /*$newExp = $user->setExperience($user->getExperience() + 5);*/
             $username = $user->getUsername();
             //$role = $user[0]['roles'];
             //$role = $role[0];
-
+            
             $role = $user->getRoles();
             
 
@@ -44,7 +46,7 @@ class ConnexionController extends Controller
      * @Route("/checkUser", name = "checkUser")
      *
      */
-    public function checkUserAction(SessionInterface $session)
+    public function checkUserAction(SessionInterface $session, ExperienceService $ExperienceService)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = htmlentities($_POST['username']);
@@ -61,12 +63,12 @@ class ConnexionController extends Controller
                 $username = $user->getUsername();
                 
                 $role = $user->getRoles();
-                //$role = $role[0];
-                dump($user);
+             
+                $ExperienceService->ExpConnexion($user);
                 $session->set('users',$user);
-                dump($session);
+
                 if ($role = 'ROLE_AMATEUR') {
-                    return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('username' => $username));
+                    return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('username' => $username, 'users' => $user));
                 }
             }
 

@@ -81,7 +81,7 @@ class Users implements AdvancedUserInterface, \Serializable
         $this->isActive = true;
         $this->newsletter = true;
         $this->Role ='ROLE_AMATEUR';
-        $this->experience = 5 ;
+        $this->experience = 10 ;
     }
 
     public function getSalt()
