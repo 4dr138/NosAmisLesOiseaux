@@ -4,10 +4,12 @@
 namespace App\Controller;
 
 use App\Entity\Users;
+use App\Service\CodeGodFatherService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class InscriptionController extends Controller
 {
@@ -15,7 +17,7 @@ class InscriptionController extends Controller
     /**
      * @Route("/inscription", name="inscription")
      */
-    public function inscriptionAction(Request $request)
+    public function inscriptionAction(Request $request, CodeGodFatherService $CodeGodFatherService, SessionInterface $session)
     {
         $user = new Users();
         $form = $this->createForm("App\Form\UsersType", $user);
@@ -27,7 +29,11 @@ class InscriptionController extends Controller
             if($mailExistant == false) {
                 $em = $this->getDoctrine()->getManager();
                 $user->setRoles(['ROLE_AMATEUR']);
+                $user->setGodfatherCode($CodeGodFatherService->generateCode());
                 $em->persist($user);
+                $session->set('user',$user);
+                dump($session);
+                dump('llala');
                 $em->flush();
 
                 //            $this->container->get('appbundle.mailservice')->sendConfirmationMail($user);
