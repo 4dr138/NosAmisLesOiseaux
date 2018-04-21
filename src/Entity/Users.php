@@ -71,11 +71,17 @@ class Users implements AdvancedUserInterface, \Serializable
      */
     private $godfatherCode;
 
+    /**
+     * @ORM\Column(type="integer", length=255)
+     */
+    private $experience;
+
     public function __construct()
     {
         $this->isActive = true;
         $this->newsletter = true;
         $this->Role ='ROLE_AMATEUR';
+        $this->experience = 5 ;
     }
 
     public function getSalt()
@@ -184,6 +190,18 @@ class Users implements AdvancedUserInterface, \Serializable
     public function setGodfatherCode(string $godfatherCode): self
     {
         $this->godfatherCode = $godfatherCode;
+
+        return $this;
+    }
+
+        public function getExperience(): ?int
+    {
+        return $this->experience;
+    }
+
+    public function setExperience(int $experience): self
+    {
+        $this->experience = $experience;
 
         return $this;
     }
