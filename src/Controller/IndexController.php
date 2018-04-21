@@ -23,14 +23,15 @@ class IndexController extends Controller
     public function indexAction(SessionInterface $session)
     {
 //        session_destroy();
-        if(!isset($_SESSION))
-        {
-            session_start();
-        }
+        //if(!isset($_SESSION))
+       // {
+            //session_start();
+        //}
 
 
         $user = $session->get('users');
-        
+        dump($session);
+        dump($user);
         
         return $this->render('homepage/homepage.html.twig');
     }

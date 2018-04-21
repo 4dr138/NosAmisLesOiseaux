@@ -17,22 +17,20 @@ class ConnexionController extends Controller
      */
     public function connexionAction(SessionInterface $session)
     {
-        if(isset($_SESSION['username']))
+        $user = $session->get('users');
+        //if(isset($_SESSION['username']))
+        if(isset($user))
         {
-            //$user = $this->container->get('appbundle.checkconnexion')->checkUser($_SESSION['username'], $_SESSION['password']);
-            
+         
             $user = $session->get('users');
-            //$username = $user[0]['username'];
-            /*$newExp = $user->setExperience($user->getExperience() + 5);*/
+            
             $username = $user->getUsername();
-            //$role = $user[0]['roles'];
-            //$role = $role[0];
             
             $role = $user->getRoles();
             
 
             if ($role = 'ROLE_AMATEUR') {
-                return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('username' => $username));
+                return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user));
                 
             }
         }
@@ -41,6 +39,18 @@ class ConnexionController extends Controller
             return $this->render('connexion/connexion.html.twig');
         }
     }
+
+    /**
+     * @Route("/deconnexion", name="deconnexion")
+     */
+    public function deconnexionAction()
+    {
+        
+            session_destroy();
+        
+        return $this->render('homepage/homepage.html.twig');
+    }
+
 
     /**
      * @Route("/checkUser", name = "checkUser")
@@ -68,7 +78,7 @@ class ConnexionController extends Controller
                 $session->set('users',$user);
 
                 if ($role = 'ROLE_AMATEUR') {
-                    return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('username' => $username, 'users' => $user));
+                    return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user));
                 }
             }
 
