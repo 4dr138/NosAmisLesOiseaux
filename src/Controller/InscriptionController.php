@@ -31,9 +31,9 @@ class InscriptionController extends Controller
                 $user->setRoles(['ROLE_AMATEUR']);
                 $user->setGodfatherCode($CodeGodFatherService->generateCode());
                 $em->persist($user);
-                $session->set('user',$user);
-                dump($session);
-                dump('llala');
+                $session->set('users',$user);
+                
+                
                 $em->flush();
 
                 //            $this->container->get('appbundle.mailservice')->sendConfirmationMail($user);

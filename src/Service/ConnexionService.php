@@ -24,7 +24,7 @@ class ConnexionService extends Controller
         $userInfos = $em->getRepository('App:Users')->findOneBy(['username' => $username, 'password' => $password ]);
         if(!empty($userInfos))
         {
-            dump($userInfos);
+            
             return $userInfos;
         }
         else

@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 
+use App\Entity\Users;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class ConnexionController extends Controller
 {
@@ -12,22 +14,28 @@ class ConnexionController extends Controller
     /**
      * @Route("/connexion", name="connexion")
      */
-    public function connexionAction()
+    public function connexionAction(SessionInterface $session)
     {
         if(isset($_SESSION['username']))
         {
-            $user = $this->container->get('appbundle.checkconnexion')->checkUser($_SESSION['username'], $_SESSION['password']);
+            //$user = $this->container->get('appbundle.checkconnexion')->checkUser($_SESSION['username'], $_SESSION['password']);
             
-            $username = $user[0]['username'];
-            $role = $user[0]['roles'];
-            $role = $role[0];
+            $user = $session->get('users');
+            //$username = $user[0]['username'];
+            $username = $user->getUsername();
+            //$role = $user[0]['roles'];
+            //$role = $role[0];
+
+            $role = $user->getRoles();
+            
 
             if ($role = 'ROLE_AMATEUR') {
-                return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('username' => $_SESSION['username']));
+                return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('username' => $username));
+                
             }
         }
         else {
-            dump($user);
+            
             return $this->render('connexion/connexion.html.twig');
         }
     }
@@ -36,7 +44,7 @@ class ConnexionController extends Controller
      * @Route("/checkUser", name = "checkUser")
      *
      */
-    public function checkUserAction()
+    public function checkUserAction(SessionInterface $session)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = htmlentities($_POST['username']);
@@ -45,17 +53,18 @@ class ConnexionController extends Controller
             $_SESSION['password'] = $username;
 
             $user = $this->container->get('appbundle.checkconnexion')->checkUser($username, $password);
-            dump($user);
+            
             if ($user == false) {
                 $this->addFlash('error', "Les informations d'authentification sont erronées, veuillez ré-essayer.");
                 return $this->render('connexion/connexion.html.twig', array('message' => $this));
             } else {
                 $username = $user->getUsername();
-                dump($username);
+                
                 $role = $user->getRoles();
                 //$role = $role[0];
-                dump($role);
-
+                dump($user);
+                $session->set('users',$user);
+                dump($session);
                 if ($role = 'ROLE_AMATEUR') {
                     return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('username' => $username));
                 }
