@@ -30,8 +30,7 @@ class IndexController extends Controller
 
 
         $user = $session->get('users');
-        dump($session);
-        dump($user);
+        
         
         return $this->render('homepage/homepage.html.twig');
     }

@@ -76,6 +76,12 @@ class Users implements AdvancedUserInterface, \Serializable
      */
     private $experience;
 
+
+    /**
+    * @ORM\Column(type="string", length=255, nullable=true)
+    */
+    private $godsonCode;
+
     public function __construct()
     {
         $this->isActive = true;
@@ -206,6 +212,18 @@ class Users implements AdvancedUserInterface, \Serializable
         return $this;
     }
 
+    public function getGodsonCode(): ?string
+    {
+        return $this->godsonCode;
+    }
+
+    public function setGodsonCode(string $godsonCode): self
+    {
+        $this->godsonCode = $godsonCode;
+
+        return $this;
+    }
+
     public function eraseCredentials()
     {
     }
@@ -243,6 +261,8 @@ class Users implements AdvancedUserInterface, \Serializable
             $this->password,
             $this->roles,
             $this->godfatherCode,
+            $this->experience,
+            $this->godsonCode,
             $this->isActive,
         ));
     }
@@ -258,6 +278,8 @@ class Users implements AdvancedUserInterface, \Serializable
             $this->password,
             $this->roles,
             $this->godfatherCode,
+            $this->experience,
+            $this->godsonCode,
             $this->isActive,
             ) = unserialize($serialized);
     }
