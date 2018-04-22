@@ -82,6 +82,14 @@ class Users implements AdvancedUserInterface, \Serializable
     */
     private $godsonCode;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     *
+     * @Assert\NotBlank(message="Ajouter une image jpg")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
+     */
+    private $image;
+
     public function __construct()
     {
         $this->isActive = true;
@@ -220,6 +228,18 @@ class Users implements AdvancedUserInterface, \Serializable
     public function setGodsonCode(string $godsonCode): self
     {
         $this->godsonCode = $godsonCode;
+
+        return $this;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
 
         return $this;
     }
