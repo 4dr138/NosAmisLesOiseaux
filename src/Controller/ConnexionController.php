@@ -41,18 +41,6 @@ class ConnexionController extends Controller
     }
 
     /**
-     * @Route("/deconnexion", name="deconnexion")
-     */
-    public function deconnexionAction()
-    {
-        
-            session_destroy();
-        
-        return $this->render('homepage/homepage.html.twig');
-    }
-
-
-    /**
      * @Route("/checkUser", name = "checkUser")
      *
      */
