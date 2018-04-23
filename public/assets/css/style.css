@@ -47,7 +47,7 @@ footer {
 {
     margin-left:40%;
 }
-header, #actualites
+header
 {
     text-align:center;
 }
@@ -123,11 +123,12 @@ h2
     padding: 5%;
 
 }
-#assocDemande, #btnDon
+#assocDemande, #btnDon, #modifArticle
 {
     color: white;
     background-color: rgb(0,188,213);
     border-radius: 5px;
+    text-align:right;
 }
 #imgOiseau1
 {
@@ -229,6 +230,10 @@ h2
     {
         margin-top: 5%;
     }
+    #linkPanel1, #linkPanel2, #linkPanel3
+    {
+        margin-left:26%;
+    }
 }
 .flash-notice
 {
@@ -248,7 +253,7 @@ h2
 #linkPanel1, #linkPanel2, #linkPanel3
 {
     text-align:center;
-    margin-right: 8%;
+    margin-right: 8.2%;
     margin-top: 5%;
     height: auto;
     float: left;
@@ -308,4 +313,33 @@ h2
     -webkit-transform: scale(1.05);
     -o-transform: scale(1.05);
     -moz-transform: scale(1.05);
+}
+#panelh1 a:hover, #panelh1 a
+{
+    color: inherit;
+    color: rgb(150,150,150);
+}
+#comments1_submit
+{
+    color: white;
+    background-color: rgb(0,188,213);
+    border-radius: 5px;
+    font-size: 1.3em;
+    margin-top: 2%;
+    margin-left: 100%;
+}
+#linkDeco
+{
+    margin-right:4%;
+}
+#actualites
+{
+    text-align:right;
+}
+#btnDeleteArt, #btnDeleteArt button
+{
+    color: white;
+    background-color: rgb(0,188,213);
+    border-radius: 5px;
+    text-align:right;
 }
