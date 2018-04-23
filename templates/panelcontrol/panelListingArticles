@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 {% block title %}Edition des articles{% endblock %}
 {% block body %}
+<a id = 'return_Board' href="{{ path('connexion') }}"> Revenir sur le tableau de bord</a>
     <div class = 'container'>
         <header class="row">
             <div class="col-lg-12">
                 <h1>Edition des articles</h1>
             </div>
         </header>
-
         <div id = 'actualites' class="row">
             {% for article in articles %}
                 <div class = 'col-sm-10'>

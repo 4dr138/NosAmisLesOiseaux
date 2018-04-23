@@ -4,6 +4,7 @@
 
 {% block body %}
 
+    <a id = 'return_Board' href="{{ path('connexion') }}"> Revenir sur le tableau de bord</a>
     {% for unitArticle in article %}
         <div class = 'container'>
         <form action = '{{ path('editArticle', {'id': unitArticle.id}) }}' method = 'POST'>
