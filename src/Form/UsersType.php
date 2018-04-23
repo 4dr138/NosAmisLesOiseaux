@@ -21,6 +21,7 @@ class UsersType extends AbstractType
             ->add('username', TextType::class, array('label' => 'Pseudonyme', 'required' => true))
             ->add('mail', TextType::class, array('label' => 'E-mail', 'required' => true))
             ->add('password', PasswordType::class, array('label' => 'Mot de passe', 'required' => true))
+            ->add('godsonCode', TextType::class, array('label' => 'Code parrainage : '))
             ->add('newsletter', CheckboxType::class, array('label' => 'Voulez-vous vous abonner à notre Newsletter ? ', 'required' => false))
             ->add('Valider', SubmitType::class)
             //->add('isActive')

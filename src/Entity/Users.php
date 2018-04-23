@@ -96,6 +96,7 @@ class Users implements AdvancedUserInterface, \Serializable
         $this->newsletter = true;
         $this->Role ='ROLE_AMATEUR';
         $this->experience = 10 ;
+        
     }
 
     public function getSalt()
