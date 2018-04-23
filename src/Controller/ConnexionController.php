@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Users;
 use App\Service\ExperienceService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -15,7 +16,7 @@ class ConnexionController extends Controller
     /**
      * @Route("/connexion", name="connexion")
      */
-    public function connexionAction(SessionInterface $session)
+    public function connexionAction(SessionInterface $session, ExperienceService $ExperienceService)
     {
         $user = $session->get('users');
         //if(isset($_SESSION['username']))
@@ -25,6 +26,16 @@ class ConnexionController extends Controller
             $user = $session->get('users');
             
             $username = $user->getUsername();
+
+            $isparrained = $user->getIsParrained();
+            $godsonCode = $user->getGodSonCode();
+            
+            if(!$isparrained){
+                $ExperienceService->ExpParrainage($godsonCode);
+                $user->setIsParrained(true);
+            }
+            
+           
             
             $role = $user->getRoles();
             

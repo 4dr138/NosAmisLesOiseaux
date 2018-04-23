@@ -25,13 +25,23 @@ class ExperienceService extends Controller
 
     }
 
-    public function ExpInscription($godfatherCode)
+    public function ExpParrainage($godfatherCode)
     {
+        
         $em = $this->getDoctrine()->getManager();
         $userParrain = $em->getRepository('App:Users')->findOneBy(['godfatherCode' =>$godfatherCode]);
-/*        $newExp = $userParrain->setExperience($userParrain->getExperience() + 5);
-        $em->persist($userParrain);
-        $em->flush();*/
+        
+            if(isset($userParrain)){
+                
+                    
+                    $userParrain->setExperience($userParrain->getExperience() + 25);
+
+                    $em->persist($userParrain);
+                    $em->flush();
+
+        }
+        
+
 
     }
 }
