@@ -18,10 +18,13 @@ class ConnexionService extends Controller
 
     public function checkUser($username, $password)
     {
+        //$em = $this->getDoctrine()->getManager();
+        //$userInfos = $em->getRepository('App:Users')->getUserInfo($username, $password);
         $em = $this->getDoctrine()->getManager();
-        $userInfos = $em->getRepository('App:Users')->getUserInfo($username, $password);
+        $userInfos = $em->getRepository('App:Users')->findOneBy(['username' => $username, 'password' => $password ]);
         if(!empty($userInfos))
         {
+            
             return $userInfos;
         }
         else

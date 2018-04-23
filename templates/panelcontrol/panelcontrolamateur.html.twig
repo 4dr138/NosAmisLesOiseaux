@@ -4,7 +4,13 @@
 {% block body %}
 <div class = 'container'>
     <div id = 'panelh1' class = 'row'>
-        <h1>Bienvenue sur votre profil personnel <strong>{{ username }}</strong> ! </h1>
+        <h1>Bienvenue sur votre profil personnel <strong>{{ users.username }}</strong> ! </h1>
+    </div>
+    <div id = 'panelh1' class = 'row'>
+        <h3>Votre code de parrainage est : <strong>{{ users.godfatherCode }}</strong> </h3>
+    </div>
+    <div id = 'panelh1' class = 'row'>
+        <h5>Votre expérience cumulée est de : <strong>{{ users.experience }}</strong> points</h5>
     </div>
         <div id = 'linkPanel1' class = 'col-lg-3'>
             <h4>Profil utilisateur</h4>
@@ -22,5 +28,7 @@
             <img src = '{{ asset('assets/img/panelControlBird.jpg') }}' />
         </div>
 </div>
-
+<a href="{{ url('users_edit', {'id': users.id }) }}">modifier profil</a>
+<br>
+<a href="{{ path('deconnexion') }}">se deconnecter</a>
 {% endblock %}

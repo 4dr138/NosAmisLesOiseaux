@@ -71,12 +71,31 @@ class Users implements AdvancedUserInterface, \Serializable
      */
     private $godfatherCode;
 
+    /**
+     * @ORM\Column(type="integer", length=255)
+     */
+    private $experience;
+
+
+    /**
+    * @ORM\Column(type="string", length=255, nullable=true)
+    */
+    private $godsonCode;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     *
+     * @Assert\NotBlank(message="Ajouter une image jpg")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
+     */
+    private $image;
 
     public function __construct()
     {
         $this->isActive = true;
         $this->newsletter = true;
         $this->Role ='ROLE_AMATEUR';
+        $this->experience = 10 ;
     }
 
     public function getSalt()
@@ -188,6 +207,41 @@ class Users implements AdvancedUserInterface, \Serializable
 
         return $this;
     }
+        public function getExperience(): ?int
+    {
+        return $this->experience;
+    }
+
+    public function setExperience(int $experience): self
+    {
+        $this->experience = $experience;
+
+        return $this;
+    }
+
+    public function getGodsonCode(): ?string
+    {
+        return $this->godsonCode;
+    }
+
+    public function setGodsonCode(string $godsonCode): self
+    {
+        $this->godsonCode = $godsonCode;
+
+        return $this;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
 
     public function eraseCredentials()
     {
@@ -226,6 +280,8 @@ class Users implements AdvancedUserInterface, \Serializable
             $this->password,
             $this->roles,
             $this->godfatherCode,
+            $this->experience,
+            $this->godsonCode,
             $this->isActive,
         ));
     }
@@ -241,6 +297,8 @@ class Users implements AdvancedUserInterface, \Serializable
             $this->password,
             $this->roles,
             $this->godfatherCode,
+            $this->experience,
+            $this->godsonCode,
             $this->isActive,
             ) = unserialize($serialized);
     }

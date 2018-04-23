@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 
+use App\Entity\Users;
+use App\Service\ExperienceService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class ConnexionController extends Controller
 {
@@ -12,29 +15,48 @@ class ConnexionController extends Controller
     /**
      * @Route("/connexion", name="connexion")
      */
-    public function connexionAction()
+    public function connexionAction(SessionInterface $session)
     {
-        if(isset($_SESSION['username']))
+        $user = $session->get('users');
+        //if(isset($_SESSION['username']))
+        if(isset($user))
         {
-            $user = $this->container->get('appbundle.checkconnexion')->checkUser($_SESSION['username'], $_SESSION['password']);
-            $username = $user[0]['username'];
-            $role = $user[0]['roles'];
-            $role = $role[0];
+         
+            $user = $session->get('users');
+            
+            $username = $user->getUsername();
+            
+            $role = $user->getRoles();
+            
 
             if ($role = 'ROLE_AMATEUR') {
-                return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('username' => $_SESSION['username']));
+                return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user));
+                
             }
         }
         else {
+            
             return $this->render('connexion/connexion.html.twig');
         }
     }
 
     /**
+     * @Route("/deconnexion", name="deconnexion")
+     */
+    public function deconnexionAction()
+    {
+        
+            session_destroy();
+        
+        return $this->render('homepage/homepage.html.twig');
+    }
+
+
+    /**
      * @Route("/checkUser", name = "checkUser")
      *
      */
-    public function checkUserAction()
+    public function checkUserAction(SessionInterface $session, ExperienceService $ExperienceService)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = htmlentities($_POST['username']);
@@ -43,17 +65,20 @@ class ConnexionController extends Controller
             $_SESSION['password'] = $username;
 
             $user = $this->container->get('appbundle.checkconnexion')->checkUser($username, $password);
-
+            
             if ($user == false) {
                 $this->addFlash('error', "Les informations d'authentification sont erronées, veuillez ré-essayer.");
                 return $this->render('connexion/connexion.html.twig', array('message' => $this));
             } else {
-                $username = $user[0]['username'];
-                $role = $user[0]['roles'];
-                $role = $role[0];
+                $username = $user->getUsername();
+                
+                $role = $user->getRoles();
+             
+                $ExperienceService->ExpConnexion($user);
+                $session->set('users',$user);
 
                 if ($role = 'ROLE_AMATEUR') {
-                    return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('username' => $username));
+                    return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user));
                 }
             }
 

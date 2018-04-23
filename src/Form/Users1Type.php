@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,14 +13,15 @@ class Users1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('firstname')
-            ->add('username')
+            //->add('name')
+            //->add('firstname')
+            //->add('username')
             ->add('mail')
             ->add('password')
             ->add('newsletter')
-            ->add('isActive')
-            ->add('roles')
+            ->add('image', FileType::class, array('label' => 'Image(JPG)'))
+            //->add('isActive')
+            //->add('roles')
         ;
     }
 

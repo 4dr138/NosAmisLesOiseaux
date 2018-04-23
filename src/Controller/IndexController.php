@@ -11,6 +11,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
 class IndexController extends Controller
@@ -19,13 +20,18 @@ class IndexController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction()
+    public function indexAction(SessionInterface $session)
     {
 //        session_destroy();
-        if(!isset($_SESSION))
-        {
-            session_start();
-        }
+        //if(!isset($_SESSION))
+       // {
+            //session_start();
+        //}
+
+
+        $user = $session->get('users');
+        
+        
         return $this->render('homepage/homepage.html.twig');
     }
 

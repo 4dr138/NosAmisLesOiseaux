@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
 class BlogController extends Controller
@@ -15,10 +16,12 @@ class BlogController extends Controller
     /**
      * @Route("/blog/{id}", name="blog")
      */
-    public function blogAction($id, Request $request)
+    public function blogAction($id, Request $request, SessionInterface $session)
     {
         $article = $this->container->get('appbundle.articlesservice')->getArticleById($id);
         $comments = $this->container->get('appbundle.commentsservice')->getCommentsById($id);
+        $user = $session->get('Users');
+        
 
         foreach($article[0] as $values)
             {

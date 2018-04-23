@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class InscriptionController extends Controller
 {
@@ -16,7 +17,7 @@ class InscriptionController extends Controller
     /**
      * @Route("/inscription", name="inscription")
      */
-    public function inscriptionAction(Request $request, CodeGodFatherService $CodeGodFatherService)
+    public function inscriptionAction(Request $request, CodeGodFatherService $CodeGodFatherService, SessionInterface $session)
     {
         $user = new Users();
         $form = $this->createForm("App\Form\UsersType", $user);
@@ -30,6 +31,9 @@ class InscriptionController extends Controller
                 $user->setRoles(['ROLE_AMATEUR']);
                 $user->setGodfatherCode($CodeGodFatherService->generateCode());
                 $em->persist($user);
+                $session->set('users',$user);
+                
+                
                 $em->flush();
 
                 //            $this->container->get('appbundle.mailservice')->sendConfirmationMail($user);
