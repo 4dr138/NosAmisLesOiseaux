@@ -41,6 +41,11 @@ class Bird
      */
     private $protected;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\BirdStatus", inversedBy="birds")
+     */
+    private $birdStatuses;
+
     public function getId()
     {
         return $this->id;
@@ -105,4 +110,17 @@ class Bird
 
         return $this;
     }
+
+    public function getBirdStatuses(): ?BirdStatus
+    {
+        return $this->birdStatuses;
+    }
+
+    public function setBirdStatuses(?BirdStatus $birdStatuses): self
+    {
+        $this->birdStatuses = $birdStatuses;
+
+        return $this;
+    }
+
 }
