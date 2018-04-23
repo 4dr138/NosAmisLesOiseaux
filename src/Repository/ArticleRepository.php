@@ -46,4 +46,27 @@ class ArticleRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->execute();
     }
+
+    public function deleteArticleId($id)
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb
+            ->delete()
+            ->where('a.id=' .$id);
+        $qb->getQuery()->execute();
+    }
+
+    public function updateArticleId($id, $title, $content)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'UPDATE App\Entity\Article a
+            SET a.title = :title, a.content = :content 
+            WHERE a.id = :id')
+            ->setParameter('title', $title)
+            ->setParameter('content', $content)
+            ->setParameter('id', $id);
+
+        $query->execute();
+    }
 }

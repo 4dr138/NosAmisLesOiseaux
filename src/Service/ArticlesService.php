@@ -41,4 +41,16 @@ class ArticlesService extends Controller
 
         return $articleID;
     }
+
+    public function deleteArticleId($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->getRepository('App:Article')->deleteArticleId($id);
+    }
+
+    public function updateArticleId($id, $title, $content)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->getRepository('App:Article')->updateArticleId($id, $title, $content);
+    }
 }

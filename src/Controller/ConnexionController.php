@@ -132,4 +132,16 @@ class ConnexionController extends Controller
         }
     }
 
+    /**
+     * @Route("/deconnexionPanel", name = "deconnexionPanel")
+     *
+     */
+    public function deconnexionPanelAction()
+    {
+        session_destroy();
+        return $this->redirectToRoute('homepage');
+    }
+
+
+
 }

@@ -12,21 +12,23 @@
     <div id = 'panelh1' class = 'row'>
         <h5>Votre expérience cumulée est de : <strong>{{ users.experience }}</strong> points</h5>
     </div>
+    <div class = 'row'>
         <div id = 'linkPanel1' class = 'col-lg-3'>
             <h4>Profil utilisateur</h4>
-
             <img src = '{{ asset('assets/img/panelControlProfil.jpg') }}' />
         </div>
         <div id = 'linkPanel2' class = 'col-lg-3'>
             <h4>Gestion des articles</h4>
-
-            <img src = '{{ asset('assets/img/panelControlEdit.png') }}' />
+            <a href = "{{ path('panelListingArticles') }}" ><img src = '{{ asset('assets/img/panelControlEdit.png') }}' /></a>
         </div>
         <div id = 'linkPanel3' class = 'col-lg-3'>
             <h4>Consultation de mes trouvailles</h4><br />
-
             <img src = '{{ asset('assets/img/panelControlBird.jpg') }}' />
         </div>
+    </div>
+    <div id = 'panelh1' class = 'row'>
+        <h1><a id = 'linkDeco' href = "{{ path('deconnexionPanel') }}">Deconnexion</a></h1>
+    </div>
 </div>
 <a href="{{ url('users_edit', {'id': users.id }) }}">modifier profil</a>
 <br>
