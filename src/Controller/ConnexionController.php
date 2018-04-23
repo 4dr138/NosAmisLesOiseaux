@@ -41,18 +41,6 @@ class ConnexionController extends Controller
     }
 
     /**
-     * @Route("/deconnexion", name="deconnexion")
-     */
-    public function deconnexionAction()
-    {
-        
-            session_destroy();
-        
-        return $this->render('homepage/homepage.html.twig');
-    }
-
-
-    /**
      * @Route("/checkUser", name = "checkUser")
      *
      */
@@ -131,5 +119,17 @@ class ConnexionController extends Controller
             return $this->redirectToRoute('forgotpass');
         }
     }
+
+    /**
+     * @Route("/deconnexionPanel", name = "deconnexionPanel")
+     *
+     */
+    public function deconnexionPanelAction()
+    {
+        session_destroy();
+        return $this->redirectToRoute('homepage');
+    }
+
+
 
 }

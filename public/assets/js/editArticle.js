@@ -8,39 +8,39 @@ function checkArticle(articleId, type)
 {
     var url = Routing.generate('checkID', {id: articleId});
     $.ajax(
-    {
-        url: url,
-        type: 'POST',
-        data: articleId,
-        success: function(data){
-            console.log(type);
-            if(type == 'next')
-            {
-                if(data !== '-99')
+        {
+            url: url,
+            type: 'POST',
+            data: articleId,
+            success: function(data){
+                console.log(type);
+                if(type == 'next')
                 {
-                    nextArticle.show()
+                    if(data !== '-99')
+                    {
+                        nextArticle.show()
+                    }
+                    else
+                    {
+                        nextArticle.hide();
+                    }
                 }
                 else
                 {
-                    nextArticle.hide();
+                    if(data !== '-99')
+                    {
+                        prevArticle.show()
+                    }
+                    else
+                    {
+                        prevArticle.hide();
+                    }
                 }
+            },
+            error: function(data){
+                alert('no data');
             }
-            else
-            {
-                if(data !== '-99')
-                {
-                    prevArticle.show()
-                }
-                else
-                {
-                    prevArticle.hide();
-                }
-            }
-        },
-        error: function(data){
-            alert('no data');
-        }
-    });
+        });
 }
 checkArticle(nextArticleID, 'next');
 checkArticle(prevArticleID, 'prev');
@@ -52,7 +52,7 @@ tinymce.init({
 
 
     selector: "textarea",
-    width: 800,
+    width: 1200,
     height:450,
     plugins: [
         "advlist autolink autosave link image lists charmap print preview hr anchor pagebreak",

@@ -4,7 +4,7 @@
 {% block body %}
 <div class = 'container'>
     <div id = 'panelh1' class = 'row'>
-        <h1>Bienvenue sur votre profil personnel <strong>{{ users.username }}</strong> ! </h1>
+        <h1>Bienvenue sur votre profil personnel <strong>{{ users.username }}</strong>! </h1> {{ users.image }}
     </div>
     <div id = 'panelh1' class = 'row'>
         <h3>Votre code de parrainage est : <strong>{{ users.godfatherCode }}</strong> </h3>
@@ -12,21 +12,24 @@
     <div id = 'panelh1' class = 'row'>
         <h5>Votre expérience cumulée est de : <strong>{{ users.experience }}</strong> points</h5>
     </div>
-    <div class = 'col-lg-12'>
-        <div class = 'col-lg-4'>
-            Profil utilisateur
+
+    <div class = 'row'>
+        <div id = 'linkPanel1' class = 'col-lg-3'>
+            <h4>Profil utilisateur</h4>
             {{ users.image }}
+            <a href = "{{ url('users_edit', {'id': users.id }) }}"><img src = '{{ asset('assets/img/panelControlProfil.jpg') }}' /></a>
         </div>
-        <div class = 'col-lg-4'>
-            Gestion des articles
+        <div id = 'linkPanel2' class = 'col-lg-3'>
+            <h4>Gestion des articles</h4>
+            <a href = "{{ path('panelListingArticles') }}" ><img src = '{{ asset('assets/img/panelControlEdit.png') }}' /></a>
         </div>
-        <div class = 'col-lg-4'>
-            Consultation de mes trouvailles
+        <div id = 'linkPanel3' class = 'col-lg-3'>
+            <h4>Consultation de mes trouvailles</h4><br />
+            <img src = '{{ asset('assets/img/panelControlBird.jpg') }}' />
         </div>
     </div>
-    
+    <div id = 'panelh1' class = 'row'>
+        <h1><a id = 'linkDeco' href = "{{ path('deconnexionPanel') }}">Deconnexion</a></h1>
+    </div>
 </div>
-<a href="{{ url('users_edit', {'id': users.id }) }}">modifier profil</a>
-<br>
-<a href="{{ path('deconnexion') }}">se deconnecter</a>
 {% endblock %}
