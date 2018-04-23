@@ -25,6 +25,8 @@ class InscriptionController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             // On check l'existence du mail dans la base
+            $godsonCode  = $request->get('godsonCode');
+            dump($godsonCode);
             $mailExistant = $this->container->get('appbundle.forgotmail')->checkMail($user->getMail());
             if($mailExistant == false) {
                 $em = $this->getDoctrine()->getManager();
