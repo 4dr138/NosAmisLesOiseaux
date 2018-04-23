@@ -7,6 +7,7 @@
             <link rel="icon" href = '{{ asset('assets/img/logofav.png') }}' />
             <link type = "text/css" rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
             <link rel = 'stylesheet' href = "{{ asset('bundles/easyadmin/stylesheet/bootstrap.min.css') }}" />
+            <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
             <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
             <style type = 'text/css'>body {background-color: rgb(245,245,245);}</style>
         {% endblock %}
@@ -16,6 +17,7 @@
         {% block body %}{% endblock %}
 
         {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         {% endblock %}
     </body>
