@@ -21,6 +21,16 @@ class BirdFamily
      */
     private $label;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Bird", mappedBy="birdFamilies")
+     */
+    private $birds;
+
+    public function __construct()
+    {
+        $this->birds = new ArrayCollection();
+    }
+
     public function getId()
     {
         return $this->id;
@@ -34,6 +44,37 @@ class BirdFamily
     public function setLabel(string $label): self
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Bird[]
+     */
+    public function getBirds(): Collection
+    {
+        return $this->birds;
+    }
+
+    public function addBird(Bird $bird): self
+    {
+        if (!$this->birds->contains($bird)) {
+            $this->birds[] = $bird;
+            $bird->setBirdFamilies($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBird(Bird $bird): self
+    {
+        if ($this->birds->contains($bird)) {
+            $this->birds->removeElement($bird);
+            // set the owning side to null (unless already changed)
+            if ($bird->getBirdFamilies() === $this) {
+                $bird->setBirdFamilies(null);
+            }
+        }
 
         return $this;
     }
