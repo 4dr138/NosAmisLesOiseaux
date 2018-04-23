@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+{% block body %}
+    <div class = 'container'>
+        <div id = 'panelh1' class = 'row'>
+            <h1>Bienvenue sur votre profil personnel <strong>{{ users.username }}</strong>! </h1> {{ users.image }}
+        </div>
+        <div id = 'panelh1' class = 'row'>
+            <h3>Votre code de parrainage est : <strong>{{ users.godfatherCode }}</strong> </h3>
+        </div>
+        <div id = 'panelh1' class = 'row'>
+            <h5>Votre expérience cumulée est de : <strong>{{ users.experience }}</strong> points</h5>
+        </div>
+        <div class = 'row'>
+            <div id = 'linkPanel1' class = 'col-lg-3'>
+                <h4>Profil utilisateur</h4>
+                <a href = "{{ url('users_edit', {'id': users.id }) }}"><img src = '{{ asset('assets/img/panelControlProfil.jpg') }}' /></a>
+            </div>
+            <div id = 'linkPanel2' class = 'col-lg-3'>
+                <p>GEstion des soumissions d'oiseaux</p>
+            </div>
+            <div id = 'linkPanel3' class = 'col-lg-3'>
+                <h4>Consultation de mes trouvailles</h4><br />
+                <img src = '{{ asset('assets/img/panelControlBird.jpg') }}' />
+            </div>
+        </div>
+        <div id = 'panelh1' class = 'row'>
+            <h1><a id = 'linkDeco' href = "{{ path('deconnexionPanel') }}">Deconnexion</a></h1>
+        </div>
+    </div>
+{% endblock %}
