@@ -207,7 +207,6 @@ class Users implements AdvancedUserInterface, \Serializable
 
         return $this;
     }
-
         public function getExperience(): ?int
     {
         return $this->experience;
