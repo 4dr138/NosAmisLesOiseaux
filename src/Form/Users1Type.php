@@ -6,6 +6,7 @@ use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,7 +23,7 @@ class Users1Type extends AbstractType
             ->add('mail', TextType::class, array('label' => 'E-mail : ', 'required' => true))
             ->add('password', TextType::class, array('label' => 'Mot de passe : ', 'required' => true))
             ->add('newsletter', CheckboxType::class, array('label' => 'Voulez-vous vous abonner à notre Newsletter ? ', 'required' => false))
-            ->add('image', FileType::class, array('label' => 'Image(JPG)', 'data_class' => null))
+            ->add('image', FileType::class, array('data_class' => null,'required' => false))
             //->add('isActive')
             //->add('roles')
         ;

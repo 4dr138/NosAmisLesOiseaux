@@ -12,9 +12,11 @@
     <div id = 'panelh1' class = 'row'>
         <h5>Votre expérience cumulée est de : <strong>{{ users.experience }}</strong> points</h5>
     </div>
+
     <div class = 'row'>
         <div id = 'linkPanel1' class = 'col-lg-3'>
             <h4>Profil utilisateur</h4>
+            {{ users.image }}
             <a href = "{{ url('users_edit', {'id': users.id }) }}"><img src = '{{ asset('assets/img/panelControlProfil.jpg') }}' /></a>
         </div>
         <div id = 'linkPanel2' class = 'col-lg-3'>
