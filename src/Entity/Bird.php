@@ -17,24 +17,24 @@ class Bird
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(name="taxref_classe" type="string", length=50)
      */
-    private $taxref_classe;
+    private $taxrefClass;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="taxref_cd_nom" type="integer")
      */
-    private $taxref_cd_nom;
+    private $taxrefCdName;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="taxref_nom_vern" type="string", length=255)
      */
-    private $taxref_nom_vern;
+    private $taxrefVern;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(name="taxref_url_image" type="string", length=255, nullable=true)
      */
-    private $taxref_url_image;
+    private $taxrefUrlImage;
 
     /**
      * @ORM\Column(type="boolean", nullable=false)
@@ -56,50 +56,50 @@ class Bird
         return $this->id;
     }
 
-    public function getTaxrefClasse(): ?string
+    public function getTaxrefClass(): ?string
     {
-        return $this->taxref_classe;
+        return $this->taxrefClass;
     }
 
-    public function setTaxrefClasse(string $taxref_classe): self
+    public function setTaxrefClass(string $taxrefClass): self
     {
-        $this->taxref_classe = $taxref_classe;
+        $this->taxrefClass = $taxrefClass;
 
         return $this;
     }
 
-    public function getTaxrefCdNom(): ?int
+    public function getTaxrefCdName(): ?int
     {
-        return $this->taxref_cd_nom;
+        return $this->taxrefCdName;
     }
 
-    public function setTaxrefCdNom(int $taxref_cd_nom): self
+    public function setTaxrefCdName(int $taxrefCdName): self
     {
-        $this->taxref_cd_nom = $taxref_cd_nom;
+        $this->taxrefCdName = $taxrefCdName;
 
         return $this;
     }
 
-    public function getTaxrefNomVern(): ?string
+    public function getTaxrefVern(): ?string
     {
-        return $this->taxref_nom_vern;
+        return $this->taxrefVern;
     }
 
-    public function setTaxrefNomVern(string $taxref_nom_vern): self
+    public function setTaxrefVern(string $taxrefVern): self
     {
-        $this->taxref_nom_vern = $taxref_nom_vern;
+        $this->taxrefVern = $taxrefVern;
 
         return $this;
     }
 
     public function getTaxrefUrlImage(): ?string
     {
-        return $this->taxref_url_image;
+        return $this->taxrefUrlImage;
     }
 
-    public function setTaxrefUrlImage(?string $taxref_url_image): self
+    public function setTaxrefUrlImage(?string $taxrefUrlImage): self
     {
-        $this->taxref_url_image = $taxref_url_image;
+        $this->taxrefUrlImage = $taxrefUrlImage;
 
         return $this;
     }
