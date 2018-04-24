@@ -43,6 +43,7 @@
         "twbs/bootstrap": "^4.0",
         "twig/extensions": "^1.5",
         "twig/twig": "^2.4",
+        "league/csv": "^9.1",
         "vich/uploader-bundle": "^1.8"
     },
     "require-dev": {
