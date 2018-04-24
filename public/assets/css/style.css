@@ -134,7 +134,7 @@ h2
 {
     float:left;
 }
-#loginUser, #titleEditUsers
+#loginUser, #titleEditUsers, #titleSearch
 {
     text-align:center;
     color: rgb(150,150,150);

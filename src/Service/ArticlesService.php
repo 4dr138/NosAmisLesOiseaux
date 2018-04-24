@@ -53,4 +53,13 @@ class ArticlesService extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->getRepository('App:Article')->updateArticleId($id, $title, $content);
     }
+
+    public function getArticlesByWord($word)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $articles = $em->getRepository('App:Article')->getArticlesByWord($word);
+
+
+        return $articles;
+    }
 }

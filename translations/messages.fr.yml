@@ -6,7 +6,7 @@ users.mail: Mail
 users.password: Mot de passe
 users.newsletter: Newsletter
 users.actif: Actif ?
-users.role: Role
+users.roles: Role
 
 
 article.title: Titre de l'article

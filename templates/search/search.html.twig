@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche{% endblock %}
+{% block body %}
+    <div class = 'container'>
+        <div class = 'col-lg-12'>
+            <h1 id = 'titleSearch'>Résultat de votre recherche pour le mot <strong>{{ word }}</strong>!</h1><input id = 'inputWord' type = 'hidden' value = '{{ word }}' />
+            <h3 id = 'titleSearch'>Dans nos articles...</h3>
+            {% for article in articles %}
+                <strong>{{ article.title }}</strong>
+                <br />
+            {{ article.content }}
+                <br />
+                <a href = '{{ path('blog', {'id': article.id }) }}'>Lien vers l'article !</a>
+                <hr />
+        {% endfor %}
+            <h3 id = 'titleSearch'>Chez nos oiseaux...</h3>
+        </div>
+    </div>
+{% endblock %}
