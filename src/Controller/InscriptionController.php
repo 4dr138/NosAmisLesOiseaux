@@ -25,13 +25,18 @@ class InscriptionController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             // On check l'existence du mail dans la base
-            $godsonCode  = $request->get('godsonCode');
-            dump($godsonCode);
+           
             $mailExistant = $this->container->get('appbundle.forgotmail')->checkMail($user->getMail());
+
+
             if($mailExistant == false) {
                 $em = $this->getDoctrine()->getManager();
+
+                
                 $user->setRoles(['ROLE_AMATEUR']);
                 $user->setGodfatherCode($CodeGodFatherService->generateCode());
+
+                
                 $em->persist($user);
                 $session->set('users',$user);
                 
@@ -41,7 +46,7 @@ class InscriptionController extends Controller
                 //            $this->container->get('appbundle.mailservice')->sendConfirmationMail($user);
 
                 $this->addFlash("success", "Votre inscription a bien été prise en compte, vous allez recevoir un mail de confirmation !");
-                return $this->redirectToRoute('inscription');
+                return $this->redirectToRoute('connexion');
             }
             else{
                 $this->addFlash("error", "Vous avez déjà un compte chez nous, veuillez vous identifier directement");

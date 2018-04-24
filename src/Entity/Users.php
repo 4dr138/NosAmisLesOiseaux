@@ -90,12 +90,18 @@ class Users implements AdvancedUserInterface, \Serializable
      */
     private $image;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isParrained;
+
     public function __construct()
     {
         $this->isActive = true;
         $this->newsletter = true;
         $this->Role ='ROLE_AMATEUR';
         $this->experience = 10 ;
+        $this->isParrained = false;
         
     }
 
@@ -240,6 +246,18 @@ class Users implements AdvancedUserInterface, \Serializable
     public function setImage($image)
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getIsParrained(): ?bool
+    {
+        return $this->isParrained;
+    }
+
+    public function setIsParrained(bool $isParrained): self
+    {
+        $this->isParrained = $isParrained;
 
         return $this;
     }
