@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Birds;
+use App\Entity\BirdStatus;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Birds|null find($id, $lockMode = null, $lockVersion = null)
- * @method Birds|null findOneBy(array $criteria, array $orderBy = null)
- * @method Birds[]    findAll()
- * @method Birds[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method BirdStatus|null find($id, $lockMode = null, $lockVersion = null)
+ * @method BirdStatus|null findOneBy(array $criteria, array $orderBy = null)
+ * @method BirdStatus[]    findAll()
+ * @method BirdStatus[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class BirdsRepository extends ServiceEntityRepository
+class BirdStatusRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Birds::class);
+        parent::__construct($registry, BirdStatus::class);
     }
 
 //    /**
-//     * @return Birds[] Returns an array of Birds objects
+//     * @return BirdStatus[] Returns an array of BirdStatus objects
 //     */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class BirdsRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Birds
+    public function findOneBySomeField($value): ?BirdStatus
     {
         return $this->createQueryBuilder('b')
             ->andWhere('b.exampleField = :val')
