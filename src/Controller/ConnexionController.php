@@ -59,22 +59,18 @@ class ConnexionController extends Controller
                 return $this->render('connexion/connexion.html.twig', array('message' => $this));
             } else {
                 $username = $user->getUsername();
-                
+
                 $role = $user->getRoles();
-             
+
                 $ExperienceService->ExpConnexion($user);
-                $session->set('users',$user);
+                $session->set('users', $user);
 
                 if ($role = 'ROLE_AMATEUR') {
                     return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user));
-                }
-                else if ($role = 'ROLE_NATURALISTE')
-                {
+                } else if ($role = 'ROLE_NATURALISTE') {
                     return $this->render('panelcontrol/panelcontrolnaturaliste.html.twig', array('users' => $user));
                 }
             }
-
-
         }
     }
 

@@ -69,4 +69,16 @@ class ArticleRepository extends ServiceEntityRepository
 
         $query->execute();
     }
+
+    public function getArticlesByWord($word)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery("
+        SELECT a.title, a.content, a.id
+        FROM App\Entity\Article a
+        WHERE a.title like :word OR a.content like :word ORDER BY a.id desc")
+            ->setParameter('word', '%' . $word . '%');
+
+       return $query->execute();
+    }
 }

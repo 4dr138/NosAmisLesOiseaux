@@ -19,7 +19,17 @@ easy_admin:
                 - { property: 'password', label: 'users.password' }
                 - { property: 'newsletter', label: 'users.newsletter' }
                 - { property: 'is_active', label: 'users.actif' }
-                - { property: 'role', label: 'users.role' }
+            edit:
+              fields:
+                - { property: 'name', label: 'users.name' }
+                - { property: 'firstname', label: 'users.firstname' }
+                - { property: 'username', label: 'users.username' }
+                - { property: 'mail', label: 'users.mail' }
+                - { property: 'password', label: 'users.password' }
+                - { property: 'newsletter', label: 'users.newsletter' }
+                - { property: 'is_active', label: 'users.actif', type: 'text' }
+                - 'roles'
+                - { property: 'roles', label: 'users.roles' }
        Article:
             class: App\Entity\Article
             new:
