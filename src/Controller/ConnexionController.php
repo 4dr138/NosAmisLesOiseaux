@@ -16,7 +16,7 @@ class ConnexionController extends Controller
     /**
      * @Route("/connexion", name="connexion")
      */
-    public function connexionAction(SessionInterface $session, ExperienceService $ExperienceService)
+    public function connexionAction(SessionInterface $session)
     {
         $user = $session->get('users');
         //if(isset($_SESSION['username']))
@@ -27,16 +27,6 @@ class ConnexionController extends Controller
             
             $username = $user->getUsername();
 
-            $isparrained = $user->getIsParrained();
-            $godsonCode = $user->getGodSonCode();
-            
-            if(!$isparrained){
-                $ExperienceService->ExpParrainage($godsonCode);
-                $user->setIsParrained(true);
-            }
-            
-           
-            
             $role = $user->getRoles();
             
 

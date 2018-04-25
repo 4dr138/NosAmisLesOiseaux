@@ -40,7 +40,23 @@ class ExperienceService extends Controller
                     $em->flush();
 
         }
+    }
+
+    public function ExpDonation(Users $user)
+    {
         
+        $em = $this->getDoctrine()->getManager();
+        /*$userParrain = $em->getRepository('App:Users')->findOneBy(['godfatherCode' =>$godfatherCode]);*/
+        
+            //if(isset($user)){
+                
+                    
+                    $user->setExperience($user->getExperience() + 300);
+
+                    $em->persist($user);
+                    $em->flush();
+
+        //}        
 
 
     }

@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Service\StripeGift;
 use App\Service\Mail;
+use App\Service\ExperienceService;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,11 +16,12 @@ class DonationController extends AbstractController
 	/**
     * @Route("/donation/", name="donation")
     */
-    public function donation()
+    public function donation(SessionInterface $session)
     {
-
+        
         return $this->render('donation/donation.html.twig', array(
                 
+                'user' => $user,
                 'description' => "faire un don",
                 "publishable_key" => "pk_test_22Upp5xyncxXUx9EfBE54yEn"
                 ));
@@ -27,7 +30,7 @@ class DonationController extends AbstractController
     /**
     * @Route("/donation/gift", name="gift")
     */
-    public function gift(Request $request, StripeGift $StripeGift, Mail $Mail)
+    public function gift(Request $request, StripeGift $StripeGift, Mail $Mail,SessionInterface $session, ExperienceService $ExperienceService)
     {
 
         $token  = $request->get('stripeToken');
@@ -36,9 +39,13 @@ class DonationController extends AbstractController
         $name = $request->get('name');
         $firstname = $request->get('firstname');
         
-
+        $user = $session->get('users');
+       
 
         try {
+          /*  if(!$user){
+                $ExperienceService->ExpDonation($user);
+            }*/
             
             $StripeGift->chargeVisa($token, $email, $amount);
             $Mail->sendMail($email, $amount, $name, $firstname);

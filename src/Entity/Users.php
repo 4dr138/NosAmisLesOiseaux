@@ -90,10 +90,7 @@ class Users implements AdvancedUserInterface, \Serializable
      */
     private $image;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isParrained;
+
 
     public function __construct()
     {
@@ -101,7 +98,7 @@ class Users implements AdvancedUserInterface, \Serializable
         $this->newsletter = true;
         $this->Role ='ROLE_AMATEUR';
         $this->experience = 10 ;
-        $this->isParrained = false;
+        
         
     }
 
@@ -250,17 +247,7 @@ class Users implements AdvancedUserInterface, \Serializable
         return $this;
     }
 
-    public function getIsParrained(): ?bool
-    {
-        return $this->isParrained;
-    }
 
-    public function setIsParrained(bool $isParrained): self
-    {
-        $this->isParrained = $isParrained;
-
-        return $this;
-    }
 
     public function eraseCredentials()
     {
