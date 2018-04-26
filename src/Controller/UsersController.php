@@ -68,11 +68,11 @@ class UsersController extends Controller
             /*$user->setImage(
     new File($this->getParameter('image_user').'/'.$user->getImage())
 );*/
-            
+
             $file = $user->getImage();
-            
+
             $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-            
+
             // moves the file to the directory where brochures are stored
             $file->move($this->getParameter('image_user'),$fileName);
             // updates the 'brochure' property to store the PDF file name
