@@ -113,6 +113,7 @@ h2
 {
     margin-left:35%;
     width: 350px;
+    min-height: 700px;
 }
 #titreProfils, #titreDon
 {
@@ -148,7 +149,7 @@ h2
 {
     float:left;
 }
-#loginUser, #titleEditUsers
+#loginUser
 {
     text-align:center;
     color: rgb(150,150,150);
@@ -236,7 +237,7 @@ h2
     #top5Img, #top10img
     {
         display: inline-flex;
-        margin-left: -20%;
+        /*margin-left: -20%;*/
     }
     #btnInscriptionHomePage
     {
@@ -254,6 +255,7 @@ h2
     #newsHome
     {
         margin-top: 5%;
+        margin-bottom: 5%;
     }
     #linkPanel1, #linkPanel2, #linkPanel3
     {
@@ -289,6 +291,10 @@ h2
     #comments1_author
     {
         border: 0.1px solid;
+    }
+    #actualites, #blocDon, #formContact
+    {
+        margin-bottom: 5%;
     }
 
 }
@@ -417,11 +423,15 @@ h2
 {
     width: 100%;
 }
+#formInscription form
+{
+    height:550px;
+}
 #return_Board
 {
-    color: grey;
-    border-radius: 5px;
-    margin-left: 1%;
+    color: #4cab3d;
+    margin-left: 15%;
+
 }
 #addObs
 {
@@ -509,5 +519,10 @@ h2
 }
 #titleSearch {
     text-align: center;
+    color: #4cab3d;
+}
+#titleEditUsers
+{
+    text-align:center;
     color: #4cab3d;
 }

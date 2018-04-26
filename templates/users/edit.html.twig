@@ -3,14 +3,12 @@
 {% block title %}Modifier son profil{% endblock %}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
-<a id = 'return_Board' href="{{ path('connexion') }}"> Revenir sur le tableau de bord</a>
-<h1 id = 'titleEditUsers'>Modifier son profil</h1>
     <div class = 'container'>
+        <h1 id = 'titleEditUsers'>Modifier son profil</h1>
         <div id = 'formInscription' class = 'row'>
             {{ include('users/_form.html.twig', {'button_label': 'Mettre à jour mes informations personnelles'}) }}
+            <a id = 'return_Board' href="{{ path('connexion') }}"> Revenir sur le tableau de bord</a>
         </div>
-
-
     </div>
 
     
