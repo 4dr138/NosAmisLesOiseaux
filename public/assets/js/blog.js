@@ -52,8 +52,8 @@ tinymce.init({
 
 
     selector: "textarea",
-    width: 800,
-    height:450,
+    width: 600,
+    height:300,
     plugins: [
         "advlist autolink autosave link image lists charmap print preview hr anchor pagebreak",
         "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking"

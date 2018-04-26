@@ -3,22 +3,27 @@
         <hr />
         <div class="row">
             <div class="col-lg-12">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <ul class="nav nav-pills nav-stacked">
-                        <li><a href="{{ path('mentions') }}">Mentions légales</a></li>
+                        <li><span class = 'titleFooter'>Nos Amis Les Oiseaux</span><br />13, Rue des Colibris<br />17140 ILE DE RE</li>
                     </ul>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <ul class="nav nav-pills nav-stacked">
-                        <li><a href="{{ path('login') }}">Espace Administration</a></li>
+                        <li><a class = 'path' href="{{ path('login') }}">Espace Administration</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a class = 'path' href="{{ path('mentions') }}">Mentions légales</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
                     <div class = "row">
-                        <a href="https://www.facebook.com/pg/NAOnosamislesoiseaux"><img src=" {{ asset('assets/img/facebook.png') }}" /></a>
-                        <a href="https://www.twitter.com/"><img src=" {{ asset('assets/img/twitter.png') }}" /></a>
-                        <a href="https://www.instagram.com/"><img src=" {{ asset('assets/img/instagram.png') }}" /></a>
-                        <a href="https://www.pinterest.com/"><img src=" {{ asset('assets/img/pinterest.png') }}" /></a>
+                        <a href="https://www.facebook.com/pg/NAOnosamislesoiseaux"><img src=" {{ asset('assets/img/facebook-logo.png') }}" /></a>
+                        <a href="https://www.twitter.com/"><img src=" {{ asset('assets/img/twitter-logo.png') }}" /></a>
+                        <a href="https://www.instagram.com/"><img src=" {{ asset('assets/img/instagram-logo.png') }}" /></a>
+                        <a href="https://www.pinterest.com/"><img src=" {{ asset('assets/img/pinterest-logo.png') }}" /></a>
                     </div>
                 </div>
             </div>
@@ -27,7 +32,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="nav nav-pills nav-justified">
-                    <li><a href="/">© 2018 WebProject</a></li>
+                    <li><a href="/"><span class = 'webProject'>© 2018 WebProject</span></a></li>
                 </ul>
             </div>
         </div>

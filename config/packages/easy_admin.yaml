@@ -55,8 +55,6 @@ easy_admin:
                 - { property: 'id', label: 'comments.id' }
                 - { property: 'content', label: 'comments.content' }
                 - { property: 'article_id', label: 'comments.article_id' }
-       Birds:
-            class: App\Entity\Birds
 framework:
   translator: { fallbacks: [ "fr" ] }
   templating:

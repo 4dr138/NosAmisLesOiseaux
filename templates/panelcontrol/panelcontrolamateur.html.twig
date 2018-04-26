@@ -14,15 +14,15 @@
     </div>
 
     <div class = 'row'>
-        <div id = 'linkPanel1' class = 'col-lg-3'>
+        <div id = 'linkPanel1' class = 'col-lg-5'>
             <h4>Profil utilisateur</h4>
             {{ users.image }}
             <a href = "{{ url('users_edit', {'id': users.id }) }}"><img src = '{{ asset('assets/img/panelControlProfil.jpg') }}' /></a>
         </div>
-        <div id = 'linkPanel2' class = 'col-lg-3'>
+        {#<div id = 'linkPanel2' class = 'col-lg-3'>#}
 
-        </div>
-        <div id = 'linkPanel3' class = 'col-lg-3'>
+        {#</div>#}
+        <div id = 'linkPanel3' class = 'col-lg-5'>
             <h4>Consultation de mes trouvailles</h4><br />
             <img src = '{{ asset('assets/img/panelControlBird.jpg') }}' />
         </div>
