@@ -41,15 +41,16 @@
                                 </div>
                             </div>
                             <span class = 'obligatoire'>* Champs obligatoires</span>
+                            {% for message in app.flashes('success') %}
+                                <div class="flash-notice">
+                                    <strong>{{ message }}</strong>
+                                </div>
+                            {% endfor %}
                         </fieldset>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-{% for message in app.flashes('success') %}
-    <div class="flash-notice">
-        <strong>{{ message }}</strong>
-    </div>
-{% endfor %}
+
 {% endblock %}
