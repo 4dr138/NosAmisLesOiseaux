@@ -25,7 +25,7 @@ class UsersType extends AbstractType
             ->add('password', PasswordType::class, array('label' => 'Mot de passe', 'required' => true))
             ->add('godsonCode', TextType::class, array('label' => 'Code parrainage : ','required' => false))
             ->add('newsletter', CheckboxType::class, array('label' => 'Voulez-vous vous abonner à notre Newsletter ? ', 'required' => false))
-            ->add('image', FileType::class, array('data_class' => null,'required' => false))
+            ->add('imageFile', FileType::class, array('data_class' => null,'required' => false))
             ->add('Connexion', SubmitType::class)
             //->add('isActive')
             //->add('Role')

@@ -5,10 +5,15 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+//use Vich\UploaderBundle\Entity\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+
 
 /**
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
+ * @Vich\Uploadable
  */
 class Users implements AdvancedUserInterface, \Serializable
 {
@@ -83,17 +88,23 @@ class Users implements AdvancedUserInterface, \Serializable
     private $godsonCode;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
-     *
-     * @Assert\NotBlank(message="Ajouter une image jpg")
-     * @Assert\File(mimeTypes={ "image/jpeg" })
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
 
     /**
      * @ORM\Column(type="boolean")
      */
     private $isParrained;
+
+
 
     public function __construct()
     {
@@ -238,16 +249,32 @@ class Users implements AdvancedUserInterface, \Serializable
         return $this;
     }
 
-    public function getImage()
+    public function setImageFile(File $image = null)
     {
-        return $this->image;
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+//        if ($image) {
+//            // if 'updatedAt' is not defined in your entity, use another property
+//            $this->updatedAt = new \DateTime('now');
+//        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 
     public function setImage($image)
     {
         $this->image = $image;
+    }
 
-        return $this;
+    public function getImage()
+    {
+        return $this->image;
     }
 
     public function getIsParrained(): ?bool
