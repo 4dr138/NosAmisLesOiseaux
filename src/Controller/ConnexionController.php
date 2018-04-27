@@ -29,11 +29,12 @@ class ConnexionController extends Controller
 
             $isparrained = $user->getIsParrained();
             $godsonCode = $user->getGodSonCode();
-            
+
             if(!$isparrained){
                 $ExperienceService->ExpParrainage($godsonCode);
                 $user->setIsParrained(true);
             }
+//            dump($user);exit;
             
            
             

@@ -4,7 +4,7 @@
 {% block body %}
 <div class = 'container'>
     <div id = 'panelh1' class = 'row'>
-        <h1>Bienvenue sur votre profil personnel <strong>{{ users.username }}</strong>! </h1> {{ users.image }}
+        <h1>Bienvenue sur votre profil personnel <strong>{{ users.username }}</strong>! </h1>
     </div>
     <div id = 'panelh1' class = 'row'>
         <h3>Votre code de parrainage est : <strong>{{ users.godfatherCode }}</strong> </h3>
@@ -15,13 +15,9 @@
 
     <div class = 'row'>
         <div id = 'linkPanel1' class = 'col-lg-5'>
-            <h4>Profil utilisateur</h4>
-            {{ users.image }}
-            <a href = "{{ url('users_edit', {'id': users.id }) }}"><img src = '{{ asset('assets/img/panelControlProfil.jpg') }}' /></a>
+            <h4>Modifier mon profil</h4>
+            <a href = "{{ url('users_edit', {'id': users.id }) }}"><img id = 'profilePicture' src = '{{ asset('assets/img/') }}{{ users.image }}' /></a>
         </div>
-        {#<div id = 'linkPanel2' class = 'col-lg-3'>#}
-
-        {#</div>#}
         <div id = 'linkPanel3' class = 'col-lg-5'>
             <h4>Consultation de mes trouvailles</h4><br />
             <img src = '{{ asset('assets/img/panelControlBird.jpg') }}' />
