@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20180428220353 extends AbstractMigration
+class Version20180428222228 extends AbstractMigration
 {
     public function up(Schema $schema)
     {
@@ -24,8 +24,6 @@ class Version20180428220353 extends AbstractMigration
         $this->addSql('ALTER TABLE observation ADD CONSTRAINT FK_C576DBE0E813F9 FOREIGN KEY (bird_id) REFERENCES bird (id)');
         $this->addSql('ALTER TABLE observation ADD CONSTRAINT FK_C576DBE0A76ED395 FOREIGN KEY (user_id) REFERENCES users (id)');
         $this->addSql('DROP TABLE birds');
-        $this->addSql('ALTER TABLE article ADD image VARCHAR(255) NOT NULL');
-        $this->addSql('ALTER TABLE users ADD godfather_code VARCHAR(255) NOT NULL, ADD experience INT NOT NULL, ADD godson_code VARCHAR(255) DEFAULT NULL, ADD image VARCHAR(255) DEFAULT NULL, ADD is_parrained TINYINT(1) NOT NULL');
     }
 
     public function down(Schema $schema)
@@ -33,6 +31,7 @@ class Version20180428220353 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
+        $this->addSql('ALTER TABLE observation DROP FOREIGN KEY FK_C576DBE0A76ED395');
         $this->addSql('ALTER TABLE observation DROP FOREIGN KEY FK_C576DBE0E813F9');
         $this->addSql('ALTER TABLE bird DROP FOREIGN KEY FK_A0BBAE0E705A8725');
         $this->addSql('ALTER TABLE bird DROP FOREIGN KEY FK_A0BBAE0ED8F3D1F2');
@@ -41,7 +40,5 @@ class Version20180428220353 extends AbstractMigration
         $this->addSql('DROP TABLE bird_family');
         $this->addSql('DROP TABLE bird_status');
         $this->addSql('DROP TABLE observation');
-        $this->addSql('ALTER TABLE article DROP image');
-        $this->addSql('ALTER TABLE users DROP godfather_code, DROP experience, DROP godson_code, DROP image, DROP is_parrained');
     }
 }
