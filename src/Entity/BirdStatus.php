@@ -24,7 +24,7 @@ class BirdStatus
     private $label;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Bird", mappedBy="birdStatuses")
+     * @ORM\OneToMany(targetEntity="App\Entity\Bird", mappedBy="birdStatus")
      */
     private $birds;
 
@@ -62,7 +62,7 @@ class BirdStatus
     {
         if (!$this->birds->contains($bird)) {
             $this->birds[] = $bird;
-            $bird->setBirdStatuses($this);
+            $bird->setBirdStatus($this);
         }
 
         return $this;
@@ -73,8 +73,8 @@ class BirdStatus
         if ($this->birds->contains($bird)) {
             $this->birds->removeElement($bird);
             // set the owning side to null (unless already changed)
-            if ($bird->getBirdStatuses() === $this) {
-                $bird->setBirdStatuses(null);
+            if ($bird->getBirdStatus() === $this) {
+                $bird->setBirdStatus(null);
             }
         }
 
