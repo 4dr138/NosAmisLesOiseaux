@@ -18,8 +18,10 @@ class ConnexionController extends Controller
      */
     public function connexionAction(SessionInterface $session, ExperienceService $ExperienceService)
     {
+
+//        dump($session->get('users'));exit;
+
         $user = $session->get('users');
-        //if(isset($_SESSION['username']))
         if(isset($user))
         {
          

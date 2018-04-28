@@ -475,7 +475,9 @@ h2
 #sizeImage
 {
     text-align:center;
-    margin-left: 50%;
+    /*margin-left: 50%;*/
+    width:95%;
+    max-height: 400px;
 }
 .webProject
 {
@@ -536,6 +538,14 @@ h2
     width:300px;
     height:auto;
     border:2px solid black;
+    -moz-border-radius:7px;
+    -webkit-border-radius:7px;
+    border-radius:7px;
+}
+#profilePictureDefault
+{
+    width:300px;
+    height:auto;
     -moz-border-radius:7px;
     -webkit-border-radius:7px;
     border-radius:7px;

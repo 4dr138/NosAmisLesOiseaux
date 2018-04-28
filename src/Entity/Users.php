@@ -5,7 +5,6 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-//use Vich\UploaderBundle\Entity\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -94,7 +93,7 @@ class Users implements AdvancedUserInterface, \Serializable
     private $image;
 
     /**
-     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
+     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image", size = "imageSize")
      * @var File
      */
     private $imageFile;
@@ -103,6 +102,20 @@ class Users implements AdvancedUserInterface, \Serializable
      * @ORM\Column(type="boolean")
      */
     private $isParrained;
+
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * @var integer
+     */
+    private $imageSize;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
 
 
 
@@ -113,7 +126,7 @@ class Users implements AdvancedUserInterface, \Serializable
         $this->Role ='ROLE_AMATEUR';
         $this->experience = 10 ;
         $this->isParrained = false;
-        
+        $this->updatedAt= new \DateTime();
     }
 
     public function getSalt()
@@ -249,30 +262,30 @@ class Users implements AdvancedUserInterface, \Serializable
         return $this;
     }
 
-    public function setImageFile(File $image = null)
+    public function setImageFile(?File $image = null): void
     {
         $this->imageFile = $image;
 
         // VERY IMPORTANT:
         // It is required that at least one field changes if you are using Doctrine,
         // otherwise the event listeners won't be called and the file is lost
-//        if ($image) {
+        if (null != $image) {
 //            // if 'updatedAt' is not defined in your entity, use another property
-//            $this->updatedAt = new \DateTime('now');
-//        }
+            $this->updatedAt = new \DateTime();
+        }
     }
 
-    public function getImageFile()
+    public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
 
-    public function setImage($image)
+    public function setImage(?string $image): void
     {
         $this->image = $image;
     }
 
-    public function getImage()
+    public function getImage(): ?string
     {
         return $this->image;
     }
@@ -354,5 +367,15 @@ class Users implements AdvancedUserInterface, \Serializable
         $this->roles = $roles;
 
         return $this;
+    }
+
+    public function setImageSize(?int $imageSize): void
+    {
+        $this->imageSize = $imageSize;
+    }
+
+    public function getImageSize(): ?int
+    {
+        return $this->imageSize;
     }
 }
