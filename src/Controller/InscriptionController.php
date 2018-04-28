@@ -38,7 +38,7 @@ class InscriptionController extends Controller
 
                 
                 $em->persist($user);
-//                $session->set('users',$user);
+                $session->set('users',$user);
                 
                 
                 $em->flush();
