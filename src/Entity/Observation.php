@@ -18,22 +18,22 @@ class Observation
     private $id;
 
     /**
-     * @ORM\Column(name="date_observation" type="datetime")
+     * @ORM\Column(name="date_observation", type="datetime")
      */
     private $dateObservation;
 
     /**
-     * @ORM\Column(name="latitude" type="float")
+     * @ORM\Column(name="latitude", type="float")
      */
     private $latitude;
 
     /**
-     * @ORM\Column(name="longitude" type="float")
+     * @ORM\Column(name="longitude", type="float")
      */
     private $longitude;
 
     /**
-     * @ORM\Column(name="comment" type="string", length=255)
+     * @ORM\Column(name="comment", type="string", length=255)
      */
     private $comment;
 
@@ -43,7 +43,7 @@ class Observation
     private $bird;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="observations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="observations")
      */
     private $user;
 
@@ -112,12 +112,12 @@ class Observation
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getUser(): ?Users
     {
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(?Users $user): self
     {
         $this->user = $user;
 
