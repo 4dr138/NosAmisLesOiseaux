@@ -17,22 +17,22 @@ class Bird
     private $id;
 
     /**
-     * @ORM\Column(name="taxref_classe" type="string", length=50)
+     * @ORM\Column(name="taxref_classe", type="string", length=50)
      */
     private $taxrefClass;
 
     /**
-     * @ORM\Column(name="taxref_cd_nom" type="integer")
+     * @ORM\Column(name="taxref_cd_nom", type="integer")
      */
     private $taxrefCdName;
 
     /**
-     * @ORM\Column(name="taxref_nom_vern" type="string", length=255)
+     * @ORM\Column(name="taxref_nom_vern", type="string", length=255)
      */
     private $taxrefVern;
 
     /**
-     * @ORM\Column(name="taxref_url_image" type="string", length=255, nullable=true)
+     * @ORM\Column(name="taxref_url_image", type="string", length=255, nullable=true)
      */
     private $taxrefUrlImage;
 
