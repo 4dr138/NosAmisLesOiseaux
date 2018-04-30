@@ -16,7 +16,7 @@ class ConnexionController extends Controller
     /**
      * @Route("/connexion", name="connexion")
      */
-    public function connexionAction(SessionInterface $session, ExperienceService $ExperienceService)
+    public function connexionAction(SessionInterface $session)
     {
 
         $user = $session->get('users');

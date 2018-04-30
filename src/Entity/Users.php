@@ -290,17 +290,7 @@ class Users implements AdvancedUserInterface, \Serializable
         return $this->image;
     }
 
-    public function getIsParrained(): ?bool
-    {
-        return $this->isParrained;
-    }
 
-    public function setIsParrained(bool $isParrained): self
-    {
-        $this->isParrained = $isParrained;
-
-        return $this;
-    }
 
     public function eraseCredentials()
     {
