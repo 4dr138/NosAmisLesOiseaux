@@ -37,17 +37,23 @@ class Article
      */
     private $imageFile;
 
-//    /**
-//     * @ORM\Column(type="datetime")
-//     * @var \DateTime
-//     */
-//    private $updatedAt;
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $updatedAt;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $content;
 
+
+    public function __construct()
+    {
+        $this->updatedAt= new \DateTime();
+
+    }
     public function getId()
     {
         return $this->id;
@@ -91,10 +97,10 @@ class Article
         // VERY IMPORTANT:
         // It is required that at least one field changes if you are using Doctrine,
         // otherwise the event listeners won't be called and the file is lost
-//        if ($image) {
+        if (null != $image) {
 //            // if 'updatedAt' is not defined in your entity, use another property
-//            $this->updatedAt = new \DateTime('now');
-//        }
+            $this->updatedAt = new \DateTime();
+        }
     }
 
     public function getImageFile()
@@ -112,13 +118,4 @@ class Article
         return $this->image;
     }
 
-//    public function setUpdatedAt($updatedAt)
-//    {
-//        $this->updatedAt = $updatedAt;
-//    }
-//
-//    public function getUpdatedAt()
-//    {
-//        return $this->updatedAt;
-//    }
 }

@@ -156,7 +156,7 @@ h2
     height:780px;
     /*margin-left: -35%;*/
 }
-#validLogin, #btnAddObs
+#validLogin, #btnAddObs, #btnBirdInfos
 {
     color: white;
     background-color: rgb(74,229,62);
@@ -432,7 +432,6 @@ h2
 {
     color: #4cab3d;
     margin-left: 15%;
-
 }
 #addObs
 {
@@ -441,7 +440,7 @@ h2
     background-color: rgb(242,242,242);
     /*width:30%;*/
 }
-#top10, #titleActus,#articleTitle
+#top10, #titleActus,#articleTitle, #titleEspeces, #titleBird
 
 {
     text-align:center;
@@ -464,7 +463,7 @@ h2
     margin-top:10%;
     margin-left: 40%;
 }
-#users_Connexion
+#users_Inscription
 {
     border-radius: 1px;
     margin-left: 30%;
@@ -475,7 +474,9 @@ h2
 #sizeImage
 {
     text-align:center;
-    margin-left: 50%;
+    /*margin-left: 50%;*/
+    width:95%;
+    max-height: 400px;
 }
 .webProject
 {
@@ -531,10 +532,10 @@ h2
 {
     margin-left: 8.3333%;
 }
-#profilePicture
+#profilePicture, #birdPicture
 {
     width:300px;
-    height:auto;
+    height:300px;
     border:2px solid black;
     -moz-border-radius:7px;
     -webkit-border-radius:7px;
@@ -546,3 +547,24 @@ h2
     color:white;
 }
 
+#profilePictureDefault
+{
+    width:300px;
+    height:300px;
+    -moz-border-radius:7px;
+    -webkit-border-radius:7px;
+    border-radius:7px;
+}
+#birdImage
+{
+    text-align:right;
+    float:right
+}
+#return_Board_Bird
+{
+    color: #4cab3d;
+}
+#birdSolo
+{
+    margin-top: 5%
+}

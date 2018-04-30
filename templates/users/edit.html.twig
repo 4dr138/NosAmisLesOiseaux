@@ -6,10 +6,10 @@
     <div class = 'container'>
         <h1 id = 'titleEditUsers'>Modifier son profil</h1>
         <div id = 'formInscription' class = 'row'>
-            {{ include('users/_form.html.twig', {'button_label': 'Mettre à jour mes informations personnelles'}) }}
+            {{ form_start(form) }}
+
+            {{ form_end(form) }}
             <a id = 'return_Board' href="{{ path('connexion') }}"> Revenir sur le tableau de bord</a>
         </div>
     </div>
-
-    
 {% endblock %}

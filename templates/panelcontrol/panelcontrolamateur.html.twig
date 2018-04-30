@@ -16,11 +16,15 @@
     <div class = 'row'>
         <div id = 'linkPanel1' class = 'col-lg-5'>
             <h4>Modifier mon profil</h4>
-            <a href = "{{ url('users_edit', {'id': users.id }) }}"><img id = 'profilePicture' src = '{{ asset('assets/img/') }}{{ users.image }}' /></a>
+            {% if users.image %}
+                <a href = "{{ url('users_edit', {'id': users.id }) }}"><img id = 'profilePicture' src = '{{ asset('assets/img/') }}{{ users.image }}' /></a>
+            {% else %}
+                <a href = "{{ url('users_edit', {'id': users.id }) }}"><img id = 'profilePictureDefault' src = '{{ asset('assets/img/imgUser.png') }}' /></a>
+            {% endif %}
         </div>
         <div id = 'linkPanel3' class = 'col-lg-5'>
-            <h4>Consultation de mes trouvailles</h4><br />
-            <img src = '{{ asset('assets/img/panelControlBird.jpg') }}' />
+            <h4>Consultation de mes trouvailles</h4>
+            <a href="{{ url('observation') }}"><img id = 'birdPicture' src = '{{ asset('assets/img/panelControlBird.jpg') }}' /></a>
         </div>
     </div>
     <div id = 'panelh1' class = 'row'>
