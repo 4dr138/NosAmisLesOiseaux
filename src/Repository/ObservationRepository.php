@@ -19,6 +19,16 @@ class ObservationRepository extends ServiceEntityRepository
         parent::__construct($registry, Observation::class);
     }
 
+    public function getObsById($userId)
+    {
+        $qb = $this->createQueryBuilder('o');
+        $qb
+            ->select('o')
+            ->where('o.user =' .$userId)
+            ->orderBy('o.id', 'DESC');
+        return $qb->getQuery()->execute();
+    }
+
 //    /**
 //     * @return Observation[] Returns an array of Observation objects
 //     */

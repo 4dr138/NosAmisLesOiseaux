@@ -39,11 +39,13 @@ class Observation
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Bird", inversedBy="observations")
+     * @ORM\Column(type="integer")
      */
     private $bird;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="observations")
+     * @ORM\Column(type="integer")
      */
     private $user;
 
@@ -100,24 +102,24 @@ class Observation
         return $this;
     }
 
-    public function getBird(): ?Bird
+    public function getBird(): ?int
     {
         return $this->bird;
     }
 
-    public function setBird(?Bird $bird): self
+    public function setBird(int $bird): self
     {
         $this->bird = $bird;
 
         return $this;
     }
 
-    public function getUser(): ?Users
+    public function getUser(): ?int
     {
         return $this->user;
     }
 
-    public function setUser(?Users $user): self
+    public function setUser(int $user): self
     {
         $this->user = $user;
 
