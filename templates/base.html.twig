@@ -7,18 +7,27 @@
             <link rel="icon" href = '{{ asset('assets/img/logofav.png') }}' />
             <link type = "text/css" rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
             <link rel = 'stylesheet' href = "{{ asset('bundles/easyadmin/stylesheet/bootstrap.min.css') }}" />
-            <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <!-- <script type="text/javascript">
+            $(document).ready(function(){
+                $('#myCarousel').on('slid.bs.carousel', function () {
+                    alert("The sliding transition of previous carousel item has been fully completed.");
+                });
+            });
+            </script> -->
             <style type = 'text/css'>body {background-color: white;}</style>
         {% endblock %}
+        
     </head>
         {% include 'header/header.html.twig' %}
     <body>
+
         {% block body %}{% endblock %}
 
         {% block javascripts %}
-            <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+           
         {% endblock %}
     </body>
     {% include 'footer/footer.html.twig' %}

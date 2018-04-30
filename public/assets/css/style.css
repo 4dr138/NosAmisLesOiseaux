@@ -541,6 +541,12 @@ h2
     -webkit-border-radius:7px;
     border-radius:7px;
 }
+
+.descriptifCarousel
+{
+    color:white;
+}
+
 #profilePictureDefault
 {
     width:300px;

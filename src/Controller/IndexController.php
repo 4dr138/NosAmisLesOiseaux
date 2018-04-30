@@ -30,9 +30,10 @@ class IndexController extends Controller
 
 
         $user = $session->get('users');
+        dump($user);
         
         
-        return $this->render('homepage/homepage.html.twig');
+        return $this->render('homepage/homepage.html.twig', array('users' => $user));
     }
 
 
