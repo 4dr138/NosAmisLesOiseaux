@@ -1,0 +1,1 @@
+$('.stripe-button-el span').css({'background':'rgb(74,229,62)','border-radius':'1px'});

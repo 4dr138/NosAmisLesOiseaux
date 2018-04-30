@@ -3,6 +3,7 @@
 {% block body %}
     <div class = 'container'>
         <div class = 'row'>
+            <div class = 'col-sm-12'>
             <div id = 'loginUser' class = 'col-sm-6'>
                 <br /><br /><br />
                 <img src = '{{ asset('assets/img/imgUser.png') }}' />
@@ -20,18 +21,24 @@
                         <button type="submit" id ='validLogin' class="btn btn-default">Se connecter</button>
                     </div>
                 </form>
-                <a href = '{{ path('forgotpass') }}'>Mot de passe oublié ? </a>
+                <a id ='forgotPass' href = '{{ path('forgotpass') }}'>Mot de passe oublié ? </a>
                 {% for messages in app.flashes('error') %}
+                    <div class = "flash-notice" >
+                        {{ messages }}
+                    </div>
+                {% endfor %}
+                {% for messages in app.flashes('success') %}
                     <div class = "flash-notice" >
                         {{ messages }}
                     </div>
                 {% endfor %}
             </div>
             <div id = 'nonInscrit' class = 'col-sm-6'>
-                <h1>Pas encore inscrit ? </h1>
+                <h3 id = 'titleInscription'><i>Pas encore inscrit ? </i></h3>
                 <br /><br /><br />
                 <a href ='{{ path('inscription') }}' id ='btnInscription' class="btn btn-default">S'inscrire</a>
             </div>
+        </div>
         </div>
     </div>
 {% endblock %}

@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -59,28 +60,22 @@ class UsersController extends Controller
     /**
      * @Route("/{id}/edit", name="users_edit", methods="GET|POST")
      */
-    public function edit(Request $request, Users $user): Response
+    public function edit(Request $request, Users $user, SessionInterface $session)
     {
         $form = $this->createForm(Users1Type::class, $user);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            /*$user->setImage(
-    new File($this->getParameter('image_user').'/'.$user->getImage())
-);*/
-            
-            $file = $user->getImage();
-            
-            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-            
-            // moves the file to the directory where brochures are stored
-            $file->move($this->getParameter('image_user'),$fileName);
-            // updates the 'brochure' property to store the PDF file name
-            // instead of its contents
-            $user->setImage($fileName);
 
-            $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('users_edit', ['id' => $user->getId()]);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            $session->set('users', $user);
+            $role = $user->getRoles();
+
+            if ($role = 'ROLE_AMATEUR') {
+                return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user));
+            }
         }
 
         return $this->render('users/edit.html.twig', [

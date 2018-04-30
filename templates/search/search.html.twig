@@ -5,7 +5,9 @@
     <div class = 'container'>
         <div class = 'col-lg-12'>
             <h1 id = 'titleSearch'>Résultat de votre recherche pour le mot <strong>{{ word }}</strong>!</h1><input id = 'inputWord' type = 'hidden' value = '{{ word }}' />
-            <h3 id = 'titleSearch'>Dans nos articles...</h3>
+            {% if articles %}
+                <h3 id = 'titleSearch'>Dans nos articles...</h3>
+            {% endif %}
             {% for article in articles %}
                 <strong>{{ article.title }}</strong>
                 <br />
@@ -13,8 +15,22 @@
                 <br />
                 <a href = '{{ path('blog', {'id': article.id }) }}'>Lien vers l'article !</a>
                 <hr />
-        {% endfor %}
-            <h3 id = 'titleSearch'>Chez nos oiseaux...</h3>
+            {% endfor %}
+            {% if birds %}
+                <h3 id = 'titleSearch'>Chez nos oiseaux...</h3>
+            {% endif %}
+            {% for bird in birds %}
+                <h4>Observation du {{ bird.dateObservation|date('d-m-Y') }}</h4>
+                <p>Nom de l'espèce répertoriée : <strong>{{ bird.taxrefVern }}</strong></p>
+                <p>Référence TAXREF : {{ bird.taxrefCdName }}</p>
+                <p>Classe : {{ bird.taxrefClass }}</p>
+                <p>Localisation : <strong>{{ bird.latitude }}</strong> degrés de latitude et <strong>{{ bird.longitude }}</strong> degrés de longitude</p>
+                <p>Famille : {{ bird.family }}</p>
+                <p>Statut : {{ bird.status }}</p>
+                <p>Commentaire : {{ bird.comment }}</p>
+                <a href = "{{ path('birdInfos',{'id': bird.id }) }}"><button id = 'btnBirdInfos' class = 'btn btn-default'>Voir la fiche détaillée de l'espèce</button></a>
+                <hr />
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

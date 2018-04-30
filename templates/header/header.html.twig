@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <img src = "{{ asset('assets/img/logo.png') }}" alt="logo" />
+            <img src = "{{ asset('assets/img/Logo_64x64.png') }}" alt="logo" />
             <a id = 'NAOTitle' href="{{ path('homepage')}}">Nos Amis Les Oiseaux</a>
         </div>
 
@@ -17,7 +17,6 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">FR</a></li>
-                <li><a href="#"><img src = "{{ asset('assets/img/iconeMessage.png') }}" /></a></li>
                 <li><a href="{{ path('connexion') }}"><img src = "{{ asset('assets/img/iconeUtilisateur.png') }}" /></a></li>
                 <form class="navbar-form navbar-left" action = "{{ path('searchWord') }}" method = "post">
                     <div class="form-group">
