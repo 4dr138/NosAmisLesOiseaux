@@ -19,14 +19,10 @@ class ConnexionController extends Controller
     public function connexionAction(SessionInterface $session, ExperienceService $ExperienceService)
     {
 
-//        dump($session->get('users'));exit;
-
         $user = $session->get('users');
         if(isset($user))
         {
-         
-            $user = $session->get('users');
-            
+
             $username = $user->getUsername();
 
             $isparrained = $user->getIsParrained();
@@ -36,8 +32,6 @@ class ConnexionController extends Controller
                 $ExperienceService->ExpParrainage($godsonCode);
                 $user->setIsParrained(true);
             }
-//            dump($user);exit;
-            
            
             
             $role = $user->getRoles();

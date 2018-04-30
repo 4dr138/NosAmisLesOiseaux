@@ -93,7 +93,7 @@ class Users implements AdvancedUserInterface, \Serializable
     private $image;
 
     /**
-     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image", size = "imageSize")
+     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
      * @var File
      */
     private $imageFile;
@@ -103,12 +103,12 @@ class Users implements AdvancedUserInterface, \Serializable
      */
     private $isParrained;
 
-    /**
-     * @ORM\Column(type="integer")
-     *
-     * @var integer
-     */
-    private $imageSize;
+//    /**
+//     * @ORM\Column(type="integer")
+//     *
+//     * @var integer
+//     */
+//    private $imageSize;
 
     /**
      * @ORM\Column(type="datetime")
@@ -369,13 +369,13 @@ class Users implements AdvancedUserInterface, \Serializable
         return $this;
     }
 
-    public function setImageSize(?int $imageSize): void
-    {
-        $this->imageSize = $imageSize;
-    }
-
-    public function getImageSize(): ?int
-    {
-        return $this->imageSize;
-    }
+//    public function setImageSize(?int $imageSize): void
+//    {
+//        $this->imageSize = $imageSize;
+//    }
+//
+//    public function getImageSize(): ?int
+//    {
+//        return $this->imageSize;
+//    }
 }
