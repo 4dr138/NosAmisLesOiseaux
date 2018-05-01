@@ -19,7 +19,8 @@ class WebsiteSearch extends Controller
     {
         $word = $_POST['word'];
         $articles = $this->container->get('appbundle.articlesservice')->getArticlesByWord($word);
+        $birds = $this->container->get('appbundle.birds')->getBirdsByWord($word);
 
-        return $this->render('search/search.html.twig', array('articles' => $articles, 'word' => $word));
+        return $this->render('search/search.html.twig', array('articles' => $articles, 'word' => $word, 'birds' => $birds));
     }
 }

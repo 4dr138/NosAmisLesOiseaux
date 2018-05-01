@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class = 'container'>
+    <h1 id = 'titleEspeces'>Mes Espèces répertoriées</h1>
+    <div class = 'col-lg-12'>
+        {% for bird in birds %}
+            {% for birdSolo in bird %}
+        <h4>Observation du {{ birdSolo.dateObservation|date('d-m-Y') }}</h4>
+                <div id = 'birdImage'>{{ birdSolo.taxrefUrlImage }}</div>
+                <p>Nom de l'espèce répertoriée : <strong>{{ birdSolo.taxrefVern }}</strong></p>
+                <p>Référence TAXREF : {{ birdSolo.taxrefCdName }}</p>
+                <p>Classe : {{ birdSolo.taxrefClass }}</p>
+                <p>Localisation : <strong>{{ birdSolo.latitude }}</strong> degrés de latitude et <strong>{{ birdSolo.longitude }}</strong> degrés de longitude</p>
+                <p>Espèce protégée ? {{ birdSolo.protected }}</p>
+                <p>Famille : {{ birdSolo.family }}</p>
+                <p>Statut : {{ birdSolo.status }}</p>
+                <p>Commentaire : {{ birdSolo.comment }}</p>
+                <a href = "{{ path('birdInfos',{'id': birdSolo.id }) }}"><button id = 'btnBirdInfos' class = 'btn btn-default'>Voir la fiche détaillée de l'espèce</button></a>
+                <hr />
+            {% endfor %}
+        {% endfor %}
+        <a id = 'return_Board_Bird' href="{{ path('connexion') }}"> Revenir sur le tableau de bord</a>
+    </div>
+</div>
+
+{% endblock %}

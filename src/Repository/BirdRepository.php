@@ -19,6 +19,49 @@ class BirdRepository extends ServiceEntityRepository
         parent::__construct($registry, Bird::class);
     }
 
+    public function getBirdById($birdId)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT o.dateObservation, o.latitude, o.longitude, o.comment,
+            b.taxrefClass, b.taxrefCdName, b.taxrefVern, b.taxrefUrlImage, b.protected,b.id,
+            bf.label as family, bs.label as status
+            FROM App\Entity\Observation o , App\Entity\Bird b, App\Entity\BirdFamily bf, App\Entity\BirdStatus bs 
+            WHERE b.id = o.bird AND b.birdFamily = bf.id AND b.birdStatus = bs.id AND o.bird = :birdId ')
+            ->setParameter('birdId', $birdId);
+        return $query->execute();
+    }
+
+    public function getBirdId($id)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('
+            SELECT o.dateObservation, o.latitude, o.longitude, o.comment,
+            b.taxrefClass, b.taxrefCdName, b.taxrefVern, b.taxrefUrlImage, b.protected,b.id,
+            bf.label as family, bs.label as status
+            FROM App\Entity\Observation o , App\Entity\Bird b, App\Entity\BirdFamily bf, App\Entity\BirdStatus bs 
+            WHERE b.id = o.bird AND b.birdFamily = bf.id AND b.birdStatus = bs.id AND b.id = :birdId
+            ')
+            ->setParameter('birdId', $id);
+        return $query->execute();
+    }
+
+    public function getBirdsWithWord($word)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('
+        SELECT o.dateObservation, o.latitude, o.longitude, o.comment,
+        b.taxrefClass,  b.taxrefVern, b.taxrefCdName,
+        bf.label as family, bs.label as status, b.id
+        FROM App\Entity\Observation o, App\Entity\Bird b, App\Entity\BirdFamily bf, App\Entity\BirdStatus bs 
+        WHERE b.id = o.bird AND b.birdFamily = bf.id AND b.birdStatus = bs.id 
+        AND o.comment like :word OR b.taxrefClass like :word OR b.taxrefVern like :word OR bf.label like :word OR bs.label like :word
+        ORDER BY b.id desc
+        ')
+            ->setParameter('word', '%' .$word. '%');
+
+        return $query->execute();
+    }
 //    /**
 //     * @return Bird[] Returns an array of Bird objects
 //     */

@@ -61,6 +61,14 @@ services:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
 
+    appbundle.observations:
+        class: App\Service\ObservationsService
+        public: true
+
+    appbundle.birds:
+        class: App\Service\BirdService
+        public: true
+
     console_command.txt_import:
         class: App\Command\TxtImportCommand
         arguments:

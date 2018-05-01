@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Users;
 use App\Service\CodeGodFatherService;
+use App\Service\ExperienceService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +18,7 @@ class InscriptionController extends Controller
     /**
      * @Route("/inscription", name="inscription")
      */
-    public function inscriptionAction(Request $request, CodeGodFatherService $CodeGodFatherService, SessionInterface $session)
+    public function inscriptionAction(Request $request, CodeGodFatherService $CodeGodFatherService, SessionInterface $session, ExperienceService $ExperienceService)
     {
         $user = new Users();
         $form = $this->createForm("App\Form\UsersType", $user);
@@ -29,6 +30,10 @@ class InscriptionController extends Controller
 
             if($mailExistant == false) {
                 $em = $this->getDoctrine()->getManager();
+                
+                $userSon = $request->request->get('users');
+                $godsonCode = $userSon['godsonCode'];
+                $ExperienceService->ExpParrainage($godsonCode);
 
                 $user->setRoles(['ROLE_AMATEUR']);
                 $user->setGodfatherCode($CodeGodFatherService->generateCode());
