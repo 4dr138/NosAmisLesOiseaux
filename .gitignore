@@ -25,4 +25,4 @@ composer.phar
 composer.lock
 symfony.lock
 
-/Data/
+/src/Data/
