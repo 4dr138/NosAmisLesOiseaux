@@ -111,7 +111,7 @@ class Users implements AdvancedUserInterface, \Serializable
 //    private $imageSize;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",nullable=true)
      *
      * @var \DateTime
      */
