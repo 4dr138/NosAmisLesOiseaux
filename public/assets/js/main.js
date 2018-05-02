@@ -1,7 +1,7 @@
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -34.397, lng: 150.644},
-        zoom: 6
+        zoom: 6,
     });
     var infoWindow = new google.maps.InfoWindow({map: map});
 
@@ -14,7 +14,7 @@ function initMap() {
             };
 
             infoWindow.setPosition(pos);
-            infoWindow.setContent('<style>p{color: red;}</style><p>Hello !! :)</p>');
+            infoWindow.setContent('<style>p{color: red;}</style><p>Vous êtes ici !</p>');
             map.setCenter(pos);
         }, function() {
             handleLocationError(true, infoWindow, map.getCenter());

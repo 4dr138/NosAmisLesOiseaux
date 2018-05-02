@@ -22,17 +22,8 @@ class IndexController extends Controller
      */
     public function indexAction(SessionInterface $session)
     {
-//        
-      /*  if(!isset($_SESSION))
-        {
-            //session_destroy();
-            session_start();
-        }*/
-
 
         $user = $session->get('users');
-        dump($user);
-        
         
         return $this->render('homepage/homepage.html.twig', array('users' => $user));
     }
@@ -44,6 +35,14 @@ class IndexController extends Controller
     public function showMention()
     {
         return $this->render('footer/mentions.html.twig');
+    }
+
+    /**
+     * @Route("/test", name="mentions")
+     */
+    public function testAction()
+    {
+        return $this->render('test/test.html.twig');
     }
 
 }
