@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class = 'container'>
+        <h4 id = 'title404'>Erreur 500... Sans doute un conflit avec votre hébergeur, veuillez contacter l'administrateur du site...:(</h4>
+        <img id='img404' src = '{{ asset('assets/img/Logo_NAO_404.png') }}' /><br />
+        <h4 id = 'return_Homepage'><a  href = '{{ path('homepage') }}'>Revenir au menu !</a></h4>
+    </div>
+{% endblock %}

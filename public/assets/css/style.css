@@ -13,7 +13,7 @@ body{
     background-color: white;
     min-height:81.67%;
     position:relative;
-    margin-top: -1.5%;
+    margin-top: -1%;
 
 }
 #map
@@ -91,7 +91,7 @@ header
     border-radius: 6px;
 
 }
-#h2, #titreAssociation
+#h2, #titreAssociation, #title404
 {
     text-align: center;
     margin-top: 5%;
@@ -476,7 +476,7 @@ h2
     text-align:center;
     /*margin-left: 50%;*/
     width:95%;
-    max-height: 400px;
+    max-height: 300px;
 }
 .webProject
 {
@@ -567,4 +567,22 @@ h2
 #birdSolo
 {
     margin-top: 5%
+}
+#carousel-example-generic
+{
+    margin-top: 1%;
+}
+#img404
+{
+    margin-left:25%;
+    margin-top:3%;
+}
+#return_Homepage
+{
+    margin-left:42%;
+    margin-top: 10%;
+}
+#return_Homepage a
+{
+    color: #4cab3d;
 }
