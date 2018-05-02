@@ -16,29 +16,19 @@ class ConnexionController extends Controller
     /**
      * @Route("/connexion", name="connexion")
      */
-    public function connexionAction(SessionInterface $session)
+    public function connexionAction(SessionInterface $session, ExperienceService $ExperienceService)
     {
 
         $user = $session->get('users');
+        
         if(isset($user))
         {
-
-            $username = $user->getUsername();
-
-            $isparrained = $user->getIsParrained();
-            $godsonCode = $user->getGodSonCode();
-
-            if(!$isparrained){
-                $ExperienceService->ExpParrainage($godsonCode);
-                $user->setIsParrained(true);
-            }
-           
             
             $role = $user->getRoles();
             
-
+            $userLevel = $ExperienceService->doLevelAward($user);
             if ($role = 'ROLE_AMATEUR') {
-                return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user));
+                return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user,'userLevel'=> $userLevel));
                 
             }
         }
@@ -61,7 +51,7 @@ class ConnexionController extends Controller
             $_SESSION['password'] = $username;
 
             $user = $this->container->get('appbundle.checkconnexion')->checkUser($username, $password);
-            
+           
             if ($user == false) {
                 $this->addFlash('error', "Les informations d'authentification sont erronées, veuillez ré-essayer.");
                 return $this->render('connexion/connexion.html.twig', array('message' => $this));
@@ -71,12 +61,14 @@ class ConnexionController extends Controller
                 $role = $user->getRoles();
 
                 $ExperienceService->ExpConnexion($user);
+                $userLevel = $ExperienceService->doLevelAward($user);
                 $session->set('users', $user);
+                
 
                 if ($role = 'ROLE_AMATEUR') {
-                    return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user));
+                    return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user, 'userLevel'=> $userLevel));
                 } else if ($role = 'ROLE_NATURALISTE') {
-                    return $this->render('panelcontrol/panelcontrolnaturaliste.html.twig', array('users' => $user));
+                    return $this->render('panelcontrol/panelcontrolnaturaliste.html.twig', array('users' => $user, 'userLevel'=> $userLevel));
                 }
             }
         }

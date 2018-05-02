@@ -21,7 +21,7 @@ class DonationController extends AbstractController
         
         return $this->render('donation/donation.html.twig', array(
                 
-                'user' => $user,
+                
                 'description' => "faire un don",
                 "publishable_key" => "pk_test_22Upp5xyncxXUx9EfBE54yEn"
                 ));
@@ -40,17 +40,17 @@ class DonationController extends AbstractController
         $firstname = $request->get('firstname');
         
         $user = $session->get('users');
-       
+        dump($user);
 
         try {
-          /*  if(!$user){
+            if(isset($user)){
                 $ExperienceService->ExpDonation($user);
-            }*/
+            }
             
             $StripeGift->chargeVisa($token, $email, $amount);
             $Mail->sendMail($email, $amount, $name, $firstname);
             
-            return $this->render('donation/sucess.html.twig', array('amount'=> $amount, 'name'=> $name, 'firstname'=> $firstname));
+            return $this->render('donation/sucess.html.twig', array('amount'=> $amount, 'name'=> $name, 'firstname'=> $firstname, 'users' =>$user));
         } catch(\Stripe\Error\Card $e) {
 
             $this->addFlash("chargeFailed","Oups, le paiement a echoué !!! Veuillez recommencer.");

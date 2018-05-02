@@ -7,12 +7,14 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
 /**
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
  * @Vich\Uploadable
+ * @UniqueEntity("mail")
  */
 class Users implements AdvancedUserInterface, \Serializable
 {
@@ -44,8 +46,9 @@ class Users implements AdvancedUserInterface, \Serializable
     private $username;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="mail", type="string", length=255, unique=true)
      * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $mail;
 
@@ -98,11 +101,6 @@ class Users implements AdvancedUserInterface, \Serializable
      */
     private $imageFile;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isParrained;
-
 //    /**
 //     * @ORM\Column(type="integer")
 //     *
@@ -124,8 +122,7 @@ class Users implements AdvancedUserInterface, \Serializable
         $this->isActive = true;
         $this->newsletter = true;
         $this->Role ='ROLE_AMATEUR';
-        $this->experience = 10 ;
-        $this->isParrained = false;
+        $this->experience = 10;
         $this->updatedAt= new \DateTime();
     }
 
@@ -332,6 +329,7 @@ class Users implements AdvancedUserInterface, \Serializable
             $this->experience,
             $this->godsonCode,
             $this->isActive,
+            $this->image,
         ));
     }
     public function unserialize($serialized)
@@ -349,6 +347,7 @@ class Users implements AdvancedUserInterface, \Serializable
             $this->experience,
             $this->godsonCode,
             $this->isActive,
+            $this->image,
             ) = unserialize($serialized);
     }
 
