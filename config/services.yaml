@@ -75,3 +75,4 @@ services:
             - "@doctrine.orm.entity_manager"
         tags:
             - { name: console.command }
+

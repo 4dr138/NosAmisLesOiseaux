@@ -17,7 +17,23 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">FR</a></li>
-                <li><a href="{{ path('connexion') }}"><img src = "{{ asset('assets/img/iconeUtilisateur.png') }}" /></a></li>
+                
+                <li><a href="{{ path('connexion') }}">
+                        {% if users.image is not defined %}
+                        <img src = "{{ asset('assets/img/iconeUtilisateur.png') }}" />
+
+                        {% else %}
+                            {% if users.image is empty %}
+                                <img src = "{{ asset('assets/img/iconeUtilisateur.png') }}" />
+                            {% else %}
+                                <img src = "{{ asset('assets/img/') }}{{ users.image }}" width="26" height="26" />
+                            {% endif %}
+                        {% endif %}
+                    </a>
+                </li>
+                
+
+                
                 <form class="navbar-form navbar-left" action = "{{ path('searchWord') }}" method = "post">
                     <div class="form-group">
                         <input type="text" class="form-control" name = 'word' placeholder="Rechercher sur le site...">
