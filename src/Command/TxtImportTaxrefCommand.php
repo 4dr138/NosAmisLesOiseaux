@@ -127,9 +127,16 @@ class TxtImportCommand extends Command
                         ->setTaxrefUrlImage($row['URL']);
                     $this->em->persist($bird);
 
-                    $bird
-                        ->setBirdFamily($birdFamily)
-                        ->setBirdStatus($birdStatus);
+                    if (null !== $birdFamily) {
+                        $bird->setBirdFamily($birdFamily->getId());
+                    }
+
+                    if (null !== $birdStatus) {
+                        $bird->setBirdStatus($birdStatus->getId());
+                    }
+                    //$bird
+                    //    ->setBirdFamily($birdFamily->getId())
+                    //    ->setBirdStatus($birdStatus->getId());
                     $this->em->flush();
 
                     if (0 === ($i % $batchSize))
