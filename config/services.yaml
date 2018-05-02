@@ -70,7 +70,7 @@ services:
         public: true
 
     console_command.txt_import:
-        class: App\Command\TxtImportCommand
+        class: App\Command\TxtImportTaxrefCommand
         arguments:
             - "@doctrine.orm.entity_manager"
         tags:

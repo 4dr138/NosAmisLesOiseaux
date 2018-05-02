@@ -12,7 +12,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class TxtImportCommand extends Command
+class TxtImportTaxrefCommand extends Command
 {
     /**
      * @var EntityManagerInterface
@@ -29,8 +29,8 @@ class TxtImportCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('txt:import')
-            ->setDescription('Import un fichier txt')
+            ->setName('txt:import:taxref')
+            ->setDescription('Importe la base Taxref')
         ;
     }
 
@@ -52,8 +52,7 @@ class TxtImportCommand extends Command
 
         $io->text('Lecture du fichier en cours...');
         $records = $reader->getRecords();
-//        $nb = iterator_count($records);
-        $nb = 550843;
+        $nb = iterator_count($records);
 
         $io->text('Nombre de ligne détectée dans le fichier : '. $nb);
         $io->text('Débute le parcours du fichier');
@@ -127,9 +126,14 @@ class TxtImportCommand extends Command
                         ->setTaxrefUrlImage($row['URL']);
                     $this->em->persist($bird);
 
-                    $bird
-                        ->setBirdFamily($birdFamily)
-                        ->setBirdStatus($birdStatus);
+                    if (null !== $birdFamily) {
+                        $bird->setBirdFamily($birdFamily->getId());
+                    }
+
+                    if (null !== $birdStatus) {
+                        $bird->setBirdStatus($birdStatus->getId());
+                    }
+
                     $this->em->flush();
 
                     if (0 === ($i % $batchSize))
