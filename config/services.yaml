@@ -69,5 +69,10 @@ services:
         class: App\Service\BirdService
         public: true
 
-
+    console_command.txt_import:
+        class: App\Command\TxtImportCommand
+        arguments:
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: console.command }
 
