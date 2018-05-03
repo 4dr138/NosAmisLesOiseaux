@@ -43,4 +43,12 @@ class BirdService extends Controller
         return $birds;
     }
 
+    public function getExistingBird($taxrefCdName)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $bird = $em->getRepository('App:Bird')->getExistingBird($taxrefCdName);
+
+        return $bird;
+    }
+
 }

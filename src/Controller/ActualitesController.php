@@ -14,6 +14,7 @@ class ActualitesController extends Controller
      */
     public function actualitesAction()
     {
+//        Récupération de la liste d'articles avant injection dans la vue
         $articles = $this->container->get('appbundle.articlesservice')->getArticles();
 
         return $this->render('actualites/actualites.html.twig', array('articles' => $articles));

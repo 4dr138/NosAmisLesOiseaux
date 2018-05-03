@@ -29,6 +29,30 @@ class ObservationRepository extends ServiceEntityRepository
         return $qb->getQuery()->execute();
     }
 
+    public function getUnvalidateObs()
+    {
+        $qb = $this->createQueryBuilder('o');
+        $qb
+            ->select('o')
+            ->where('o.bird = 0')
+            ->orderBy('o.id', 'DESC');
+        return $qb->getQuery()->execute();
+    }
+
+    public function updateBirdID($birdID, $id)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('
+        UPDATE App\Entity\Observation o
+        SET o.bird = :birdID
+        WHERE o.id = :id
+        ')
+            ->setParameter('birdID', $birdID)
+            ->setParameter('id', $id);
+        $query->execute();
+    }
+
+
 //    /**
 //     * @return Observation[] Returns an array of Observation objects
 //     */

@@ -91,7 +91,7 @@ header
     border-radius: 6px;
 
 }
-#h2, #titreAssociation, #title404
+#h2, #titreAssociation, #title404, #app_observation_Soumettre
 {
     text-align: center;
     margin-top: 5%;
@@ -156,7 +156,7 @@ h2
     height:780px;
     /*margin-left: -35%;*/
 }
-#validLogin, #btnAddObs, #btnBirdInfos
+#validLogin, #btnAddObs, #btnBirdInfos, #app_observation_Soumettre, #validateButton
 {
     color: white;
     background-color: rgb(74,229,62);
@@ -440,7 +440,7 @@ h2
     background-color: rgb(242,242,242);
     /*width:30%;*/
 }
-#top10, #titleActus,#articleTitle, #titleEspeces, #titleBird
+#top10, #titleActus,#articleTitle, #titleEspeces, #titleBird, #titleValidateObs
 
 {
     text-align:center;
@@ -519,7 +519,7 @@ h2
 {
     color: #4cab3d;
 }
-#titleSearch {
+#titleSearch, #phraseValidation {
     text-align: center;
     color: #4cab3d;
 }
@@ -585,4 +585,21 @@ h2
 #return_Homepage a
 {
     color: #4cab3d;
+}
+#linkDeco
+{
+    text-align: center;
+}
+#linkPanel2 h4, #linkPanel3 h4, #linkPanel1 h4
+{
+    margin-left:20%;
+}
+#linkPanel1
+{
+    margin-top: 7%;
+}
+#birdValidatePicture
+{
+    max-height:300px;
+    max-width:600px;
 }
