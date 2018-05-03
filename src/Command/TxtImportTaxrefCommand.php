@@ -44,7 +44,8 @@ class TxtImportTaxrefCommand extends Command
 
         $io->title('Traitement du fichier "'. $fileToImport .'"');
 
-        $stream = fopen('%kernel.root_dir%/../src/Data/'. $fileToImport, 'r');
+        $stream = fopen($_SERVER['PWD'] .'/src/Data/'. $fileToImport, 'r');
+
         $reader = Reader::createFromStream($stream);
 
         $reader->setDelimiter("\t");
