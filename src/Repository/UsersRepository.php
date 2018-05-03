@@ -56,4 +56,13 @@ class UsersRepository extends ServiceEntityRepository
 
         $query->execute();
     }
+
+    public function deleteAllUsers()
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'DELETE FROM App\Entity\Users');
+
+        $query->execute();
+    }
 }
