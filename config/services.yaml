@@ -76,3 +76,4 @@ services:
         tags:
             - { name: console.command }
 
+

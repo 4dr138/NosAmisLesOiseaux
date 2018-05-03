@@ -35,6 +35,7 @@ class InscriptionController extends Controller
                 $godsonCode = $userSon['godsonCode'];
                 $ExperienceService->ExpParrainage($godsonCode);
 
+                // Par défaut, on attribue le role amateur au nouvel inscrit
                 $user->setRoles(['ROLE_AMATEUR']);
                 $user->setGodfatherCode($CodeGodFatherService->generateCode());
 

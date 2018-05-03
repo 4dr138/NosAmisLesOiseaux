@@ -62,6 +62,16 @@ class BirdRepository extends ServiceEntityRepository
 
         return $query->execute();
     }
+
+    public function getExistingBird($taxrefCdName)
+    {
+        $qb = $this->createQueryBuilder('b');
+        $qb
+            ->select('b')
+            ->where('b.taxrefCdName = ' .$taxrefCdName);
+        return $qb->getQuery()->execute();
+    }
+
 //    /**
 //     * @return Bird[] Returns an array of Bird objects
 //     */
