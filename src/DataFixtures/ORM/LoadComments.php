@@ -12,6 +12,9 @@ class LoadComments implements ORMFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
+        $manager
+            ->getRepository(Comments::class)
+            ->deleteAllComments();
 
         $listComments = array('Auteur');
         foreach ($listComments as $comment) {
