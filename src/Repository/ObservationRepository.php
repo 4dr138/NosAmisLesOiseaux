@@ -29,6 +29,16 @@ class ObservationRepository extends ServiceEntityRepository
         return $qb->getQuery()->execute();
     }
 
+
+    public function deleteAllObservations()
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'DELETE FROM App\Entity\Observation');
+
+        $query->execute();
+    }
+
     public function getUnvalidateObs()
     {
         $qb = $this->createQueryBuilder('o');
@@ -51,8 +61,6 @@ class ObservationRepository extends ServiceEntityRepository
             ->setParameter('id', $id);
         $query->execute();
     }
-
-
 //    /**
 //     * @return Observation[] Returns an array of Observation objects
 //     */

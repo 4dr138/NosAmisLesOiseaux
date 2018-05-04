@@ -11,6 +11,10 @@ class LoadUser implements ORMFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
+        $manager
+            ->getRepository(Users::class)
+            ->deleteAllUsers();
+
         // Les noms d'utilisateurs à créer
         $listNames = array('Alexandre', 'Marine', 'Anna');
         foreach ($listNames as $name) {

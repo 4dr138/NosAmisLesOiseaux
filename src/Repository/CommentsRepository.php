@@ -27,4 +27,13 @@ class CommentsRepository extends ServiceEntityRepository
             ->where('c.articleID =' .$id);
         return $qb->getQuery()->execute();
     }
+
+    public function deleteAllComments()
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'DELETE FROM App\Entity\Comments');
+
+        $query->execute();
+    }
 }
