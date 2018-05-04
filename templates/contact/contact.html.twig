@@ -46,6 +46,11 @@
                                     <strong>{{ message }}</strong>
                                 </div>
                             {% endfor %}
+                            {% for message in app.flashes('error') %}
+                                <div class="flash-notice">
+                                    <strong>{{ message }}</strong>
+                                </div>
+                            {% endfor %}
                         </fieldset>
                     </form>
                 </div>

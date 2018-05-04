@@ -22,6 +22,7 @@
                             <p>Référence TAXREF : </p><input  name = 'birdID' step = "any" type = 'number' required /><br /><br />
                             <input id = 'validateButton' value = "Valider l'observation" type = 'submit' />
                         </form><br />
+                        <a id = 'btnDeleteObs' href = "{{ path('deleteObs', {'id': observation.id}) }}" class="btn btn-default"  >Supprimer l'observation</a>
                         {% for message in app.flashes('error') %}
                             <div class="flash-notice">
                                 <strong>{{ message }}</strong>

@@ -6,29 +6,31 @@
     <div id = 'panelh1' class = 'row'>
         <h1>Bienvenue sur votre profil personnel <strong>{{ users.username }}</strong>! </h1>
     </div>
-    <div id = 'panelh1' class = 'row'>
+    <div id = 'panelh1godfather' class = 'row'>
         <h3>Votre code de parrainage est : <strong>{{ users.godfatherCode }}</strong> </h3>
     </div>
-    <div id = 'panelh1' class = 'row'>
+    <div id = 'panelh1exp' class = 'row'>
         <h5>Votre expérience cumulée est de : <strong>{{ users.experience }}</strong> points</h5>
         <h5>Félicitation vous êtes <strong>{{ userLevel }}</strong> </h5>
     </div>
 
     <div class = 'row'>
-        <div id = 'linkPanel1' class = 'col-lg-5'>
-            <h4>Modifier mon profil</h4>
-            {% if users.image %}
-                <a href = "{{ url('users_edit', {'id': users.id }) }}"><img id = 'profilePicture' src = '{{ asset('assets/img/') }}{{ users.image }}' /></a>
-            {% else %}
-                <a href = "{{ url('users_edit', {'id': users.id }) }}"><img id = 'profilePictureDefault' src = '{{ asset('assets/img/imgUser.png') }}' /></a>
-            {% endif %}
-        </div>
-        <div id = 'linkPanel3' class = 'col-lg-5'>
-            <h4>Consultation de mes trouvailles</h4>
-            <a href="{{ url('observation') }}"><img id = 'birdPicture' src = '{{ asset('assets/img/panelControlBird.jpg') }}' /></a>
+        <div class = 'col-lg-12'>
+            <div id = 'linkPanel1amateur' class = 'col-lg-6'>
+                <h4>Modifier mon profil</h4>
+                {% if users.image %}
+                    <a href = "{{ url('users_edit', {'id': users.id }) }}"><img id = 'profilePicture' src = '{{ asset('assets/img/') }}{{ users.image }}' /></a>
+                {% else %}
+                    <a href = "{{ url('users_edit', {'id': users.id }) }}"><img id = 'profilePictureDefault' src = '{{ asset('assets/img/imgUser.png') }}' /></a>
+                {% endif %}
+            </div>
+            <div id = 'linkPanel3amateur' class = 'col-lg-6'>
+                <h4>Consultation de mes trouvailles</h4>
+                <a href="{{ url('observation') }}"><img id = 'birdPicture' src = '{{ asset('assets/img/panelControlBird.jpg') }}' /></a>
+            </div>
         </div>
     </div>
-    <div id = 'panelh1' class = 'row'>
+    <div id = 'panelh1deconnexion' class = 'row'>
         <h1><a id = 'linkDeco' href = "{{ path('deconnexionPanel') }}">Deconnexion</a></h1>
     </div>
 </div>

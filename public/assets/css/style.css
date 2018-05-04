@@ -20,7 +20,7 @@ body{
 {
     height: 500px;
     position: relative;
-    margin-left:2%;
+
 }
 #NAOTitle
 {
@@ -91,7 +91,12 @@ header
     border-radius: 6px;
 
 }
-#h2, #titreAssociation, #title404, #app_observation_Soumettre
+#app_observation_Soumettre
+{
+    text-align: center;
+    color: #4cab3d;
+}
+#h2, #titreAssociation, #title404
 {
     text-align: center;
     margin-top: 5%;
@@ -156,7 +161,7 @@ h2
     height:780px;
     /*margin-left: -35%;*/
 }
-#validLogin, #btnAddObs, #btnBirdInfos, #app_observation_Soumettre, #validateButton
+#validLogin, #btnAddObs, #btnBirdInfos, #app_observation_Soumettre, #validateButton, #btnDeleteObs
 {
     color: white;
     background-color: rgb(74,229,62);
@@ -223,6 +228,41 @@ h2
     background-image: url("../img/back_inscription.jpg");
     background-size: 100% 100%;
     /*background-repeat: no-repeat;*/
+}
+@media screen and (width: 1024px)
+{
+    #addObs
+    {
+        margin-left: 1%;
+        margin-right:1%;
+        height:300px;
+        padding:2%;
+    }
+    #titreObs, #addObs, #searchBird, #searchObs
+    {
+        height: auto;
+    }
+    #top5Img, #top10img
+    {
+        display:inline-flex;
+        margin-left: 10%;
+    }
+    #newsHome
+    {
+        height:250px;
+    }
+    #searchNews, #btnInscriptionHomePage
+    {
+        margin-top: 2%;
+    }
+    #titleNews
+    {
+        text-align:center;
+    }
+    #btnInscriptionHomePage
+    {
+        margin-left: 43%;
+    }
 }
 @media screen and (max-width: 1023px)
 {
@@ -299,7 +339,7 @@ h2
     }
 
 }
-@media screen and (min-width: 1024px)
+@media screen and (min-width: 1025px)
 {
     #addObs
     {
@@ -323,6 +363,7 @@ h2
 .flash-notice
 {
     color:red;
+    text-align:center;
 }
 #panelh1, #titreRecup
 {
@@ -398,16 +439,6 @@ h2
     -webkit-transform: scale(1.05);
     -o-transform: scale(1.05);
     -moz-transform: scale(1.05);
-}
-#panelh1 a:hover, #panelh1 a
-{
-    color: inherit;
-    color: rgb(150,150,150);
-}
-#panelh1 a
-{
-    color: #4cab3d;
-    margin-right:4%;
 }
 #actualites
 {
@@ -586,10 +617,6 @@ h2
 {
     color: #4cab3d;
 }
-#linkDeco
-{
-    text-align: center;
-}
 #linkPanel2 h4, #linkPanel3 h4, #linkPanel1 h4
 {
     margin-left:20%;
@@ -602,4 +629,25 @@ h2
 {
     max-height:300px;
     max-width:600px;
+}
+#app_observation_latitude, #app_observation_longitude
+{
+    width: 10%;
+}
+#linkPanel1amateur, #linkPanel3amateur
+{
+    text-align:center;
+}
+#panelh1exp, #panelh1godfather
+{
+    text-align:center;
+}
+#panelh1deconnexion
+{
+    text-align:center;
+    margin-top:7%;
+}
+#linkDeco
+{
+    color: #4cab3d;
 }
