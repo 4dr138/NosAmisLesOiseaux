@@ -28,32 +28,32 @@ class Users implements AdvancedUserInterface, \Serializable
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=50)
      * @Assert\NotBlank()
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=50)
      * @Assert\NotBlank()
      */
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=50)
      * @Assert\NotBlank()
      */
     private $username;
 
     /**
-     * @ORM\Column(name="mail", type="string", length=255, unique=true)
+     * @ORM\Column(name="mail", type="string", length=100)
      * @Assert\NotBlank()
      * @Assert\Email()
      */
     private $mail;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=50)
      * @Assert\NotBlank()
      */
     private $password;
@@ -74,18 +74,18 @@ class Users implements AdvancedUserInterface, \Serializable
     private $roles;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=100)
      */
     private $godfatherCode;
 
     /**
-     * @ORM\Column(type="integer", length=255)
+     * @ORM\Column(type="integer", length=15)
      */
     private $experience;
 
 
     /**
-    * @ORM\Column(type="string", length=255, nullable=true)
+    * @ORM\Column(type="string", length=50, nullable=true)
     */
     private $godsonCode;
 

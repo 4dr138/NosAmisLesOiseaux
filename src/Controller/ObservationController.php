@@ -116,4 +116,16 @@ class ObservationController extends Controller
             return $this->redirectToRoute('validateObs');
         }
     }
+
+    /**
+     * @Route("/deleteObs/{id}", name="deleteObs")
+     */
+    public function deleteObs($id)
+    {
+        // On supprime l'enregistrement de l'observation existante en BDD
+        $this->container->get('appbundle.observations')->deleteObsById($id);
+
+        return $this->redirectToRoute('validateObs');
+
+    }
 }

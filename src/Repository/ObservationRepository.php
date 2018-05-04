@@ -52,6 +52,17 @@ class ObservationRepository extends ServiceEntityRepository
         $query->execute();
     }
 
+    public function deleteObsById($id)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('
+        DELETE FROM App\Entity\Observation o
+        WHERE o.id = :id
+        ')
+            ->setParameter('id', $id);
+        $query->execute();
+    }
+
 
 //    /**
 //     * @return Observation[] Returns an array of Observation objects

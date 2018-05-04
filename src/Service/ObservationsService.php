@@ -54,6 +54,13 @@ class ObservationsService extends Controller
 
     public function updateBirdID($birdID, $id){
         $em = $this->getDoctrine()->getManager();
-        $observations = $em->getRepository('App:Observation')->updateBirdID($birdID, $id);
+        $em->getRepository('App:Observation')->updateBirdID($birdID, $id);
     }
+
+    public function deleteObsById($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->getRepository('App:Observation')->deleteObsById($id);
+    }
+
 }
