@@ -20,22 +20,22 @@ class ConnexionController extends Controller
     {
 
         $user = $session->get('users');
-        
-        if(isset($user))
-        {
-            
+        if(isset($user)) {
+
             $role = $user->getRoles();
-            
+            $role = $role[0];
+
             $userLevel = $ExperienceService->doLevelAward($user);
-            if ($role = 'ROLE_AMATEUR') {
-                return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user,'userLevel'=> $userLevel));
-                
+            if ($role == 'ROLE_AMATEUR') {
+                return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user, 'userLevel' => $userLevel));
+
+            } else if ($role == 'ROLE_NATURALISTE') {
+                return $this->render('panelcontrol/panelcontrolnaturaliste.html.twig', array('users' => $user, 'userLevel' => $userLevel));
             }
         }
-        else {
-            
+
             return $this->render('connexion/connexion.html.twig');
-        }
+
     }
 
     /**
@@ -50,24 +50,29 @@ class ConnexionController extends Controller
             $_SESSION['username'] = $username;
             $_SESSION['password'] = $username;
 
+            // On check les informations d'authentification en fonction du pseudo et du mot de passe associé
             $user = $this->container->get('appbundle.checkconnexion')->checkUser($username, $password);
            
             if ($user == false) {
                 $this->addFlash('error', "Les informations d'authentification sont erronées, veuillez ré-essayer.");
                 return $this->render('connexion/connexion.html.twig', array('message' => $this));
             } else {
+
                 $username = $user->getUsername();
 
                 $role = $user->getRoles();
-
                 $ExperienceService->ExpConnexion($user);
                 $userLevel = $ExperienceService->doLevelAward($user);
+                // On update les données de session
                 $session->set('users', $user);
-                
 
-                if ($role = 'ROLE_AMATEUR') {
+                // On récupère le premier index du tableau de role (défini en tant que tableau dans l'entité)
+                $role = $role[0];
+
+
+                if ($role == 'ROLE_AMATEUR') {
                     return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user, 'userLevel'=> $userLevel));
-                } else if ($role = 'ROLE_NATURALISTE') {
+                } else if ($role == 'ROLE_NATURALISTE') {
                     return $this->render('panelcontrol/panelcontrolnaturaliste.html.twig', array('users' => $user, 'userLevel'=> $userLevel));
                 }
             }

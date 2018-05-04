@@ -18,6 +18,7 @@ class WebsiteSearch extends Controller
     public function searchWordAction()
     {
         $word = $_POST['word'];
+        // On récupère les articles et les oiseaux en fonction du mot rentré pour afficher la recherche
         $articles = $this->container->get('appbundle.articlesservice')->getArticlesByWord($word);
         $birds = $this->container->get('appbundle.birds')->getBirdsByWord($word);
 
