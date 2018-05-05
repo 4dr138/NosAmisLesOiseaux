@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @Route("/users")
@@ -61,29 +62,36 @@ class UsersController extends Controller
     /**
      * @Route("/{id}/edit", name="users_edit", methods="GET|POST")
      */
-    public function edit(Request $request, Users $user, SessionInterface $session, ExperienceService $ExperienceService)
+    public function edit($id, Request $request, Users $user, SessionInterface $session, ExperienceService $ExperienceService)
     {
-        $form = $this->createForm(Users1Type::class, $user);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        $user = $session->get('users');
+        if($id == $user->getId()) {
+            $form = $this->createForm(Users1Type::class, $user);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+                $em->flush();
 
-            $session->set('users', $user);
-            $role = $user->getRoles();
-            $userLevel = $ExperienceService->doLevelAward($user);
+                $session->set('users', $user);
+                $role = $user->getRoles();
+                $userLevel = $ExperienceService->doLevelAward($user);
 
-            if ($role = 'ROLE_AMATEUR') {
-                return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user, 'userLevel'=> $userLevel));
+                if ($role = 'ROLE_AMATEUR') {
+                    return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user, 'userLevel'=> $userLevel));
+                }
             }
-        }
 
-        return $this->render('users/edit.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
+            return $this->render('users/edit.html.twig', [
+                'user' => $user,
+                'form' => $form->createView(),
+            ]);
+        }
+        else {
+            throw new \Exception('Something went wrong!');
+        }
+        
     }
 
     /**
