@@ -38,6 +38,8 @@ class TxtImportTaxrefCommand extends Command
     {
         $fileToImport = 'data_import_all.txt';
 
+        // important, permet de ne pas écrire dans le logger de la bdd,
+        // ce qui allège grandement l'utilisation de la mémoire
         $this->em->getConnection()->getConfiguration()->setSQLLogger(null);
 
         $io = new SymfonyStyle($input, $output);
@@ -48,8 +50,8 @@ class TxtImportTaxrefCommand extends Command
 
         $reader = Reader::createFromStream($stream);
 
-        $reader->setDelimiter("\t");
-        $reader->setHeaderOffset(0);
+        $reader->setDelimiter("\t"); // définie la tabulation comme délimiteur dans le fichier
+        $reader->setHeaderOffset(0); // récupère les entêtes du fichier
 
         $io->text('Lecture du fichier en cours...');
         $records = $reader->getRecords();
@@ -59,7 +61,7 @@ class TxtImportTaxrefCommand extends Command
         $io->text('Débute le parcours du fichier');
         $io->text('');
 
-        $io->progressStart($nb);
+        $io->progressStart($nb); // bar de progression
 
         $batchSize = 50;
         $i = 1;
@@ -139,7 +141,7 @@ class TxtImportTaxrefCommand extends Command
 
                     if (0 === ($i % $batchSize))
                     {
-                        $this->em->flush();
+                        // permet de vider le cache concernant les objets birds
                         $this->em->clear(Bird::class);
                     }
 
@@ -161,6 +163,7 @@ class TxtImportTaxrefCommand extends Command
         }
 
         $this->em->flush();
+        // vide tout le cache de l'entité manager interface
         $this->em->clear();
 
         $io->progressFinish();
