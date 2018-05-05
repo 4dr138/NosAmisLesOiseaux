@@ -5,6 +5,9 @@ namespace App\Controller;
 
 use App\Entity\Users;
 use App\Service\ExperienceService;
+use App\Service\ConnexionService;
+use App\Service\ForgotMail;
+use App\Service\Mail;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -42,16 +45,16 @@ class ConnexionController extends Controller
      * @Route("/checkUser", name = "checkUser")
      *
      */
-    public function checkUserAction(SessionInterface $session, ExperienceService $ExperienceService)
+    public function checkUserAction(Request $request, SessionInterface $session, ExperienceService $ExperienceService,ConnexionService $ConnexionService)
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $username = htmlentities($_POST['username']);
-            $password = htmlentities($_POST['password']);
-            $_SESSION['username'] = $username;
-            $_SESSION['password'] = $username;
+        if (isset($request)) {
+            
+            $username  = $request->get('username');
+            $password  = $request->get('password');
+
 
             // On check les informations d'authentification en fonction du pseudo et du mot de passe associé
-            $user = $this->container->get('appbundle.checkconnexion')->checkUser($username, $password);
+            $user = $ConnexionService->checkUser($username, $password);
            
             if ($user == false) {
                 $this->addFlash('error', "Les informations d'authentification sont erronées, veuillez ré-essayer.");
@@ -92,33 +95,21 @@ class ConnexionController extends Controller
      * @Route("/mailPass", name = "mailPass")
      *
      */
-    public function mailPassAction()
+    public function mailPassAction(Request $request,ForgotMail $ForgotMail,Mail $Mail)
     {
-        $mail = htmlentities($_POST['mail']);
+        
+        $mail = $request->get('mail');
+        $email = $ForgotMail->checkMail($mail);
 
-        $email = $this->container->get('appbundle.forgotmail')->checkMail($mail);
         if($email == false)
         {
             $this->addFlash('error', "Attention, votre mail n'existe pas, veuillez ré-essayer !");
             return $this->redirectToRoute('forgotpass');
         }
         else {
-            $randompassword = $this->container->get('appbundle.forgotmail')->randomPassword($email);
-
-            // Variables concernant l'email
-
-            $destinataire = $email;
-            $sujet = 'Réinitialisation de votre mot de passe - Nos Amis Les Oiseaux '; // Titre de l'email
-            $contenu = '<html><head><title>Réinitialisation du mot de passe</title></head><body>';
-            $contenu .= '<p>Bonjour, ci-dessous votre nouveau mot de passe à utiliser pour vous connecter à votre espace.</p>';
-            $contenu .= '<p><strong>Nouveau mot de passe : </strong>: ' . $randompassword . '</p>';
-            $contenu .= '<p>A bientôt sur notre site !</p>';
-            $contenu .= '</body></html>';
-
-            // Pour envoyer un email HTML, l'en-tête Content-type doit être défini
-            $headers = 'MIME-Version: 1.0' . "\r\n";
-            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-
+            $randompassword = $ForgotMail->randomPassword($email);
+            $Mail->sendRandomPassword($randompassword, $email);
+            
             //            mail($destinataire, $sujet, $contenu, $headers);
             $this->addFlash("success", "Un mail contenant votre nouveau mot de passe vient de vous être envoyé ! ");
             return $this->redirectToRoute('forgotpass');

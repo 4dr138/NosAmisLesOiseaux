@@ -6,8 +6,13 @@ use Stripe\Stripe;
 class StripeGift
 {
 
-  public function chargeVisa($token, $email, $totalOrder)
+  public function chargeVisa($request)
   {
+    $token  = $request->get('stripeToken');
+    $email  = $request->get('stripeEmail');
+    $totalOrder = $request->get('data-amount');
+
+
     \Stripe\Stripe::setApiKey("sk_test_PHraORksdzZk8MWcZPkv9gA5");
 
 

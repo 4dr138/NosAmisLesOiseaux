@@ -6,6 +6,7 @@ use App\Entity\Users;
 use App\Form\Users1Type;
 use App\Repository\UsersRepository;
 use App\Service\FileUploader;
+use App\Service\ExperienceService;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,7 +61,7 @@ class UsersController extends Controller
     /**
      * @Route("/{id}/edit", name="users_edit", methods="GET|POST")
      */
-    public function edit(Request $request, Users $user, SessionInterface $session)
+    public function edit(Request $request, Users $user, SessionInterface $session, ExperienceService $ExperienceService)
     {
         $form = $this->createForm(Users1Type::class, $user);
         $form->handleRequest($request);
@@ -72,9 +73,10 @@ class UsersController extends Controller
 
             $session->set('users', $user);
             $role = $user->getRoles();
+            $userLevel = $ExperienceService->doLevelAward($user);
 
             if ($role = 'ROLE_AMATEUR') {
-                return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user));
+                return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user, 'userLevel'=> $userLevel));
             }
         }
 

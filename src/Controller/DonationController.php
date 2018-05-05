@@ -33,22 +33,22 @@ class DonationController extends AbstractController
     public function gift(Request $request, StripeGift $StripeGift, Mail $Mail,SessionInterface $session, ExperienceService $ExperienceService)
     {
 
-        $token  = $request->get('stripeToken');
-        $email  = $request->get('stripeEmail');
         $amount = $request->get('data-amount');
         $name = $request->get('name');
         $firstname = $request->get('firstname');
+        $email  = $request->get('stripeEmail');
         
         $user = $session->get('users');
-        dump($user);
+        
 
         try {
             if(isset($user)){
                 $ExperienceService->ExpDonation($user);
             }
             
-            $StripeGift->chargeVisa($token, $email, $amount);
-            $Mail->sendMail($email, $amount, $name, $firstname);
+            
+            $StripeGift->chargeVisa($request);
+            $Mail->sendDonationMail($email, $amount, $name, $firstname);
             
             return $this->render('donation/sucess.html.twig', array('amount'=> $amount, 'name'=> $name, 'firstname'=> $firstname, 'users' =>$user));
         } catch(\Stripe\Error\Card $e) {
