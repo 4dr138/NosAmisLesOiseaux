@@ -53,6 +53,11 @@ class Bird
      */
     private $birdFamily;
 
+    public function __construct()
+    {
+        $this->taxrefClass = 'Aves';
+    }
+
     public function getId()
     {
         return $this->id;

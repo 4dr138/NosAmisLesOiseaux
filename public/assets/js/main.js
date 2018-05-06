@@ -31,3 +31,39 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
 }
+
+var url = Routing.generate('getBirds');
+var options =
+    {
+        url: url,
+        getValue: 'taxrefVern',
+        list: {
+            match: {
+                enabled: true
+            }
+        }
+    };
+$("#searchBird").easyAutocomplete(options);
+// $.ajax(
+//     {
+//         url: url,
+//         type: 'GET',
+//         data: { get_param: 'value' },
+//         dataType: "json",
+//         success: function(data){
+//             sBirds = JSON.stringify(data);
+//             arrBirds = JSON.parse(sBirds);
+//             console.log(arrBirds);
+//             $("#searchBird").autocomplete({
+//                 source:data,
+//                 select: function(event, ui)
+//                 {
+//                     console.log(ui.item.value);
+//                     $("#searchBird").val(ui.item.value);
+//                 }
+//             });
+//         },
+//         error: function(data){
+//             alert('no data');
+//         }
+//     });

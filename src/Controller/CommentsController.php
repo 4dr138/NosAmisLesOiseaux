@@ -87,4 +87,14 @@ class CommentsController extends Controller
 
         return $this->redirectToRoute('comments_index');
     }
+
+    /**
+     * @Route("/signalement/{id}/{articleID}", name="signalement")
+     */
+    public function signalement($id, $articleID)
+    {
+        $this->container->get('appbundle.commentsservice')->signalComment($id);
+
+        return $this->redirectToRoute('blog', array('id' => $articleID));
+    }
 }

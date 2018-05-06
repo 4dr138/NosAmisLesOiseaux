@@ -8,15 +8,17 @@
         {% for bird in birds %}
             {% for birdSolo in bird %}
         <h4>Observation du {{ birdSolo.dateObservation|date('d-m-Y') }}</h4>
-                <div id = 'birdImage'>{{ birdSolo.taxrefUrlImage }}</div>
                 <p>Nom de l'espèce répertoriée : <strong>{{ birdSolo.taxrefVern }}</strong></p>
                 <p>Référence TAXREF : {{ birdSolo.taxrefCdName }}</p>
                 <p>Classe : {{ birdSolo.taxrefClass }}</p>
                 <p>Localisation : <strong>{{ birdSolo.latitude }}</strong> degrés de latitude et <strong>{{ birdSolo.longitude }}</strong> degrés de longitude</p>
-                <p>Espèce protégée ? {{ birdSolo.protected }}</p>
+                <p>Espèce protégée ? {% if birdSolo.protected == false %} Non {% else %} Oui {% endif %}</p>
                 <p>Famille : {{ birdSolo.family }}</p>
-                <p>Statut : {{ birdSolo.status }}</p>
+                {% if birdSolo.status %}
+                    <p>Statut : {{ birdSolo.status }}</p>
+                {% endif %}
                 <p>Commentaire : {{ birdSolo.comment }}</p>
+                <p>Lien vers plus d'informations sur la base nationale INPI : <a href = "{{ birdSolo.taxrefUrlImage }}">Ici ! </a></p><hr />
                 <a href = "{{ path('birdInfos',{'id': birdSolo.id }) }}"><button id = 'btnBirdInfos' class = 'btn btn-default'>Voir la fiche détaillée de l'espèce</button></a>
                 <hr />
             {% endfor %}

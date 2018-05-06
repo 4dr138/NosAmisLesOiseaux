@@ -68,3 +68,5 @@ tinymce.init({
         }, 1000);
     }
 });
+document.getElementById("users_roles").style.width = "300px";
+document.getElementById("users_roles").style.height = "70px";
