@@ -3,6 +3,9 @@
 parameters:
     locale: 'en'
     image_user: '%kernel.project_dir%/public/uploads/image_user'
+    role:
+        Amateur: 1
+        Naturaliste: 0
 
 services:
     # default configuration for services in *this* file

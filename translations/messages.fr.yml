@@ -7,16 +7,49 @@ users.password: Mot de passe
 users.newsletter: Newsletter
 users.actif: Actif ?
 users.roles: Role
+users.image: Image
+Image File: Image
 
 
 article.title: Titre de l'article
 article.content: Contenu de l'article
+article.image: Image
 
 comments.id: Identifiant du commentaire
 comments.content: Contenu du commentaire
 comments.article_id: ID de l'article
+comments.author: Auteur de l'article
+comments.signalement: Signalement
 
 Users: Utilisateurs
 Article : Article
 Comments: Commentaires
-Birds: Oiseaux
+Bird: Oiseaux
+BirdFamily: Famille d'oiseaux
+BirdStatus: Statuts
+
+observation.user: Utilisateur
+observation.bird: Référence (0 = non validée)
+observation.date: Date
+observation.latitude: Latitude
+observation.longitude: Longitude
+observation.comment: Commentaire
+observation.image: Image
+
+bird.taxrefCdName: Identifiant unique
+bird.taxrefVern: Nom de l'oiseau
+bird.protected: Espèce protégée ?
+bird.url: Lien image vers TAXREF
+bird.birdStatus: Id du statut
+bird.birdFamily: Id de la famille
+
+birdFamily.id: ID
+birdFamily.label: Description
+birdStatus.id: ID
+birdStatus.label: Description
+
+new.page_title: Créer
+action.save: Enregistrer
+action.list: Revenir à la liste
+action.new: Créer
+action.delete: Supprimer

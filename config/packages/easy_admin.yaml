@@ -6,10 +6,16 @@ easy_admin:
           js:
             - 'https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=zfywjcekks6ajywpq2nnrrms2h311dpnzudvvkal0bp06ep0'
             - '/assets/js/easy_admin.js'
+   formats:
+      date: 'd/m/Y'
    entities:
        Users:
             class: App\Entity\Users
             list:
+              actions:
+                - { name: 'edit', icon: 'pencil', label: 'Editer', title: 'Editer' }
+                - { name: 'delete', icon: '', label: 'Supprimer', title: 'Supprimer' }
+                - { name: 'new', icon: '', label: 'Ajouter', title: 'Ajouter' }
               fields:
                 - { property: 'id', label: 'users.id' }
                 - { property: 'name', label: 'users.name' }
@@ -19,7 +25,8 @@ easy_admin:
                 - { property: 'password', label: 'users.password' }
                 - { property: 'newsletter', label: 'users.newsletter' }
                 - { property: 'is_active', label: 'users.actif' }
-            edit:
+            new:
+              title: "Créer un nouvel utilisateur"
               fields:
                 - { property: 'name', label: 'users.name' }
                 - { property: 'firstname', label: 'users.firstname' }
@@ -28,33 +35,170 @@ easy_admin:
                 - { property: 'password', label: 'users.password' }
                 - { property: 'newsletter', label: 'users.newsletter' }
                 - { property: 'is_active', label: 'users.actif', type: 'text' }
-                - 'roles'
-                - { property: 'roles', label: 'users.roles' }
+                - { property: 'roles', label: 'users.roles', type: 'choice', type_options: { expanded: false, multiple: true, choices: {'ROLE_NATURALISTE' : 'ROLE_NATURALISTE', 'ROLE_AMATEUR' : 'ROLE_AMATEUR'}, choice_attr: {'style' : 'width: 100px'}}}
+                - { property: 'imageFile', labe: 'users.image', type: 'vich_image' }
+            edit:
+              title: 'Edition du profil'
+              fields:
+                - { property: 'name', label: 'users.name' }
+                - { property: 'firstname', label: 'users.firstname' }
+                - { property: 'username', label: 'users.username' }
+                - { property: 'mail', label: 'users.mail' }
+                - { property: 'password', label: 'users.password' }
+                - { property: 'newsletter', label: 'users.newsletter' }
+                - { property: 'is_active', label: 'users.actif', type: 'text' }
+                - { property: 'imageFile', labe: 'users.image', type: 'vich_image' }
+                - { property: 'roles', label: 'users.roles', type: 'choice', type_options: { expanded: false, multiple: true, choices: {'ROLE_NATURALISTE' : 'ROLE_NATURALISTE', 'ROLE_AMATEUR' : 'ROLE_AMATEUR'}, choice_attr: {'style' : 'width: 100px'}}}
        Article:
             class: App\Entity\Article
             new:
+              title: 'Ajouter un article'
               fields:
                 - { property: 'title', label: 'article.title' }
                 - { property: 'content', type: 'textarea', label: 'article.content' }
-                - { property: 'imageFile', type: 'vich_image' }
-
+                - { property: 'imageFile', type: 'vich_image', label: 'article.image' }
             list:
+              actions:
+                - { name: 'edit', icon: 'pencil', label: 'Editer', title: 'Editer' }
+                - { name: 'delete', icon: '', label: 'Supprimer', title: 'Supprimer' }
+                - { name: 'new', icon: '', label: 'Ajouter', title: 'Ajouter' }
               fields:
                 - id
                 - { property: 'title', label: 'article.title' }
                 - { property: 'content', label: 'article.content' }
             edit:
+              title: "Edition d'article"
               fields:
                 - { property: 'title', label: 'article.title' }
                 - { property: 'content', type: 'textarea', label: 'article.content' }
-                - { property: 'imageFile', type: 'vich_image' }
+                - { property: 'imageFile', type: 'vich_image', label: 'article.image' }
        Comments:
             class: App\Entity\Comments
             list:
+              actions:
+               - { name: 'edit', icon: 'pencil', label: 'Editer', title: 'Editer' }
+               - { name: 'delete', icon: '', label: 'Supprimer', title: 'Supprimer' }
+               - { name: 'new', icon: '', label: 'Ajouter', title: 'Ajouter' }
               fields:
                 - { property: 'id', label: 'comments.id' }
                 - { property: 'content', label: 'comments.content' }
                 - { property: 'article_id', label: 'comments.article_id' }
+                - { property: 'author', label: 'comments.author' }
+                - { property: 'signalement', label: 'comments.signalement' }
+            new:
+              title: "Ajouter un commentaire"
+              fields:
+                - { property: 'author', label: 'comments.author' }
+                - { property: 'content', label: 'comments.content', type: 'textarea' }
+            edit:
+              title: "Edition de commentaires"
+              fields:
+                - { property: 'author', label: 'comments.author' }
+                - { property: 'content', label: 'comments.content', type: 'textarea' }
+       Observation:
+            class: App\Entity\Observation
+            list:
+              actions:
+               - { name: 'edit', icon: 'pencil', label: 'Editer', title: 'Editer' }
+               - { name: 'delete', icon: '', label: 'Supprimer', title: 'Supprimer' }
+               - { name: 'new', icon: '', label: 'Ajouter', title: 'Ajouter' }
+              fields:
+               - { property: 'user', label: 'observation.user' }
+               - { property: 'bird', label: 'observation.bird' }
+               - { property: 'dateobservation', label: 'observation.date', type: 'date' }
+               - { property: 'latitude', label: 'observation.latitude' }
+               - { property: 'longitude', label: 'observation.longitude' }
+               - { property: 'comment', label: 'observation.comment' }
+            new:
+              title: 'Nouvelle observation'
+              fields:
+               - { property: 'user', label: 'observation.user' }
+               - { property: 'bird', label: 'observation.bird' }
+               - { property: 'dateobservation', label: 'observation.date', type: 'date' }
+               - { property: 'latitude', label: 'observation.latitude' }
+               - { property: 'longitude', label: 'observation.longitude' }
+               - { property: 'comment', label: 'observation.comment' }
+               - { property: 'imageFile', type: 'vich_image', label: 'observation.image' }
+            edit:
+              title: "Editer l'observation"
+              fields:
+               - { property: 'user', label: 'observation.user' }
+               - { property: 'bird', label: 'observation.bird' }
+               - { property: 'dateobservation', label: 'observation.date', type: 'date' }
+               - { property: 'latitude', label: 'observation.latitude' }
+               - { property: 'longitude', label: 'observation.longitude' }
+               - { property: 'comment', label: 'observation.comment' }
+               - { property: 'imageFile', type: 'vich_image', label: 'observation.image' }
+       Bird:
+            class: App\Entity\Bird
+            list:
+              actions:
+               - { name: 'edit', icon: 'pencil', label: 'Editer', title: 'Editer' }
+               - { name: 'delete', icon: '', label: 'Supprimer', title: 'Supprimer' }
+               - { name: 'new', icon: '', label: 'Ajouter', title: 'Ajouter' }
+              fields:
+               - { property: 'taxrefCdName', label: 'bird.taxrefCdName' }
+               - { property: 'taxrefVern', label: 'bird.taxrefVern' }
+               - { property: 'protected', label: 'bird.protected' }
+            new:
+              title: 'Ajouter un oiseau'
+              fields:
+              - { property: 'taxrefCdName', label: 'bird.taxrefCdName' }
+              - { property: 'taxrefVern', label: 'bird.taxrefVern' }
+              - { property: 'protected', label: 'bird.protected' }
+              - { property: 'taxrefUrlImage', label: 'bird.url' }
+              - { property: 'birdStatus', label: 'bird.birdStatus' }
+              - { property: 'birdFamily', label: 'bird.birdFamily' }
+            edit:
+              title: "Editer l'oiseau"
+              fields:
+              - { property: 'taxrefCdName', label: 'bird.taxrefCdName' }
+              - { property: 'taxrefVern', label: 'bird.taxrefVern' }
+              - { property: 'protected', label: 'bird.protected' }
+              - { property: 'taxrefUrlImage', label: 'bird.url' }
+              - { property: 'birdStatus', label: 'bird.birdStatus' }
+              - { property: 'birdFamily', label: 'bird.birdFamily' }
+       BirdFamily:
+            class: App\Entity\BirdFamily
+            list:
+              actions:
+              - { name: 'edit', icon: 'pencil', label: 'Editer', title: 'Editer' }
+              - { name: 'delete', icon: '', label: 'Supprimer', title: 'Supprimer' }
+              - { name: 'new', icon: '', label: 'Ajouter', title: 'Ajouter' }
+              fields:
+              - { property: 'id', label: 'birdFamily.id' }
+              - { property: 'label', label: 'birdFamily.label'}
+            edit:
+              title: "Editer une famille"
+              fields:
+              - { property: 'id', label: 'birdFamily.id' }
+              - { property: 'label', label: 'birdFamily.label'}
+            new:
+              title: "Nouvelle famille"
+              fields:
+              - { property: 'id', label: 'birdFamily.id' }
+              - { property: 'label', label: 'birdFamily.label'}
+       BirdStatus:
+            class: App\Entity\BirdStatus
+            list:
+              actions:
+              - { name: 'edit', icon: 'pencil', label: 'Editer', title: 'Editer' }
+              - { name: 'delete', icon: '', label: 'Supprimer', title: 'Supprimer' }
+              - { name: 'new', icon: '', label: 'Ajouter', title: 'Ajouter' }
+              fields:
+              - { property: 'id', label: 'birdStatus.id' }
+              - { property: 'label', label: 'birdStatus.label'}
+            new:
+              title: "Nouveau statut"
+              fields:
+              - { property: 'id', label: 'birdStatus.id' }
+              - { property: 'label', label: 'birdStatus.label'}
+            edit:
+              title: "Editer le statut"
+              fields:
+              - { property: 'id', label: 'birdStatus.id' }
+              - { property: 'label', label: 'birdStatus.label'}
+
 framework:
   translator: { fallbacks: [ "fr" ] }
   templating:

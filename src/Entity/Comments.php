@@ -38,6 +38,18 @@ class Comments
      */
     private $datecomment;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $signalement;
+
+
+
+    public function __construct()
+    {
+        $this->signalement = false;
+    }
+
     public function getId()
     {
         return $this->id;
@@ -90,4 +102,17 @@ class Comments
 
         return $this;
     }
+
+    public function getSignalement(): ?bool
+    {
+        return $this->signalement;
+    }
+
+    public function setSignalement(bool $signalement): self
+    {
+        $this->signalement = $signalement;
+
+        return $this;
+    }
+
 }

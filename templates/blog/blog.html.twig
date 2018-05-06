@@ -32,18 +32,27 @@
         </div>
 
     {% endfor %}
+
     <br/><hr/>
         <div class = 'row'>
-            <div class = 'col-lg-4'>
+            <div class = 'col-lg-12'>
                 {% for comment in comments %}
                     {{ comment.author }} le {{ comment.datecomment|date('d-m-Y') }} a écrit : <br/><br/>
-                    {{ comment.content }}
-                    <br/><hr/>
+                    {{ comment.content }}<br />
+                    <a id = 'linkSignalement' href = "{{ path('signalement',{'id': comment.id, 'articleID': comment.articleID }) }}">Signaler ce commentaire</a>
+                    <br/>
+                    <hr />
                 {% endfor %}
-                <div id = 'formComments'>
-                {{ form_start(form) }}
+            </div>
 
-                {{ form_end(form) }}
+            <div class = 'col-lg-4'>
+                <div id = 'formComments'>
+                    {% if app.session.get('users') %}
+
+                    {{ form_start(form) }}
+
+                    {{ form_end(form) }}
+                    {% endif %}
                 </div>
             </div>
         </div>

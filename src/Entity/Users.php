@@ -358,6 +358,18 @@ class Users implements AdvancedUserInterface, \Serializable
         return $this;
     }
 
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
 //    public function setImageSize(?int $imageSize): void
 //    {
 //        $this->imageSize = $imageSize;
