@@ -18,10 +18,10 @@ class DonationController extends AbstractController
     */
     public function donation(SessionInterface $session)
     {
-        
+        $user = $session->get('users');
         return $this->render('donation/donation.html.twig', array(
                 
-                
+                'users' =>$user,
                 'description' => "faire un don",
                 "publishable_key" => "pk_test_22Upp5xyncxXUx9EfBE54yEn"
                 ));
