@@ -8,7 +8,7 @@
  class Mail 
  { 
      //const EMAIL = 'newsletter@ceorangeso.com'; 
-     const EMAIL = 'contact@projet4.yuqi.fr';
+     const EMAIL = 'contact@billetteriemuseedulouvre.fr';
      private $twig; 
      private $mailer; 
   
@@ -19,7 +19,7 @@
      } 
    
   
-     public function sendMail($email, $amount, $name, $firstname) 
+     public function sendDonationMail($email, $amount, $name, $firstname) 
      { 
          
          
@@ -33,24 +33,73 @@
          $this->mailer->send($message); 
      }
 
-
-    /* public function sendMail($name, $firstname, $email, $amount)
+     public function sendRandomPassword($randompassword, $email)
     {
-            $destinataire = 'contact@nos-amis-les-oiseaux.fr';
-            $sujet = 'Contact'; // Titre de l'email
-            $contenu = '<html><head><title>Certificat de donation</title></head><body>';
-            $contenu .= '<p>Bonjour, vous avez reçu un message à partir de votre site web.</p>';
-            $contenu .= '<p><strong>Nom</strong>: '.$nom.'</p>';
-            $contenu .= '<p><strong>Email</strong>: '.$email.'</p>';
-            $contenu .= '<p><strong>Prénom</strong>: '.$message.'</p>';
-            $contenu .= '</body></html>';
+        $message = (new \Swift_Message('Votre mot de passe temporaire.')) 
+             ->setFrom(self::EMAIL) 
+             ->setTo($email) 
+             ->setBody( 
+                 $this->twig->render('connexion/mailRandomPass.html.twig', [ 
+                     'randompassword'=>$randompassword 
+                 ]), 
+                 'text/html' 
+             ); 
+         $this->mailer->send($message);
+    }
 
-            // Pour envoyer un email HTML, l'en-tête Content-type doit être défini
-            $headers = 'MIME-Version: 1.0'."\r\n";
-            $headers .= 'Content-type: text/html; charset=iso-8859-1'."\r\n";
+    public function sendContactMail($nom, $email, $message)
+    {
+        // Variables concernant l'email
 
-            // On utilise SwiftMailer pour envoyer le mail
-            $this->get('mailer')->send($message);
-    }*/
+        $message = (new \Swift_Message('Nouveau message de contact reçu.')) 
+             ->setFrom(self::EMAIL) 
+             ->setTo('contact@nos-amis-les-oiseaux.fr') 
+             ->setBody( 
+                 $this->twig->render('contact/mailMessageContact.html.twig', [ 
+                     'nom'=>$nom, 'email'=>$email, 'message'=>$message
+                 ]), 
+                 'text/html' 
+             ); 
+         $this->mailer->send($message);
+
+    }
+
+    public function sendConfirmationMail($user)
+    {
+       foreach($user as $mail)
+       {
+           $name = $user->getName();
+           $firstname = $user->getFirstName();
+           $username = $user->getUserName();
+           $email = $user->getMail();
+           $newsletter = $user->getNewsletter();
+
+       }
+        // On commence par configurer l'envoi de mail de confirmation
+        $message = (new \Swift_Message('Recapitulatif de commande'))
+            ->setFrom(self::EMAIL)
+            ->setTo($email)
+            ->setBody(
+                $this->renderView('inscription/mailconfirmation.html.twig', array('name' => $name, 'firstname' => $firstname, 'username' => $username, 'newsletter' => $newsletter)),
+                'text/html'
+            );
+        // On utilise SwiftMailer pour envoyer le mail
+        $this->mailer->send($message);
+    }
+
+    public function checkInfosContact($nom, $email){
+        if(filter_var($email, FILTER_VALIDATE_EMAIL) == false)
+        {
+            return 'errorMail';
+        }
+        else if(filter_var($nom, FILTER_VALIDATE_FLOAT) !== false)
+        {
+            return 'errorString';
+        }
+        else
+        {
+            return 'checkOk';
+        }
+    }
  
  } 

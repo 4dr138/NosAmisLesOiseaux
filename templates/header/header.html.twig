@@ -1,46 +1,59 @@
 <nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <img src = "{{ asset('assets/img/Logo_48x48.png') }}" alt="logo" />
-            <a id = 'NAOTitle' href="{{ path('homepage')}}">Nos Amis Les Oiseaux</a>
-        </div>
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        
+        <img src = "{{ asset('assets/img/Logo_48x48.png') }}" alt="logo" width="64" height="64" />
+        <!-- <a class="navbar-brand" href="{{ path('homepage')}}">Nos Amis les Oiseaux</a> -->
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="{{ path('homepage') }}">Accueil</a></li>
-                <li><a href="{{ path('actualites') }}">Actualités</a></li>
-                <li><a href="{{ path('association') }}">L'association NAO</a></li>
-                <li><a href="{{ path('contact') }}">Contact</a></li>
-                <li><a href="{{ path('donation') }}"><button id = 'don' >Faites un don</button></a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">FR</a></li>
-                
-                <li><a href="{{ path('connexion') }}">
-                        {% if users.image is not defined %}
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{{ path('homepage') }}">Accueil </a></li>
+        <li><a href="{{ path('actualites') }}">Actualités</a></li>
+        <li><a href="{{ path('association') }}">L'association NAO</a></li>
+        <li><a href="{{ path('contact') }}">Contact</a></li>
+        <li><a href="{{ path('donation') }}"><button id = 'don' >Faites un don</button></a></li>
+      
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+             {% if users.image is not defined %}
+                <img src = "{{ asset('assets/img/iconeUtilisateur.png') }}" />
+
+                {% else %}
+                    {% if users.image is empty %}
                         <img src = "{{ asset('assets/img/iconeUtilisateur.png') }}" />
+                    {% else %}
+                        <img src = "{{ asset('assets/img/') }}{{ users.image }}" width="36" height="36" />
+                    {% endif %}
+                {% endif %}
 
-                        {% else %}
-                            {% if users.image is empty %}
-                                <img src = "{{ asset('assets/img/iconeUtilisateur.png') }}" />
-                            {% else %}
-                                <img src = "{{ asset('assets/img/') }}{{ users.image }}" width="26" height="26" />
-                            {% endif %}
-                        {% endif %}
-                    </a>
-                </li>
-                
-
-                
-                <form class="navbar-form navbar-left" action = "{{ path('searchWord') }}" method = "post">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name = 'word' placeholder="Rechercher sur le site...">
-                    </div>
-                    <button type="submit" class="btn btn-default">Rechercher ! </button>
-                </form>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+             <span class="caret"></span>
+         </a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path('connexion') }}">Profil</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{{ path('deconnexionPanel') }}">Deconnexion</a></li>
+          </ul>
+        </li>
+        <form class="navbar-form navbar-left" action = "{{ path('searchWord') }}" method = "post">
+            <div class="form-group">
+                <input type="text" class="form-control" name = 'word' placeholder="Rechercher sur le site...">
+            </div>
+            <button type="submit" class="btn btn-default">Rechercher ! </button>
+        </form>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
 </nav>

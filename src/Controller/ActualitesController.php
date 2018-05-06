@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Service\ArticlesService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class ActualitesController extends Controller
 {
@@ -12,11 +14,13 @@ class ActualitesController extends Controller
     /**
      * @Route("/actualites", name="actualites")
      */
-    public function actualitesAction()
+    public function actualitesAction(SessionInterface $session, ArticlesService $ArticlesService)
     {
+    	$user = $session->get('users');
 //        Récupération de la liste d'articles avant injection dans la vue
-        $articles = $this->container->get('appbundle.articlesservice')->getArticles();
+        $articles = $ArticlesService->getArticles();
+        //$articles = $this->container->get('appbundle.articlesservice')->getArticles();
 
-        return $this->render('actualites/actualites.html.twig', array('articles' => $articles));
+        return $this->render('actualites/actualites.html.twig', array('articles' => $articles, 'users' => $user));
     }
 }

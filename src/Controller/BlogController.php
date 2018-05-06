@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Comments;
 use App\Form\Comments1Type;
+use App\Service\ArticlesService;
+use App\Service\CommentsService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,12 +18,15 @@ class BlogController extends Controller
     /**
      * @Route("/blog/{id}", name="blog")
      */
-    public function blogAction($id, Request $request, SessionInterface $session)
+    public function blogAction($id, Request $request, SessionInterface $session, ArticlesService $ArticlesService,CommentsService $CommentsService)
     {
         // On récupère les articles et les commentaires associés à cet article via l'id de l'article
-        $article = $this->container->get('appbundle.articlesservice')->getArticleById($id);
-        $comments = $this->container->get('appbundle.commentsservice')->getCommentsById($id);
-        $user = $session->get('Users');
+        $article = $ArticlesService->getArticleById($id);
+        $comments = $CommentsService->getCommentsById($id);
+        
+        // On récupère la session utilisateur
+        $user = $session->get('users');
+        
         
         // On boucle sur le tableau récupéré pour récupérer l'index 0 et l'injecter directement dans la vue
         foreach($article[0] as $values)
@@ -37,9 +42,11 @@ class BlogController extends Controller
             $em = $this->getDoctrine()->getManager();
             $newcomment->setArticleID($id);
             $newcomment->setDatecomment(new \DateTime());
+            
             // On récupère le pseudo de l'auteur, soit en dur, soit en session
-            if(isset($_SESSION['username'])){
-                $newcomment->setAuthor($_SESSION['username']);
+            if(isset($user)){
+                
+                $newcomment->setAuthor($user->getUsername());
             }
 
             $em->persist($newcomment);
@@ -48,7 +55,7 @@ class BlogController extends Controller
             return $this->redirectToRoute('blog', array('id' => $id));
         }
 
-        return $this->render('blog/blog.html.twig', array('article' => $article, 'comments' => $comments, 'form' => $form->createView()));
+        return $this->render('blog/blog.html.twig', array('article' => $article, 'comments' => $comments, 'users' => $user ,'form' => $form->createView()));
     }
 
     /**
