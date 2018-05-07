@@ -1,15 +1,20 @@
 $('*').prop('required',false);
+
+
 tinymce.init({
     forced_root_block : "",
     force_p_newlines : false,
     force_br_newlines : true,
+    paste_as_text: true,
+    entity_encoding: "raw",
 
 
     selector: "textarea",
     height: 450,
     plugins: [
         "advlist autolink autosave link image lists charmap print preview hr anchor pagebreak",
-        "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking"
+        "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+        "paste"
     //     "table contextmenu directionality emoticons template textcolor paste fullpage textcolor colorpicker textpattern"
     ],
     //
