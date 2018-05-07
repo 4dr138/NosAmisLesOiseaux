@@ -41,12 +41,15 @@ class ObservationRepository extends ServiceEntityRepository
 
     public function getUnvalidateObs()
     {
-        $qb = $this->createQueryBuilder('o');
-        $qb
-            ->select('o')
-            ->where('o.bird = 0')
-            ->orderBy('o.id', 'DESC');
-        return $qb->getQuery()->execute();
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('
+        SELECT o.dateObservation, o.longitude, o.latitude, o.comment, o.id, b.taxrefCdName, o.image
+        FROM App\Entity\Observation o, App\Entity\Bird b
+        WHERE b.taxrefVern = o.birdName
+        AND o.bird = 0
+        ');
+
+        return $query->execute();
     }
 
     public function updateBirdID($birdID, $id)

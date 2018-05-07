@@ -40,7 +40,7 @@ class BirdRepository extends ServiceEntityRepository
             b.taxrefClass, b.taxrefCdName, b.taxrefVern, b.taxrefUrlImage, b.protected,b.id,
             bf.label as family, bs.label as status
             FROM App\Entity\Bird b
-            JOIN App\Entity\Observation o WITH o.bird = b.id
+            LEFT OUTER JOIN App\Entity\Observation o WITH o.bird = b.id
             LEFT OUTER JOIN App\Entity\BirdFamily bf WITH b.birdFamily = bf.id 
             LEFT OUTER JOIN App\Entity\BirdStatus bs WITH b.birdStatus = bs.id
             WHERE b.id = :birdId
@@ -79,6 +79,7 @@ class BirdRepository extends ServiceEntityRepository
             ->select('b.taxrefVern');
         return $qb->getQuery()->execute();
     }
+
 
 //    /**
 //     * @return Bird[] Returns an array of Bird objects
