@@ -36,7 +36,7 @@ class Observation
     private $longitude;
 
     /**
-     * @ORM\Column(name="comment", type="string", length=255)
+     * @ORM\Column(name="comment", type="text")
      */
     private $comment;
 
