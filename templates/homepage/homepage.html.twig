@@ -96,31 +96,9 @@
                     </div>
                     <br />
                     <div id = 'newsHome' class = 'col-lg-12'>
-                        <div class = 'col-lg-1'>
-
-                        </div>
-                        <div class = 'col-lg-3'>
-                            <h3 id = 'titleNews' >Newsletter</h3>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        </div>
-                        <div class = 'col-lg-5'>
-                            <div class = 'row'>
-                                <div class="input-group">
-                                    <input id = 'searchNews' type="text" class="form-control" placeholder="Entrez votre e-mail...">
-                                    <span class="input-group-btn"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class = 'col-lg-1'>
-
-                        </div>
-                        <div class = 'col-lg-1'>
-                            <div class = 'row'>
-                                <a href ='{{ path('inscription') }}' id ='btnInscriptionHomePage' class="btn btn-default">S'inscrire </a>
-                            </div>
-                        </div>
+                        {{ include("newsletter/newsletter.html.twig") }}
                     </div>
+           
                 </div>
 
             </div>

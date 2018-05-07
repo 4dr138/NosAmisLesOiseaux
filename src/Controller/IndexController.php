@@ -1,14 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: adrien.gautier
- * Date: 28/03/2018
- * Time: 16:38
- */
 
 namespace App\Controller;
 
-
+use App\Entity\Newsletter;
+use App\Form\NewsletterType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -20,12 +16,25 @@ class IndexController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(SessionInterface $session)
+    public function indexAction(SessionInterface $session, Request $request)
     {
-
         $user = $session->get('users');
         
-        return $this->render('homepage/homepage.html.twig', array('users' => $user));
+        $newsletter = new Newsletter();
+        $form = $this->createForm(NewsletterType::class, $newsletter);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($newsletter);
+            $em->flush();
+
+             $this->addFlash("success", "Merci pour votre inscription à la newsletter !");
+            return $this->redirectToRoute('homepage');
+        }
+        
+        return $this->render('homepage/homepage.html.twig', array('users' => $user, 'newsletter' => $newsletter,
+            'form' => $form->createView()));
     }
 
 

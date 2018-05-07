@@ -9,6 +9,15 @@ easy_admin:
    formats:
       date: 'd/m/Y'
    entities:
+       Newsletter:
+                  class: App\Entity\Newsletter
+                  list:
+                    actions:
+                      - { name: 'edit', icon: 'pencil', label: 'Editer', title: 'Editer' }
+                      - { name: 'delete', icon: '', label: 'Supprimer', title: 'Supprimer' }
+                      - { name: 'new', icon: '', label: 'Ajouter', title: 'Ajouter' }
+                    fields:
+                      - { property: 'mail', label: 'Abonné' }
        Users:
             class: App\Entity\Users
             list:
@@ -198,6 +207,9 @@ easy_admin:
               fields:
               - { property: 'id', label: 'birdStatus.id' }
               - { property: 'label', label: 'birdStatus.label'}
+        
+    
+         
 
 framework:
   translator: { fallbacks: [ "fr" ] }
