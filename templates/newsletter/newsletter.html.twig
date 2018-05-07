@@ -1,0 +1,35 @@
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block newsletter %}
+<div class = 'col-lg-1'>
+</div>
+<div class = 'col-lg-3'>
+    <h3 id = 'titleNews'>Inscription Newsletter</h3>
+    Abonnez-vous à notre newsletter pour recevoir toutes les nouveautés, tendances, offres et promotions pour votre expérience utilisateur.
+</div>
+	    		
+{{ form_start(form) }}    
+    <div class = 'col-lg-5'>
+        <div class = 'row'>
+    	    <div class="input-group-btn" >   
+                {{ form_errors(form.mail) }}
+                <span class="input-group-btn"></span>
+                {{ form_widget(form.mail) }}   
+    	    </div>
+    	</div>
+    </div>
+    <div class = 'col-lg-1'>
+    </div>
+    <div class = 'col-lg-1'>
+        <div class = 'row'>
+    	    <button id ='btnInscriptionHomePage' class="btn btn-default">
+    		    
+    			{{ button_label|default("S'inscrire") }}
+    		</button>
+      	</div>
+    </div>
+{{ form_end(form) }}
+
+<div class = 'col-lg-1'>
+</div>
+    
+{% endblock %}
