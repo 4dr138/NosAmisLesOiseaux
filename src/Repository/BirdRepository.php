@@ -39,8 +39,11 @@ class BirdRepository extends ServiceEntityRepository
             SELECT o.dateObservation, o.latitude, o.longitude, o.comment,
             b.taxrefClass, b.taxrefCdName, b.taxrefVern, b.taxrefUrlImage, b.protected,b.id,
             bf.label as family, bs.label as status
-            FROM App\Entity\Observation o , App\Entity\Bird b, App\Entity\BirdFamily bf, App\Entity\BirdStatus bs 
-            WHERE b.id = o.bird AND b.birdFamily = bf.id AND b.birdStatus = bs.id AND b.id = :birdId
+            FROM App\Entity\Bird b
+            JOIN App\Entity\Observation o WITH o.bird = b.id
+            LEFT OUTER JOIN App\Entity\BirdFamily bf WITH b.birdFamily = bf.id 
+            LEFT OUTER JOIN App\Entity\BirdStatus bs WITH b.birdStatus = bs.id
+            WHERE b.id = :birdId
             ')
             ->setParameter('birdId', $id);
         return $query->execute();
@@ -50,12 +53,9 @@ class BirdRepository extends ServiceEntityRepository
     {
         $em = $this->getEntityManager();
         $query = $em->createQuery('
-        SELECT o.dateObservation, o.latitude, o.longitude, o.comment,
-        b.taxrefClass,  b.taxrefVern, b.taxrefCdName,
-        bf.label as family, bs.label as status, b.id
-        FROM App\Entity\Observation o, App\Entity\Bird b, App\Entity\BirdFamily bf, App\Entity\BirdStatus bs 
-        WHERE b.id = o.bird AND b.birdFamily = bf.id AND b.birdStatus = bs.id 
-        AND o.comment like :word OR b.taxrefClass like :word OR b.taxrefVern like :word OR bf.label like :word OR bs.label like :word
+        SELECT b.taxrefClass,  b.taxrefVern, b.taxrefCdName,b.taxrefUrlImage, b.id
+        FROM App\Entity\Bird b
+        WHERE b.taxrefVern like :word 
         ORDER BY b.id desc
         ')
             ->setParameter('word', '%' .$word. '%');
@@ -69,6 +69,14 @@ class BirdRepository extends ServiceEntityRepository
         $qb
             ->select('b')
             ->where('b.taxrefCdName = ' .$taxrefCdName);
+        return $qb->getQuery()->execute();
+    }
+
+    public function getBirds()
+    {
+        $qb = $this->createQueryBuilder('b');
+        $qb
+            ->select('b.taxrefVern');
         return $qb->getQuery()->execute();
     }
 

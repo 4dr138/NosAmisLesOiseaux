@@ -19,7 +19,7 @@ class AppObservationType extends AbstractType
     {
         $builder
 //            ->add('bird', TextType::class, array('label' => "Nom de l'oiseau croisé"))
-            ->add('dateObservation', DateType::class, array('widget' => 'choice', 'label' => "Date d'observation", 'format' => 'ddMMyyyy', 'years' => range(date('Y')-100, date('Y'))))
+            ->add('dateObservation', DateType::class, array('widget' => 'choice', 'label' => "Date d'observation : ", 'format' => 'ddMMyyyy', 'years' => range(date('Y')-100, date('Y'))))
             ->add('latitude', NumberType::class)
             ->add('longitude', NumberType::class)
             ->add('comment', TextareaType::class, array('label' => "Commentaire, description de l'espèce observée, particularités...", 'attr' => array('rows' => 10)))

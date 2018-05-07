@@ -17,7 +17,7 @@ class Comments
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $content;
 
@@ -37,6 +37,18 @@ class Comments
      * @ORM\Column(type="datetime")
      */
     private $datecomment;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $signalement;
+
+
+
+    public function __construct()
+    {
+        $this->signalement = false;
+    }
 
     public function getId()
     {
@@ -90,4 +102,17 @@ class Comments
 
         return $this;
     }
+
+    public function getSignalement(): ?bool
+    {
+        return $this->signalement;
+    }
+
+    public function setSignalement(bool $signalement): self
+    {
+        $this->signalement = $signalement;
+
+        return $this;
+    }
+
 }

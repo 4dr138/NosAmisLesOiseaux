@@ -23,4 +23,11 @@ class CommentsService extends Controller
 
         return $comments;
     }
+
+    public function signalComment($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->getRepository('App:Comments')->signalComment($id);
+
+    }
 }

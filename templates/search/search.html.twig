@@ -20,14 +20,9 @@
                 <h3 id = 'titleSearch'>Chez nos oiseaux...</h3>
             {% endif %}
             {% for bird in birds %}
-                <h4>Observation du {{ bird.dateObservation|date('d-m-Y') }}</h4>
                 <p>Nom de l'espèce répertoriée : <strong>{{ bird.taxrefVern }}</strong></p>
                 <p>Référence TAXREF : {{ bird.taxrefCdName }}</p>
                 <p>Classe : {{ bird.taxrefClass }}</p>
-                <p>Localisation : <strong>{{ bird.latitude }}</strong> degrés de latitude et <strong>{{ bird.longitude }}</strong> degrés de longitude</p>
-                <p>Famille : {{ bird.family }}</p>
-                <p>Statut : {{ bird.status }}</p>
-                <p>Commentaire : {{ bird.comment }}</p>
                 <a href = "{{ path('birdInfos',{'id': bird.id }) }}"><button id = 'btnBirdInfos' class = 'btn btn-default'>Voir la fiche détaillée de l'espèce</button></a>
                 <hr />
             {% endfor %}
