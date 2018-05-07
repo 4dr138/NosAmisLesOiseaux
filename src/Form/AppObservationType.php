@@ -6,6 +6,7 @@ use App\Entity\Observation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -18,10 +19,11 @@ class AppObservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//            ->add('bird', TextType::class, array('label' => "Nom de l'oiseau croisé"))
+//            ->add('bird', HiddenType::class, array('data' => 'abcde'))
+            ->add('birdName', HiddenType::class, array('data' => 'abcde'))
             ->add('dateObservation', DateType::class, array('widget' => 'choice', 'label' => "Date d'observation : ", 'format' => 'ddMMyyyy', 'years' => range(date('Y')-100, date('Y'))))
-            ->add('latitude', NumberType::class)
-            ->add('longitude', NumberType::class)
+            ->add('latitude', TextType::class)
+            ->add('longitude', TextType::class)
             ->add('comment', TextareaType::class, array('label' => "Commentaire, description de l'espèce observée, particularités...", 'attr' => array('rows' => 10)))
 //            ->add('user')
             ->add('imageFile', FileType::class, array('data_class' => null,'required' => false))

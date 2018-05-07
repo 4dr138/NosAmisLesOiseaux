@@ -52,6 +52,4 @@ class BirdService extends Controller
         return $bird;
     }
 
-
-
 }

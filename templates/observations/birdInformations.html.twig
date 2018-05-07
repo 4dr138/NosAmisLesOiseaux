@@ -8,7 +8,9 @@
             <p>Date de référencement : {{ birdSolo.dateObservation|date('d-m-Y') }}</p>
             <p>Référence TAXREF : {{ birdSolo.taxrefCdName }}</p>
             <p>Classe : {{ birdSolo.taxrefClass }}</p>
-            <p>Localisation : <strong>{{ birdSolo.latitude }}°</strong> et <strong>{{ birdSolo.longitude }}°</strong></p>
+            {% if birdSolo.latitude %}
+                <p>Localisation : <strong>{{ birdSolo.latitude }}°</strong> et <strong>{{ birdSolo.longitude }}°</strong></p>
+            {% endif %}
             <p>Espèce protégée ? {% if birdSolo.protected == false %} Non {% else %} Oui {% endif %}</p>
             <p>Famille : {{ birdSolo.family }}</p>
             {% if birdSolo.status %}

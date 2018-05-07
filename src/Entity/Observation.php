@@ -26,12 +26,12 @@ class Observation
     private $dateObservation;
 
     /**
-     * @ORM\Column(name="latitude", type="float")
+     * @ORM\Column(name="latitude", type="string", length=20)
      */
     private $latitude;
 
     /**
-     * @ORM\Column(name="longitude", type="float")
+     * @ORM\Column(name="longitude", type="string", length=20)
      */
     private $longitude;
 
@@ -69,6 +69,11 @@ class Observation
      * @var \DateTime
      */
     private $updatedAt;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $birdName;
 
 
     public function __construct()
@@ -190,6 +195,18 @@ class Observation
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getBirdName(): ?string
+    {
+        return $this->birdName;
+    }
+
+    public function setBirdName(string $birdName): self
+    {
+        $this->birdName = $birdName;
 
         return $this;
     }

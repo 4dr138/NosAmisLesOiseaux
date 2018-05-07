@@ -6,8 +6,25 @@
             <div class ='col-lg-12'>
                 <h2 id = 'titleSoumission' >Soumettre mon observation : </h2>
                 <div class = 'col-lg-6'>
+                    <hr />
+                    <div class = 'row'>
+                    <div id = 'searchLoc' class = 'ui-widget'>
+                            <input id = 'searchBirdLoc' type="text" class="form-control" placeholder="Espèce reconnue..." /><br />
+                            <input id="address" type="text" class="form-control" placeholder="Localisation de l'espèce (Commune...)"><br />
+                    </div>
+                            <input id="submitLoc" type="button" value="Localiser ! ">
+                    </div>
+                    <hr />
+                    <div id = 'mapObs'>
+                        <div id = 'map'></div>
+                    </div>
+                    <br />
+                </div>
+                <div class = 'col-lg-6'>
+                    <hr/>
                     {{ form_start(form) }}
                     {{ form_end(form) }}
+
                     {% for message in app.flashes('success') %}
                         <div class="flash-notice">
                             <strong>{{ message }}</strong>
@@ -19,12 +36,16 @@
                         </div>
                     {% endfor %}
                 </div>
-                <div class = 'col-lg-6'>
-
-
-
-                </div>
             </div>
         </div>
     </div>
+    {% block javascripts %}
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBluRZPBnIrqrFRpb0vw6_BabF-mOKc6ns">
+        </script>
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+        <script src = "{{ asset('assets/js/jquery.easy-autocomplete.min.js') }}"></script>
+        <script src="{{ asset('assets/js/add_obs.js') }}"></script>
+    {% endblock %}
 {% endblock %}

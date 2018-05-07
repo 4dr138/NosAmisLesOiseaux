@@ -35,6 +35,7 @@ class ObservationController extends Controller
      */
     public function birdInformations($id)
     {
+
         $bird = $this->container->get('appbundle.birds')->getBirdById($id);
 
         return $this->render('observations/birdInformations.html.twig', array('bird' => $bird));
@@ -93,6 +94,7 @@ class ObservationController extends Controller
     {
         // On récupère les observations avec la valeur Bird à 0
         $obs = $this->container->get('appbundle.observations')->getUnvalidateObs();
+
         return $this->render('observations/validate_observations.html.twig', array('obs' => $obs));
     }
 
