@@ -71,7 +71,7 @@ class UsersController extends Controller
             if ($form->isSubmitted() && $form->isValid()) {
 
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($user);
+                $em->merge($user);
                 $em->flush();
 
                 $session->set('users', $user);
