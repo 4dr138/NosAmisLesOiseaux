@@ -32,18 +32,33 @@
 //         'Error: Your browser doesn\'t support geolocation.');
 // }
 
-var url = Routing.generate('getBirds');
-var options =
-    {
-        url: url,
-        getValue: 'taxrefVern',
-        list: {
-            match: {
-                enabled: true
-            }
-        }
-    };
-$("#searchBird").easyAutocomplete(options);
+// var url = Routing.generate('getBirds');
+// var options =
+//     {
+//         url: url,
+//         getValue: function(element) {
+//             return element.taxrefVern;
+//         },
+//         list: {
+//             match: {
+//                 enabled: true
+//             },
+//             onClickEvent: function() {
+//                 var value = $("#searchBird").getSelectedItemData().id;
+//                 $("#birdId").val(value);
+//             }
+//         },
+//         requestDelay: 400
+//     };
+// $("#searchBird").easyAutocomplete(options);
+//
+// $("#searchObs").on("click", function(event) {
+//     event.preventDefault();
+//     var value = $("#birdId").val();
+//     console.log(value);
+//
+// });
+
 // $.ajax(
 //     {
 //         url: url,
