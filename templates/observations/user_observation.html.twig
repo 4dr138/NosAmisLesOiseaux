@@ -5,6 +5,7 @@
 <div class = 'container'>
     <h1 id = 'titleEspeces'>Mes Espèces répertoriées</h1>
     <div class = 'col-lg-12'>
+        {% if birds %}
         {% for bird in birds %}
             {% for birdSolo in bird %}
         <h4>Observation du {{ birdSolo.dateObservation|date('d-m-Y') }}</h4>
@@ -23,6 +24,14 @@
                 <hr />
             {% endfor %}
         {% endfor %}
+        {% else %}
+            <div id = 'addNoObs'>
+                <h3 id  = 'titleNoObs' >Pour le moment, vous n'avez apporté aucune observation ! N'hésitez pas à ajouter la première.. :)  </h3>
+                <br />
+                <a href = "{{ path('addObservation') }}" id ='btnAddNoObs' class="btn btn-default">Ajouter une observation</a>
+            </div>
+        {% endif %}
+        <hr />
         <a id = 'return_Board_Bird' href="{{ path('connexion') }}"> Revenir sur le tableau de bord</a>
     </div>
 </div>
