@@ -22,8 +22,8 @@ function initMap(observations = null) {
                 for(var i = 0; i < data.length; i++) {
                     locations[i] = [];
                     locations[i] = {
-                        'lat': data[i].latitude,
-                        'lng': data[i].longitude
+                        'lat': parseFloat(data[i].latitude),
+                        'lng': parseFloat(data[i].longitude)
                     }
                 }
 
@@ -46,11 +46,10 @@ function initMap(observations = null) {
         for(var i = 0; i < observations.length; i++) {
             locations[i] = [];
             locations[i] = {
-                'lat': observations[i].latitude,
-                'lng': observations[i].longitude
+                'lat': parseFloat(observations[i].latitude),
+                'lng': parseFloat(observations[i].longitude)
             }
         }
-        // locations = observations;
 
         console.log('locations quand recherche');
         console.log(locations);
