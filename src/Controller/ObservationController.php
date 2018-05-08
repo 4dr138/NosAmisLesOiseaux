@@ -7,6 +7,7 @@ use App\Form\AppObservationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class ObservationController extends Controller
@@ -129,5 +130,20 @@ class ObservationController extends Controller
 
         return $this->redirectToRoute('validateObs');
 
+    }
+
+    /**
+     * @Route("/getObservationsForMap/{birdID}", name="getObservationsForMap", options={"expose"=true})
+     *
+     * @param null $birdID
+     *
+     * @return Response
+     */
+    public function getObservationsForMap($birdID = null)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $obs = $em->getRepository('App:Observation')->getObservationsForMap($birdID);
+
+        return new Response(json_encode($obs));
     }
 }

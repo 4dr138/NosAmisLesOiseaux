@@ -20,7 +20,7 @@ class LoadObservations implements ORMFixtureInterface, DependentFixtureInterface
                 'latitude'  => 48.862725,
                 'longitude' => 2.287592,
                 'comment'   => 'Observation test n°1',
-                'birdId'    => 11,
+                'birdId'    => 462,
                 'userId'    => $manager
                     ->getRepository('App:Users')
                     ->findOneBy(['username' => 'Alexandre'])
@@ -31,7 +31,7 @@ class LoadObservations implements ORMFixtureInterface, DependentFixtureInterface
                 'latitude'  => 47.386330,
                 'longitude' => 3.969477 ,
                 'comment'   => 'Observation test n°2',
-                'birdId'    => 198,
+                'birdId'    => 462,
                 'userId'    => $manager
                     ->getRepository('App:Users')
                     ->findOneBy(['username' => 'Marine'])
@@ -64,7 +64,7 @@ class LoadObservations implements ORMFixtureInterface, DependentFixtureInterface
                 'latitude'  => 47.154873,
                 'longitude' => 4.128012,
                 'comment'   => 'Observation test n°5',
-                'birdId'    => 252,
+                'birdId'    => 462,
                 'userId'    => $manager
                     ->getRepository('App:Users')
                     ->findOneBy(['username' => 'Marine'])

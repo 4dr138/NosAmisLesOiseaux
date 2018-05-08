@@ -19,7 +19,17 @@ class BirdController extends Controller
         $birds = $em->getRepository('App:Bird')->getBirds();
 
         return new Response(json_encode($birds));
+    }
 
+    /**
+     * @Route("/getBirdsByName", name="getBirdsByName", options={"expose"=true})
+     */
+    public function getBirdsByName()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $birds = $em->getRepository('App:Bird')->getBirdsByName();
+
+        return new Response(json_encode($birds));
     }
 
 }

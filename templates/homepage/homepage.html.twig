@@ -33,13 +33,15 @@
                     <div class = 'row'>
                         <div class="ui-widget">
                             <input id = 'searchBird' type="text" class="form-control" placeholder="Espèces, lieux, etc...">
-                            <span class="input-group-btn">
-                        </span>
+                            <span class="input-group-btn"></span>
                         </div>
+                    </div>
+                    <div>
+                        <input id="birdId" type="text" class="hidden" />
                     </div>
                     <br />
                     <div class = 'row'>
-                        <a href ='#' id ='searchObs' class="btn btn-default">Rechercher</a>
+                        <a href ='' id ='searchObs' class="btn btn-default">Rechercher</a>
                     </div>
                 </div>
 	        </div>
@@ -104,13 +106,17 @@
             </div>
         </div>
     {% block javascripts %}
-    {#<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>#}
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBluRZPBnIrqrFRpb0vw6_BabF-mOKc6ns&callback=initMap">
-    </script>
-    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-    <script src = "{{ asset('assets/js/jquery.easy-autocomplete.min.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+        <script src = "{{ asset('assets/js/jquery.easy-autocomplete.min.js') }}"></script>
+        <script src="{{ asset('assets/js/searchHomepage.js') }}"></script>
+
+        <script src="{{ asset('assets/js/maps/mapsHomepage.js') }}"></script>
+
+        <script src="{{ asset('assets/js/maps/markerclusterer.js') }}"></script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBluRZPBnIrqrFRpb0vw6_BabF-mOKc6ns&callback=initMap">
+        </script>
     {% endblock %}
 {% endblock %}
