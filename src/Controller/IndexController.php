@@ -21,13 +21,10 @@ class IndexController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(SessionInterface $session, Request $request)
+    public function indexAction(SessionInterface $session)
     {
 
         $user = $session->get('users');
-
-        $birdId = $request->get('birdId');
-        dump($birdId);
 
         return $this->render('homepage/homepage.html.twig', array('users' => $user));
     }
