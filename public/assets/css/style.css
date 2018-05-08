@@ -174,7 +174,7 @@ h2
     height:780px;
     /*margin-left: -35%;*/
 }
-#validLogin, #btnAddObs, #btnBirdInfos, #app_observation_Soumettre, #validateButton, #btnDeleteObs, #submitLoc
+#validLogin, #btnAddObs, #btnBirdInfos, #app_observation_Soumettre, #validateButton, #btnDeleteObs, #submitLoc, #btnAddNoObs
 {
     color: white;
     background-color: #4ce53d;
@@ -325,9 +325,17 @@ h2
     {
         margin-right:20%;
     }
+    #btnAddNoObs
+    {
+        margin-bottom: 41%;
+    }
 }
 @media screen and (max-width: 1023px)
 {
+    #btnAddNoObs
+    {
+        margin-bottom: 43%;
+    }
     #app_observation_Soumettre
     {
         margin-left: 42%;
@@ -574,11 +582,14 @@ h2
     margin-left: 2%;
     /*width:30%;*/
 }
-#top10, #titleActus,#articleTitle, #titleEspeces, #titleBird, #titleValidateObs
-
+#top10, #titleActus,#articleTitle, #titleEspeces, #titleBird, #titleValidateObs, #titleNoObs, #addNoObs
 {
     text-align:center;
     color: #4cab3d;
+}
+.dropdown-menu>li>a
+{
+    background-color: #FFFFFF;
 }
 .path
 {
@@ -655,6 +666,10 @@ h2
 }
 #titleSearch, #phraseValidation {
     text-align: center;
+    color: #4cab3d;
+}
+#titleSoumission
+{
     color: #4cab3d;
 }
 #titleEditUsers
@@ -791,6 +806,13 @@ h2
     color:black;
     font-size: 1.2em;
 }
+#btnAddNoObs
+{
+    margin-bottom: 35%;
+}
+
+
+
 
 
 

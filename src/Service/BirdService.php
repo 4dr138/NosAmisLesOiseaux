@@ -19,6 +19,7 @@ class BirdService extends Controller
     public function getBirdsByObs($obs)
     {
         $em = $this->getDoctrine()->getManager();
+        $birds = [];
         for($i = 0; $i < count($obs); $i++) {
             $birdId = $obs[$i]->getBird();
             $observations = $em->getRepository('App:Bird')->getBirdById($birdId);

@@ -4,7 +4,7 @@ var espece;
 
 function initialize() {
     var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
+        center: {lat: 48.866667, lng: 2.333333},
         zoom: 6,
     });
     var infoWindow = new google.maps.InfoWindow({map: map});
@@ -57,8 +57,12 @@ function initialize() {
         // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
     }
-
 }
+
+$("#geolocalisation").click(function()
+{
+    initialize();
+});
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
