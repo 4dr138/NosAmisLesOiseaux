@@ -12,6 +12,8 @@
                     <div class = 'col-lg-7'>
                         {% if observation.image %}
                             <img id = 'birdValidatePicture' src = '{{ asset('assets/img/') }}{{ observation.image }}' />
+                            {% else %}
+                            <p id = 'titleValidateObs'>Pas d'image associée</p>
                         {% endif %}
                     </div>
                     <div class = 'col-lg-5'>
@@ -19,7 +21,7 @@
                         <p>Position de l'oiseau observé : Longitude : <strong>{{ observation.longitude }}°</strong> et latitude : <strong>{{ observation.latitude }}°</strong></p>
                         <p>Commentaire de l'utilisateur : {{ observation.comment }}</p>
                         <form action = '{{ url('validateObsBird', {'id': observation.id })}}' method = 'post'>
-                        <p>Référence TAXREF : </p><input  name = 'birdID' step = "any" type = 'number' required /><br /><br />
+                        <p>Référence TAXREF : </p><input  name = 'birdID' value = '{{ observation.taxrefCdName }}' step = "any" type = 'number' required /><br /><br />
                             <input id = 'validateButton' value = "Valider l'observation" type = 'submit' />
                         </form><br />
                         <a id = 'btnDeleteObs' href = "{{ path('deleteObs', {'id': observation.id}) }}" class="btn btn-default"  >Supprimer l'observation</a>
@@ -33,6 +35,7 @@
             </div>
 
         {% endfor %}
+        <hr />
     </div>
 
 {% endblock %}

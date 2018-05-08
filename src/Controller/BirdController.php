@@ -31,4 +31,5 @@ class BirdController extends Controller
 
         return new Response(json_encode($birds));
     }
+
 }
