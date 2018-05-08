@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Bird;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -75,8 +76,14 @@ class BirdRepository extends ServiceEntityRepository
     public function getBirds()
     {
         $qb = $this->createQueryBuilder('b');
+        return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
+    }
+
+    public function getBirdsByName()
+    {
+        $qb = $this->createQueryBuilder('b');
         $qb
-            ->select('b.taxrefVern');
+            ->select('b.taxrefVern', 'b.id');
         return $qb->getQuery()->execute();
     }
 
