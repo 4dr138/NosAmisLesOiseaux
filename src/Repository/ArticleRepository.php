@@ -37,6 +37,16 @@ class ArticleRepository extends ServiceEntityRepository
         return $qb->getQuery()->execute();
     }
 
+    public function getLastArticleId()
+    {
+
+        $qb = $this->createQueryBuilder('a');
+        
+        $qb
+            ->select('MAX(a.id)');
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
     public function getArticleId($id)
     {
         $qb = $this->createQueryBuilder('a');
