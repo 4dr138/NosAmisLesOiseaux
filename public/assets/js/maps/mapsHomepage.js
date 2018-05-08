@@ -21,16 +21,11 @@ function initMap(observations = null) {
             dataType: "json",
             success: function(data){
                 for(var i = 0; i < data.length; i++) {
-                    lat = data[i].latitude;
-                    latitude = parseFloat(lat);
-
-                    long = data[i].longitude;
-                    longitude = parseFloat(long);
 
                     locations[i] = [];
                     locations[i] = {
-                        'lat': latitude,
-                        'lng': longitude
+                        'lat': parseFloat(data[i].latitude),
+                        'lng': parseFloat(data[i].longitude)
                     }
                 }
 
@@ -50,6 +45,7 @@ function initMap(observations = null) {
             }
         });
     } else {
+
         if(observations.length == 0)
         {
             $("#alert_map").remove();
@@ -57,20 +53,13 @@ function initMap(observations = null) {
         }
         else {
             console.log(observations.length);
-
-            for (var i = 0; i < observations.length; i++) {
-                lat = observations[i].latitude;
-                latitude = parseFloat(lat);
-
-                long = observations[i].longitude;
-                longitude = parseFloat(long);
-
-                locations[i] = [];
-                locations[i] = {
-                    'lat': latitude,
-                    'lng': longitude
-                }
+        for(var i = 0; i < observations.length; i++) {
+            locations[i] = [];
+            locations[i] = {
+                'lat': parseFloat(observations[i].latitude),
+                'lng': parseFloat(observations[i].longitude)
             }
+        }
             // locations = observations;
 
             console.log('locations quand recherche');

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Newsletter;
 use App\Form\NewsletterType;
+use App\Service\ArticlesService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,11 +17,16 @@ class IndexController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(SessionInterface $session, Request $request)
+    public function indexAction(SessionInterface $session, Request $request, ArticlesService $ArticlesService)
     {
         $user = $session->get('users');
 
         $newsletter = new Newsletter();
+        $LastArticleId = $ArticlesService->getLastArticleId();
+        //$articleId = $LastArticleId[0];
+        dump($LastArticleId);
+
+
         $form = $this->createForm(NewsletterType::class, $newsletter);
         $form->handleRequest($request);
 
@@ -33,7 +39,7 @@ class IndexController extends Controller
             return $this->redirectToRoute('homepage');
         }
         
-        return $this->render('homepage/homepage.html.twig', array('users' => $user, 'newsletter' => $newsletter,
+        return $this->render('homepage/homepage.html.twig', array('users' => $user, 'newsletter' => $newsletter, 'LastArticleId' => $LastArticleId,
             'form' => $form->createView()));
 
     }
