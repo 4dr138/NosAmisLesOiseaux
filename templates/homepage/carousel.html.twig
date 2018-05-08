@@ -27,7 +27,7 @@
                             <div class="item">
                                 <img src="{{ asset('assets/img/flamand2.png') }}" alt="">
                                 <div class="carousel-caption">
-                                    <a name="nom-de-votre-ancre" class="btn btn-default" id ='btnAddObs'>Lire l'article</a>
+                                    <a name="nom-de-votre-ancre" href = "{{ path('blog', {'id': LastArticleId}) }}" class="btn btn-default" id ='btnAddObs'>Lire l'article</a>
                                     <h1>Dernière actualité</h1>
                                     <p class="descriptifCarousel">Quelles sont les dernières nouvelles de l'assocation ?</p>
                                 </div>
@@ -35,7 +35,7 @@
                             <div class="item">
                                 <img src="{{ asset('assets/img/reunion.png') }}" alt="" >
                                 <div class="carousel-caption">
-                                    <a name="nom-de-votre-ancre" class="btn btn-default" id ='btnAddObs' href = '{{ path('contact') }}' >Contactez nous</a>
+                                    <a name="nom-de-votre-ancre" class="btn btn-default" id ='btnAddObs' href = "{{ path('contact') }}" >Contactez nous</a>
                                     <h1>Contact</h1>
                                     <p class="descriptifCarousel">Une question ? Une remarque ? Posez-la nous sommes là pour y répondre.</p>
                                 </div>
@@ -43,7 +43,7 @@
                             <div class="item">
                                 <img src="{{ asset('assets/img/donationfly.png') }}" alt="">
                                 <div class="carousel-caption">
-                                    <a name="nom-de-votre-ancre" class="btn btn-default" id ='btnAddObs' href = '{{ path('donation') }}'>Faire un don</a>
+                                    <a name="nom-de-votre-ancre" class="btn btn-default" id ='btnAddObs' href = "{{ path('donation') }}">Faire un don</a>
                                     <h1>Donation</h1>
                                     <p class="descriptifCarousel">Vous voulez contribuer au developpement de l'association, aidez-nous ?</p>
                                 </div>

@@ -42,6 +42,14 @@ class ArticlesService extends Controller
         return $articleID;
     }
 
+    public function getLastArticleId()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $lastArticleId = $em->getRepository('App:Article')->getLastArticleId();
+
+        return $lastArticleId;
+    }
+
     public function deleteArticleId($id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -58,8 +66,6 @@ class ArticlesService extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $articles = $em->getRepository('App:Article')->getArticlesByWord($word);
-
-
         return $articles;
     }
 }
