@@ -80,13 +80,14 @@ class ObservationRepository extends ServiceEntityRepository
     public function getObservationsForMap($birdID = null)
     {
         $qb = $this->createQueryBuilder('o');
-        $qb->select('o.bird', 'o.latitude', 'o.longitude');
+        $qb
+            ->select('o.bird', 'o.latitude', 'o.longitude')
+            ->leftJoin('App:Bird', 'b', 'WITH', 'o.bird = b.id')
+            ->addSelect('b.protected', 'b.taxrefVern');
 
         $bird = $this->getEntityManager()->getRepository('App:Bird')->findOneBy(['id' => $birdID,]);
         if (null !== $bird) {
             $qb
-                ->leftJoin('App:Bird', 'b', 'WITH', 'o.bird = b.id')
-                ->addSelect('b.protected')
                 ->where('o.bird = :birdID' )
                 ->setParameter('birdID', $birdID);
         }
