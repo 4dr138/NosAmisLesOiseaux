@@ -22,7 +22,7 @@ class Users1Type extends AbstractType
             ->add('mail', TextType::class, array('label' => 'E-mail : ', 'required' => true))
             ->add('password', TextType::class, array('label' => 'Mot de passe : ', 'required' => true))
             ->add('newsletter', CheckboxType::class, array('label' => 'Voulez-vous vous abonner à notre Newsletter ? ', 'required' => false))
-            ->add('imageFile', FileType::class, array('data_class' => null,'required' => false))
+            ->add('imageFile', FileType::class, array('label' => 'Ajouter/Modifier photo de profil', 'data_class' => null,'required' => false))
             ->add('Mettre a jour mes informations personnelles', SubmitType::class)
             //->add('isActive')
             //->add('roles')

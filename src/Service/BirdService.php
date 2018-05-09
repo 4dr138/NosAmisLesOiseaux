@@ -22,7 +22,9 @@ class BirdService extends Controller
         $birds = [];
         for($i = 0; $i < count($obs); $i++) {
             $birdId = $obs[$i]->getBird();
-            $observations = $em->getRepository('App:Bird')->getBirdById($birdId);
+
+            $observations = $em->getRepository('App:Bird')->getBirdByIdObs($birdId);
+
             $birds[$i] = $observations;
         }
 

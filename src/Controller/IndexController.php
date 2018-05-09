@@ -23,8 +23,6 @@ class IndexController extends Controller
 
         $newsletter = new Newsletter();
         $LastArticleId = $ArticlesService->getLastArticleId();
-        //$articleId = $LastArticleId[0];
-        dump($LastArticleId);
 
 
         $form = $this->createForm(NewsletterType::class, $newsletter);

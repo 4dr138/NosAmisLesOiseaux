@@ -68,9 +68,16 @@ class BirdRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('b');
         $qb
-            ->select('b')
+            ->select('b.id')
             ->where('b.taxrefCdName = ' .$taxrefCdName);
-        return $qb->getQuery()->execute();
+        $birdExistant = $qb->getQuery()->execute();
+        foreach($birdExistant[0] as $value)
+        {
+            $bird = $value;
+        }
+
+        return $bird;
+
     }
 
     public function getBirds()
@@ -87,6 +94,21 @@ class BirdRepository extends ServiceEntityRepository
         return $qb->getQuery()->execute();
     }
 
+    public function getBirdByIdObs($birdId)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            '            SELECT o.dateObservation, o.latitude, o.longitude, o.comment,
+            b.taxrefClass, b.taxrefCdName, b.taxrefVern, b.taxrefUrlImage, b.protected,b.id,
+            bf.label as family, bs.label as status
+            FROM App\Entity\Bird b
+            LEFT OUTER JOIN App\Entity\Observation o WITH o.bird = b.id
+            LEFT OUTER JOIN App\Entity\BirdFamily bf WITH b.birdFamily = bf.id 
+            LEFT OUTER JOIN App\Entity\BirdStatus bs WITH b.birdStatus = bs.id
+            WHERE b.id = :birdId ')
+            ->setParameter('birdId', $birdId);
+        return $query->execute();
+    }
 
 //    /**
 //     * @return Bird[] Returns an array of Bird objects

@@ -19,7 +19,7 @@
                     <p>Statut : {{ birdSolo.status }}</p>
                 {% endif %}
                 <p>Commentaire : {{ birdSolo.comment }}</p>
-                <p>Lien vers plus d'informations sur la base nationale INPI : <a href = "{{ birdSolo.taxrefUrlImage }}">Ici ! </a></p><hr />
+                <p>Lien vers plus d'informations sur la base nationale INPI : <a href = "{{ birdSolo.taxrefUrlImage }}">Ici ! </a></p>
                 <a href = "{{ path('birdInfos',{'id': birdSolo.id }) }}"><button id = 'btnBirdInfos' class = 'btn btn-default'>Voir la fiche détaillée de l'espèce</button></a>
                 <hr />
             {% endfor %}
@@ -31,7 +31,7 @@
                 <a href = "{{ path('addObservation') }}" id ='btnAddNoObs' class="btn btn-default">Ajouter une observation</a>
             </div>
         {% endif %}
-        <hr />
+
         <a id = 'return_Board_Bird' href="{{ path('connexion') }}"> Revenir sur le tableau de bord</a>
     </div>
 </div>

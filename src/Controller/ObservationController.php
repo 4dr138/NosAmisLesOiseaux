@@ -20,12 +20,11 @@ class ObservationController extends Controller
     {
         $user = $session->get('users');
         $userId = $user->getId();
-
 //        On récupère les observations selon l'id de l''user
         $observations = $this->container->get('appbundle.observations')->getObservationsById($userId);
-
 //        On récupère ensuite un array des oiseaux associés à une ou plusieurs obs pour un même user
         $birds = $this->container->get('appbundle.birds')->getBirdsByObs($observations);
+
 
         return $this->render('observations/user_observation.html.twig', array('birds' => $birds, 'users' =>$user));
 
@@ -107,7 +106,6 @@ class ObservationController extends Controller
         $birdID = $_POST['birdID'];
         // On vérifie que la valeur saisie corresponde bien à un oiseau existant en BDD
         $birdExistant = $this->container->get('appbundle.birds')->getExistingBird($birdID);
-
         if($birdExistant == null) {
             $this->addFlash("error", "Attention, il n'y a pas de TaxRefCdName associé au numéro rentré...");
             return $this->redirectToRoute('validateObs');
@@ -115,7 +113,7 @@ class ObservationController extends Controller
         else{
 
             // On update via DQL en fonction de l'id
-            $this->container->get('appbundle.observations')->updateBirdID($birdID,$id);
+            $this->container->get('appbundle.observations')->updateBirdID($birdExistant,$id);
             return $this->redirectToRoute('validateObs');
         }
     }

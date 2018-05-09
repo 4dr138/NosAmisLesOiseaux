@@ -2,17 +2,26 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}{% endblock %}</title>
         {% block stylesheets %}
             <link rel="icon" href = '{{ asset('assets/img/logofav.png') }}' />
 
-            <link type = "text/css" rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
-            <link rel = 'stylesheet' href = "{{ asset('bundles/easyadmin/stylesheet/bootstrap.min.css') }}" />
+
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <link rel = 'stylesheet' href = "{{ asset('bundles/easyadmin/stylesheet/bootstrap.min.css') }}" />
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-            <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+            <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
             <style type = 'text/css'>body {background-color: white;}</style>
+            <link type = "text/css" rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
+            <link type = "text/css" rel="stylesheet" href="{{ asset('assets/css/style1024.css') }}" />
+            <link type = "text/css" rel="stylesheet" href="{{ asset('assets/css/stylemax1200.css') }}" />
+            <link type = "text/css" rel="stylesheet" href="{{ asset('assets/css/stylemax990.css') }}" />
+            <link type = "text/css" rel="stylesheet" href="{{ asset('assets/css/style768.css') }}" />
+            <link type = "text/css" rel="stylesheet" href="{{ asset('assets/css/stylemax565.css') }}" />
+            <link type = "text/css" rel="stylesheet" href="{{ asset('assets/css/stylemin1201.css') }}" />
+
         {% endblock %}
         
     </head>

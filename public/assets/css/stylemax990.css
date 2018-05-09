@@ -1,0 +1,80 @@
+@media (min-width: 770px) and (max-width: 990px)
+{
+        #app_observation_Soumettre
+        {
+            margin-left: 42%;
+        }
+        #searchLoc
+        {
+            width: 280px;
+            border-radius: 10px;
+            margin-left:35%;
+        }
+        #submitLoc
+        {
+            margin-left:44%;
+        }
+        #mapObs
+        {
+            width:99%;
+        }
+        #linkPanel1, #linkPanel2, #linkPanel3 {
+            width: 100%;
+        }
+
+        #addObs
+        {
+            margin-left: 1%;
+            margin-right:1%;
+            height:300px;
+            padding:2%;
+        }
+        #titreObs, #addObs, #searchBird, #searchObs, #searchLoc, #submitLoc
+        {
+            height: auto;
+        }
+        #top5Img, #top10img
+        {
+            display:inline-flex;
+            margin-left: 10%;
+        }
+        #newsHome
+        {
+            height:250px;
+            text-align:center;
+        }
+        #searchNews, #btnInscriptionHomePage
+        {
+            margin-top: 2%;
+        }
+        #titleNews
+        {
+            text-align:center;
+        }
+        #btnInscriptionHomePage
+        {
+            margin-left: 43%;
+        }
+        #searchBird, #eac-container-searchBird
+        {
+            margin-left: 59%;
+            width: 340px;
+
+        }
+        #map
+        {
+            width: 100%;
+        }
+        #linkPanel1 h4, #linkPanel2 h4, #linkPanel3 h4
+        {
+            margin-right:20%;
+        }
+        #btnAddNoObs
+        {
+            margin-bottom: 41%;
+        }
+        #addObs
+        {
+            padding-bottom: 2%;
+        }
+}
