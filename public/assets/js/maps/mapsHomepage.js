@@ -1,10 +1,8 @@
 function initMap(observations = null) {
 
-
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 5,
         center: {lat: 46.528635, lng: 2.4389648} // france
-        // center: {lat: -28.024, lng: 140.887} // australie
     });
 
     // Create an array of alphabetical characters used to label the markers.
@@ -29,13 +27,11 @@ function initMap(observations = null) {
                     }
                 }
 
-                console.log('locations quand pas de recherche');
-                console.log(locations);
-
+                var icons = '../../../assets/js/maps/images/icon_maps.png';
                 var markers = locations.map(function(location, i) {
                     return new google.maps.Marker({
                         position: location,
-                        label: labels[i % labels.length]
+                        icon: icons
                     });
                 });
 
@@ -53,13 +49,13 @@ function initMap(observations = null) {
         }
         else {
             console.log(observations.length);
-        for(var i = 0; i < observations.length; i++) {
-            locations[i] = [];
-            locations[i] = {
-                'lat': parseFloat(observations[i].latitude),
-                'lng': parseFloat(observations[i].longitude)
+            for(var i = 0; i < observations.length; i++) {
+                locations[i] = [];
+                locations[i] = {
+                    'lat': parseFloat(observations[i].latitude),
+                    'lng': parseFloat(observations[i].longitude)
+                }
             }
-        }
             // locations = observations;
 
             console.log('locations quand recherche');
