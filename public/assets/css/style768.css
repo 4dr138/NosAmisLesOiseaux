@@ -1,0 +1,52 @@
+@media (min-width: 566px) and (max-width:769px)
+{
+    #searchBird
+    {
+        width: 80%;
+        margin-left: 67%;
+    }
+    #titreObs
+    {
+        height:auto;
+    }
+    #addObs
+    {
+        padding-bottom: 2%;
+    }
+    #top5Img, #top10img
+    {
+        display: inline-flex;
+    }
+    #newsHome
+    {
+        text-align:center;
+    }
+    #btnInscriptionHomePage
+    {
+        margin-top: 3%;
+    }
+    #loginUser, #nonInscrit
+    {
+        width:100%;
+    }
+    #nonInscrit
+    {
+        padding-top: 30%;
+    }
+    #linkPanel1, #linkPanel2, #linkPanel3
+    {
+        margin-left:29%;
+    }
+    #linkPanel1 h4, #linkPanel2 h4, #linkPanel3 h4
+    {
+        margin-left:0;
+    }
+    .carousel-indicators
+    {
+        bottom:0;
+    }
+    .carousel-option
+    {
+        padding-bottom: 0px;
+    }
+}

@@ -1,0 +1,8 @@
+@media (min-width: 1201px) {
+    #searchBird, #eac-container-searchBird
+    {
+
+        margin-left: 3%;
+        width: 97%;
+    }
+}

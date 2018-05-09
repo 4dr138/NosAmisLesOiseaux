@@ -1,0 +1,60 @@
+@media (max-width: 565px) {
+
+    #titreObs
+    {
+        height:auto;
+    }
+    #addObs
+    {
+        padding-bottom: 2%;
+    }
+    #top5Img .col-lg-2, #top10img .col-lg-2
+    {
+        width: 40%;
+        display:inline-flex;
+    }
+    #top5Img, #top10img
+    {
+       text-align:center;
+    }
+    #newsHome
+    {
+        text-align:center;
+    }
+    #btnInscriptionHomePage
+    {
+        margin-top: 3%;
+    }
+    #nonInscrit
+    {
+        padding-top: 50%;
+    }
+    #linkPanel1, #linkPanel2, #linkPanel3
+    {
+        margin-left:10%;
+    }
+    #linkPanel1 h4, #linkPanel2 h4, #linkPanel3 h4
+    {
+        margin-left:0;
+    }
+    #formInscription
+    {
+        margin:0;
+    }
+    .carousel-indicators
+     {
+         bottom:0;
+     }
+    .carousel-option
+    {
+        padding-bottom: 0px;
+    }
+    .descriptifCarousel
+    {
+        display:none;
+    }
+    .carousel-caption h1
+    {
+        display:none;
+    }
+}

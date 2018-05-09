@@ -1,0 +1,120 @@
+@media (min-width: 995px) and (max-width: 1200px)
+{
+    .collapse
+    {
+        display:none;
+    }
+    #btnAddNoObs
+    {
+        margin-bottom: 43%;
+    }
+    #app_observation_Soumettre
+    {
+        margin-left: 42%;
+    }
+    #searchLoc
+    {
+        width: 280px;
+        border-radius: 10px;
+        margin-left:33%;
+    }
+    #submitLoc
+    {
+        margin-left:44%;
+    }
+    #mapObs
+    {
+        width:99%;
+    }
+    #linkPanel1 h4, #linkPanel2 h4, #linkPanel3 h4
+    {
+        margin-right:20%;
+    }
+    #map
+    {
+        width: 100%;
+    }
+
+    #searchBird, #eac-container-searchBird
+    {
+        margin-left: 91%;
+        width: 325px;
+    }
+    .container
+    {
+        min-height:67%;
+        margin-top: -2%;
+    }
+    #titreObs
+    {
+        height:auto;
+    }
+    #top5Img, #top10img
+    {
+        display: inline-flex;
+        margin-left: 10%;
+    }
+    #btnInscriptionHomePage
+    {
+        margin-top: 5%;
+    }
+    #searchNews
+    {
+        margin-top: 5%;
+    }
+    #loginUser, #nonInscrit
+    {
+        width: 100%;
+    }
+    #newsHome
+    {
+        margin-top: 5%;
+        margin-bottom: 5%;
+        text-align:center;
+
+    }
+    #linkPanel1, #linkPanel2, #linkPanel3
+    {
+        margin-left:33%;
+    }
+    #map
+    {
+        margin: auto;
+    }
+    #addObs
+    {
+        margin-left: 2%;
+        margin-right: 2%;
+        width: auto;
+        padding-bottom: 2%;
+    }
+    #btnArticle
+    {
+        margin-left: 33%
+    }
+    #formComments
+    {
+        margin-top: 10px;
+    }
+    #comments1_author
+    {
+        border: 0.1px solid;
+    }
+    #actualites, #blocDon, #formContact
+    {
+        margin-bottom: 5%;
+    }
+    #titleInscription
+    {
+        margin-top: -10%;
+    }
+    #titreObs
+    {
+        height:auto;
+    }
+    #newsletter_mail
+    {
+        width: 50%;
+        margin-left: 25%;
+    }
+}

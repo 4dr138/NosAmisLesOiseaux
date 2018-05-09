@@ -22,7 +22,7 @@
                         <p>Commentaire de l'utilisateur : {{ observation.comment }}</p>
                         <form action = '{{ url('validateObsBird', {'id': observation.id })}}' method = 'post'>
                         <p>Référence TAXREF : </p><input  name = 'birdID' value = '{{ observation.taxrefCdName }}' step = "any" type = 'number' required /><br /><br />
-                            <input id = 'validateButton' value = "Valider l'observation" type = 'submit' />
+                            <input id = 'validateButton' class = 'btn btn-defaut' value = "Valider l'observation" type = 'submit' />
                         </form><br />
                         <a id = 'btnDeleteObs' href = "{{ path('deleteObs', {'id': observation.id}) }}" class="btn btn-default"  >Supprimer l'observation</a>
                         {% for message in app.flashes('error') %}
@@ -36,6 +36,7 @@
 
         {% endfor %}
         <hr />
+        <a id = 'return_Board_Bird' href="{{ path('connexion') }}"> Revenir sur le tableau de bord</a>
     </div>
 
 {% endblock %}

@@ -70,7 +70,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
 }
-google.maps.event.addDomListener(window, "load", initialize);
+// google.maps.event.addDomListener(window, "load", initialize);
 
 
 var url = Routing.generate('getBirds');

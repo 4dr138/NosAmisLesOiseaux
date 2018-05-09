@@ -43,7 +43,7 @@
     </div>
     {% block javascripts %}
         <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBluRZPBnIrqrFRpb0vw6_BabF-mOKc6ns">
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBluRZPBnIrqrFRpb0vw6_BabF-mOKc6ns&callback=initialize">
         </script>
         <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
         <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>

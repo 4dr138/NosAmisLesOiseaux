@@ -9,6 +9,9 @@
                 <h1 id = 'titleArticleBlog'>{{ unitArticle.title }}</h1><br/><br/>
             </div>
         </header>
+        {% if unitArticle.image %}
+            <img id = 'imgBlog' src = "{{ asset('assets/img/') }}{{ unitArticle.image }}" />
+        {% endif %}
             <p>{{ unitArticle.content }}</p>
         <input id = 'articleID' type = 'hidden' value = '{{ unitArticle.id }}' />
         <div class = "row">

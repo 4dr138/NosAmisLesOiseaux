@@ -26,7 +26,7 @@ class AppObservationType extends AbstractType
             ->add('longitude', TextType::class)
             ->add('comment', TextareaType::class, array('label' => "Commentaire, description de l'espèce observée, particularités...", 'attr' => array('rows' => 10)))
 //            ->add('user')
-            ->add('imageFile', FileType::class, array('data_class' => null,'required' => false))
+            ->add('imageFile', FileType::class, array('label' => 'Ajouter une photo', 'data_class' => null,'required' => false))
             ->add('Soumettre', SubmitType::class);
     }
 
