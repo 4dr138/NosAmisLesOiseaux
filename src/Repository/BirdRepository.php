@@ -98,14 +98,14 @@ class BirdRepository extends ServiceEntityRepository
     {
         $em = $this->getEntityManager();
         $query = $em->createQuery(
-            '            SELECT o.dateObservation, o.latitude, o.longitude, o.comment,
+            "SELECT distinct o.longitude, o.dateObservation, o.latitude,  o.comment,
             b.taxrefClass, b.taxrefCdName, b.taxrefVern, b.taxrefUrlImage, b.protected,b.id,
             bf.label as family, bs.label as status
             FROM App\Entity\Bird b
-            LEFT OUTER JOIN App\Entity\Observation o WITH o.bird = b.id
-            LEFT OUTER JOIN App\Entity\BirdFamily bf WITH b.birdFamily = bf.id 
-            LEFT OUTER JOIN App\Entity\BirdStatus bs WITH b.birdStatus = bs.id
-            WHERE b.id = :birdId ')
+            JOIN App\Entity\Observation o WITH o.bird = b.id
+            LEFT OUTER JOIN App\Entity\BirdFamily bf WITH  bf.id = b.birdFamily 
+            LEFT OUTER JOIN App\Entity\BirdStatus bs WITH bs.id = b.birdStatus 
+            WHERE b.id = :birdId AND o.comment <> '' ")
             ->setParameter('birdId', $birdId);
         return $query->execute();
     }

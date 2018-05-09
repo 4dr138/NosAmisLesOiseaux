@@ -27,7 +27,6 @@ class BlogController extends Controller
         // On récupère la session utilisateur
         $user = $session->get('users');
         
-        
         // On boucle sur le tableau récupéré pour récupérer l'index 0 et l'injecter directement dans la vue
         foreach($article[0] as $values)
             {
