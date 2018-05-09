@@ -30,6 +30,16 @@ class ObservationRepository extends ServiceEntityRepository
         return $qb->getQuery()->execute();
     }
 
+    public function getUserIdByObs($id)
+    {
+        $qb = $this->createQueryBuilder('o');
+        $qb
+            ->select('o.user')
+            ->where('o.id =' .$id);
+            
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
 
     public function deleteAllObservations()
     {

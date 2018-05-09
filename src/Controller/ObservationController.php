@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Observation;
 use App\Form\AppObservationType;
+use App\Service\ExperienceService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,7 +43,7 @@ class ObservationController extends Controller
         if(isset($user)) {
             $bird = $this->container->get('appbundle.birds')->getBirdById($id);
 
-            return $this->render('observations/birdInformations.html.twig', array('bird' => $bird));
+            return $this->render('observations/birdInformations.html.twig', array('bird' => $bird, 'users' =>$user));
         }
         return $this->render('connexion/connexion.html.twig');
     }
@@ -77,7 +78,7 @@ class ObservationController extends Controller
 
                     $em = $this->getDoctrine()->getManager();
 
-                    //$user = $session->get('users');
+                    
                     $userid = $user->getId();
 
                     $newObservation->setUser($userid);
@@ -113,9 +114,11 @@ class ObservationController extends Controller
     /**
      * @Route("/validateObsBird/{id}", name="validateObsBird")
      */
-    public function validateObsBird($id)
+    public function validateObsBird($id, ExperienceService $ExperienceService)
     {
+        
         $birdID = $_POST['birdID'];
+        
         // On vérifie que la valeur saisie corresponde bien à un oiseau existant en BDD
         $birdExistant = $this->container->get('appbundle.birds')->getExistingBird($birdID);
         if($birdExistant == null) {
@@ -123,7 +126,8 @@ class ObservationController extends Controller
             return $this->redirectToRoute('validateObs');
         }
         else{
-
+            dump($id);
+            $ExperienceService->ExpObservation($id);
             // On update via DQL en fonction de l'id
             $this->container->get('appbundle.observations')->updateBirdID($birdExistant,$id);
             return $this->redirectToRoute('validateObs');
