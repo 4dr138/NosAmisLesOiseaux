@@ -24,6 +24,14 @@ class IndexController extends Controller
         $newsletter = new Newsletter();
         $LastArticleId = $ArticlesService->getLastArticleId();
 
+        $accessToProtectedBirds = false;
+        if (null !== $user) {
+            $userRoles = $user->getRoles();
+
+            if (in_array('ROLE_ADMIN', $userRoles) || in_array('ROLE_NATURALISTE', $userRoles)) {
+                $accessToProtectedBirds = true;
+            }
+        }
 
         $form = $this->createForm(NewsletterType::class, $newsletter);
         $form->handleRequest($request);
@@ -36,9 +44,14 @@ class IndexController extends Controller
              $this->addFlash("success", "Merci pour votre inscription à la newsletter !");
             return $this->redirectToRoute('homepage');
         }
-        
-        return $this->render('homepage/homepage.html.twig', array('users' => $user, 'newsletter' => $newsletter, 'LastArticleId' => $LastArticleId,
-            'form' => $form->createView()));
+
+        return $this->render('homepage/homepage.html.twig', array(
+            'users'                 => $user,
+            'newsletter'            => $newsletter,
+            'LastArticleId'         => $LastArticleId,
+            'accessToProtectedBird' => $accessToProtectedBirds,
+            'form'                  => $form->createView())
+        );
 
     }
 
