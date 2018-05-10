@@ -65,7 +65,7 @@ class IndexController extends Controller
     }
 
     /**
-     * @Route("/test", name="mentions")
+     * @Route("/test", name="test")
      */
     public function testAction()
     {

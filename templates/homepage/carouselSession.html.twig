@@ -13,13 +13,17 @@
                             <div class="item active">
                                 <img src="{{ asset('assets/img/hibou.png') }}" alt="">
                                  <div class="carousel-caption">
+
+                                    <a href = "{{ path('addObservation') }}" name="nom-de-votre-ancre" class="btn btn-default" id ='btnAddObs'>Ajouter une Observation</a>
+
                                     <a name="nom-de-votre-ancre" href = "{{ path('addObservation') }}" class="btn btn-default" id ='btnAddObs'>Ajouter une Observation</a>
+
                                     <h1>Observation</h1>
                                     <p class="descriptifCarousel">Vite ajoutez l'observation du dernier oiseau observé</p>
                                 </div>
                             </div>
                             <div class="item">
-                                <img src="{{ asset('assets/img/flamand2.png') }}" alt="">
+                                <img src="{{ asset('assets/img/slide2.png') }}" alt="">
                                 <div class="carousel-caption">
                                     <a name="nom-de-votre-ancre" href = "{{ path('blog', {'id': LastArticleId}) }}" class="btn btn-default" id ='btnAddObs'>Lire l'article</a>
                                     <h1>Dernière actualité</h1>
@@ -27,7 +31,7 @@
                                 </div>
                             </div>
                             <div class="item">
-                                <img src="{{ asset('assets/img/reunion.png') }}" alt="" >
+                                <img src="{{ asset('assets/img/slide3.png') }}" alt="" >
                                 <div class="carousel-caption">
                                     <a name="nom-de-votre-ancre" class="btn btn-default" id ='btnAddObs' href = "{{ path('contact') }}" >Contactez nous</a>
                                     <h1>Contact</h1>
@@ -35,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="item">
-                                <img src="{{ asset('assets/img/donationfly.png') }}" alt="">
+                                <img src="{{ asset('assets/img/slide4.png') }}" alt="">
                                 <div class="carousel-caption">
                                     <a name="nom-de-votre-ancre" class="btn btn-default" id ='btnAddObs' href = "{{ path('donation') }}">Faire un don</a>
                                     <h1>Donation</h1>

@@ -3,12 +3,19 @@
 namespace App\Service;
 
 use App\Entity\Users;
+use App\Entity\Observation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ExperienceService extends Controller
 {
+    
+
     const DONATION_XP = 300;
+    const CONNEXION_XP = 5;
+    const PARRAINAGE_XP = 25;
+    const COMMENT_ARTICLE_XP = 35;
+    const OBSERVATION_XP = 100;
 
     /**
      * @param ContainerInterface $container
@@ -16,12 +23,13 @@ class ExperienceService extends Controller
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
+        
     }
 
     public function ExpConnexion(Users $user)
     {
         $em = $this->getDoctrine()->getManager();
-        $newExp = $user->setExperience($user->getExperience() + 5);
+        $newExp = $user->setExperience($user->getExperience() + self::CONNEXION_XP);
         $em->persist($user);
         $em->flush();
 
@@ -36,7 +44,7 @@ class ExperienceService extends Controller
             if(isset($userParrain)){
                 
                     
-                    $userParrain->setExperience($userParrain->getExperience() + 25);
+                    $userParrain->setExperience($userParrain->getExperience() + self::PARRAINAGE_XP);
 
                     $em->persist($userParrain);
                     $em->flush();
@@ -47,11 +55,35 @@ class ExperienceService extends Controller
     public function ExpDonation(Users $user)
     {
         
+        $em = $this->getDoctrine()->getManager();      
+        $user->setExperience($user->getExperience() + self::DONATION_XP);
+        $em->merge($user);
+        $em->flush();
+
+    }
+
+    public function ExpCommentArticle(Users $user)
+    {
+        
+        $em = $this->getDoctrine()->getManager();      
+        $user->setExperience($user->getExperience() + self::COMMENT_ARTICLE_XP);
+        $em->merge($user);
+        $em->flush();
+
+    }
+
+    public function ExpObservation($id)
+    {
+        
         $em = $this->getDoctrine()->getManager();
-               
-                    $user->setExperience($user->getExperience() + self::DONATION_XP);
-                    $em->merge($user);
-                    $em->flush();
+         dump($id); 
+        $userID = $em->getRepository('App:Observation')->getUserIdByObs($id);
+        dump($userID);
+        $user =  $em->getRepository('App:Users')->findOneBy(['id' =>$userID]);
+        dump($user);
+        $user->setExperience($user->getExperience() + self::OBSERVATION_XP);
+        $em->merge($user);
+        $em->flush();
 
     }
 

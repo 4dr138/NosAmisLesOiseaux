@@ -6,6 +6,7 @@ use App\Entity\Comments;
 use App\Form\Comments1Type;
 use App\Service\ArticlesService;
 use App\Service\CommentsService;
+use App\Service\ExperienceService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +19,7 @@ class BlogController extends Controller
     /**
      * @Route("/blog/{id}", name="blog")
      */
-    public function blogAction($id, Request $request, SessionInterface $session, ArticlesService $ArticlesService,CommentsService $CommentsService)
+    public function blogAction($id, Request $request, SessionInterface $session, ArticlesService $ArticlesService,CommentsService $CommentsService, ExperienceService $ExperienceService)
     {
         // On récupère les articles et les commentaires associés à cet article via l'id de l'article
         $article = $ArticlesService->getArticleById($id);
@@ -46,6 +47,7 @@ class BlogController extends Controller
             if(isset($user)){
                 
                 $newcomment->setAuthor($user->getUsername());
+                $ExperienceService->ExpCommentArticle($user);
             }
 
             $em->persist($newcomment);
