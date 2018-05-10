@@ -19,7 +19,11 @@
 
 	        <div class="row">
 	            <div class="col-lg-8">
-	            	<div id="map"></div><br />
+                    <div id="floating-panel">
+                        <input onclick="clearProtectedMarkers();" type=button value="Hide Markers">
+                    </div>
+
+                    <div id="map"></div><br />
 	            </div>
                 <div id = 'addObs' class = 'col-lg-4'>
                     <div class = 'row' id = 'titreObs'>
@@ -115,6 +119,10 @@
         <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
         <script src = "{{ asset('assets/js/jquery.easy-autocomplete.min.js') }}"></script>
         <script src="{{ asset('assets/js/searchHomepage.js') }}"></script>
+
+        <script type="text/javascript">
+            window.accessToProtectedBird = '{{ accessToProtectedBird }}';
+        </script>
 
         <script src="{{ asset('assets/js/maps/mapsHomepage.js') }}"></script>
 

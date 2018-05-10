@@ -38,6 +38,8 @@ class TxtImportTaxrefCommand extends Command
     {
         $fileToImport = 'data_import_all.txt';
 
+        $tabProtected = ['E', 'S', 'C', 'I', 'M', 'B', 'D', 'A', 'W', 'E', 'Y', 'Z'];
+
         // important, permet de ne pas écrire dans le logger de la bdd,
         // ce qui allège grandement l'utilisation de la mémoire
         $this->em->getConnection()->getConfiguration()->setSQLLogger(null);
@@ -135,6 +137,10 @@ class TxtImportTaxrefCommand extends Command
 
                     if (null !== $birdStatus) {
                         $bird->setBirdStatus($birdStatus->getId());
+
+                        if (in_array($birdStatus->getLabel(), $tabProtected)) {
+                            $bird->setProtected(true);
+                        }
                     }
 
                     $this->em->flush();

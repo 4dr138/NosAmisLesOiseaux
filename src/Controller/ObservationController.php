@@ -32,6 +32,7 @@ class ObservationController extends Controller
         }
         return $this->render('connexion/connexion.html.twig');
 
+
     }
 
     /**
