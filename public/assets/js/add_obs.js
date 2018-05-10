@@ -47,6 +47,9 @@ function initialize() {
                 lng: position.coords.longitude
             };
 
+            latField.val(pos.lat);
+            longField.val(pos.lng);
+
             infoWindow.setPosition(pos);
             infoWindow.setContent('<style>p{color: red;}</style><p>Vous êtes ici !</p>');
             map.setCenter(pos);
