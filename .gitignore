@@ -26,3 +26,7 @@ composer.lock
 symfony.lock
 
 /src/Data/
+
+###> phpunit/phpunit ###
+/phpunit.xml
+###< phpunit/phpunit ###

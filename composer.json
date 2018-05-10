@@ -51,7 +51,8 @@
         "symfony/browser-kit": "^4.0",
         "symfony/css-selector": "^4.0",
         "symfony/phpunit-bridge": "^4.0",
-        "symfony/profiler-pack": "*"
+        "symfony/profiler-pack": "*",
+        "phpunit/phpunit": "6.5"
     },
     "config": {
         "preferred-install": {

@@ -115,6 +115,13 @@ class Observation
         return $this->id;
     }
 
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getDateObservation(): ?datetime
     {
         return $this->dateObservation;
@@ -127,24 +134,24 @@ class Observation
         return $this;
     }
 
-    public function getLatitude(): ?float
+    public function getLatitude(): ?string
     {
         return $this->latitude;
     }
 
-    public function setLatitude(float $latitude): self
+    public function setLatitude(string $latitude): self
     {
         $this->latitude = $latitude;
 
         return $this;
     }
 
-    public function getLongitude(): ?float
+    public function getLongitude(): ?string
     {
         return $this->longitude;
     }
 
-    public function setLongitude(float $longitude): self
+    public function setLongitude(string $longitude): self
     {
         $this->longitude = $longitude;
 

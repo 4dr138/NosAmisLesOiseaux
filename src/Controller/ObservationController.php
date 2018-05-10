@@ -25,12 +25,12 @@ class ObservationController extends Controller
     //        On récupère les observations selon l'id de l''user
             $observations = $this->container->get('appbundle.observations')->getObservationsById($userId);
     //        On récupère ensuite un array des oiseaux associés à une ou plusieurs obs pour un même user
-            $birds = $this->container->get('appbundle.birds')->getBirdsByObs($observations);
-
+        $birds = $this->container->get('appbundle.birds')->getBirdsByObs($observations, $userId);
 
             return $this->render('observations/user_observation.html.twig', array('birds' => $birds, 'users' =>$user));
         }
         return $this->render('connexion/connexion.html.twig');
+
 
 
     }

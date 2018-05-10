@@ -63,6 +63,13 @@ class Bird
         return $this->id;
     }
 
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getTaxrefClass(): ?string
     {
         return $this->taxrefClass;
