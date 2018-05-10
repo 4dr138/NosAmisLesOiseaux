@@ -61,4 +61,20 @@
     {
         margin-left: 15%;
     }
+    #return_Homepage
+    {
+        text-align:center;
+        margin-top:10%;
+        margin-left:0;
+    }
+    #img404
+    {
+        margin-left:0;
+        width:90%;
+    }
+    .container
+    {
+        margin-top: -4.5%;
+        margin-bottom: -4%;
+    }
 }
