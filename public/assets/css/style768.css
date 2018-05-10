@@ -53,6 +53,13 @@
     {
         padding-bottom:0px;
     }
+    .container {
+        margin-top: -2.6%;
+    }
+    footer
+    {
+        margin-top: -5%;
+    }
 }
 @media (min-width:768px) and (max-width: 768px)
 {
