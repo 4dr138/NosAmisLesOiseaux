@@ -19,7 +19,11 @@
 
 	        <div class="row">
 	            <div class="col-lg-8">
-	            	<div id="map"></div><br />
+                    <div id="floating-panel">
+                        <input onclick="clearProtectedMarkers();" type=button value="Hide Markers">
+                    </div>
+
+                    <div id="map"></div><br />
 	            </div>
                 <div id = 'addObs' class = 'col-lg-4'>
                     <div class = 'row' id = 'titreObs'>
@@ -27,7 +31,11 @@
                     </div>
                     <div class = 'row'>
                         <!--<a href = "javascript:window.open('{{ path('addObservation') }}', 'popup','toolbar=0, location=0, directories=0, status=0, scrollbars=0, resizable=0, copyhistory=0, width=500, height=350,screenX=200,screenY=200)')" id ='btnAddObs' class="btn btn-default">Ajouter une observation</a>-->
+                        {% if users == null %}
+                        <a href = "{{ path('connexion') }}" id ='btnAddObs' class="btn btn-default">Ajouter une observation</a>
+                        {% else %}
                         <a href = "{{ path('addObservation') }}" id ='btnAddObs' class="btn btn-default">Ajouter une observation</a>
+                        {% endif %}
                     </div>
                     <br />
                     <div class = 'row'>
@@ -111,6 +119,10 @@
         <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
         <script src = "{{ asset('assets/js/jquery.easy-autocomplete.min.js') }}"></script>
         <script src="{{ asset('assets/js/searchHomepage.js') }}"></script>
+
+        <script type="text/javascript">
+            window.accessToProtectedBird = '{{ accessToProtectedBird }}';
+        </script>
 
         <script src="{{ asset('assets/js/maps/mapsHomepage.js') }}"></script>
 

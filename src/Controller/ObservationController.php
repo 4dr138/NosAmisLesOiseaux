@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Observation;
 use App\Form\AppObservationType;
+use App\Service\ExperienceService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,27 +20,33 @@ class ObservationController extends Controller
     public function observationAction(SessionInterface $session)
     {
         $user = $session->get('users');
-        $userId = $user->getId();
-
-//        On récupère les observations selon l'id de l''user
-        $observations = $this->container->get('appbundle.observations')->getObservationsById($userId);
-
-//        On récupère ensuite un array des oiseaux associés à une ou plusieurs obs pour un même user
+        if(isset($user)) {
+            $userId = $user->getId();
+    //        On récupère les observations selon l'id de l''user
+            $observations = $this->container->get('appbundle.observations')->getObservationsById($userId);
+    //        On récupère ensuite un array des oiseaux associés à une ou plusieurs obs pour un même user
         $birds = $this->container->get('appbundle.birds')->getBirdsByObs($observations, $userId);
 
-        return $this->render('observations/user_observation.html.twig', array('birds' => $birds, 'users' =>$user));
+            return $this->render('observations/user_observation.html.twig', array('birds' => $birds, 'users' =>$user));
+        }
+        return $this->render('connexion/connexion.html.twig');
+
+
 
     }
 
     /**
      * @Route("/bird/{id}", name="birdInfos")
      */
-    public function birdInformations($id)
+    public function birdInformations($id, SessionInterface $session)
     {
+        $user = $session->get('users');
+        if(isset($user)) {
+            $bird = $this->container->get('appbundle.birds')->getBirdById($id);
 
-        $bird = $this->container->get('appbundle.birds')->getBirdById($id);
-
-        return $this->render('observations/birdInformations.html.twig', array('bird' => $bird));
+            return $this->render('observations/birdInformations.html.twig', array('bird' => $bird, 'users' =>$user));
+        }
+        return $this->render('connexion/connexion.html.twig');
     }
 
     /**
@@ -47,45 +54,51 @@ class ObservationController extends Controller
      */
     public function addObservation(Request $request, SessionInterface $session)
     {
-        $newObservation = new Observation();
-        $form = $this->createForm(AppObservationType::class, $newObservation);
-        $form->handleRequest($request);
+        $user = $session->get('users');
+        if(isset($user)) {
+            $newObservation = new Observation();
+            $form = $this->createForm(AppObservationType::class, $newObservation);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted() && $form->isValid()) {
 
-            // On vérifie qu'il n'y ait pas d'erreur de formulaire (date / type de donnée dans le champ)
-            $check = $this->container->get('appbundle.observations')->checkObservation($newObservation);
+                // On vérifie qu'il n'y ait pas d'erreur de formulaire (date / type de donnée dans le champ)
+                $check = $this->container->get('appbundle.observations')->checkObservation($newObservation);
 
-            if($check == 'errorDate')
-            {
-                $this->addFlash("error", "Attention, la date sélectionnée ne peut pas être supérieure à la date du jour...");
-                return $this->redirectToRoute('addObservation');
+                if($check == 'errorDate')
+                {
+                    $this->addFlash("error", "Attention, la date sélectionnée ne peut pas être supérieure à la date du jour...");
+                    return $this->redirectToRoute('addObservation');
+                }
+                else if ($check == 'errorFloat')
+                {
+                    $this->addFlash("error", "Attention, la longitude et la latitude doivent être des nombres...");
+                    return $this->redirectToRoute('addObservation');
+                }
+                else {
+
+                    $em = $this->getDoctrine()->getManager();
+
+                    
+                    $userid = $user->getId();
+
+                    $newObservation->setUser($userid);
+                    // Par défaut, on attribue cette valeur à 0 pour permettre le lien en validation via la modification de cette valeur
+                    $newObservation->setBird(0);
+
+                    $em->persist($newObservation);
+                    $em->flush();
+
+                    $this->addFlash("success", "Merci pour votre participation, votre soumission a bien été transmise à nos experts !");
+                    return $this->redirectToRoute('addObservation');
+                }
             }
-            else if ($check == 'errorFloat')
-            {
-                $this->addFlash("error", "Attention, la longitude et la latitude doivent être des nombres...");
-                return $this->redirectToRoute('addObservation');
-            }
-            else {
 
-                $em = $this->getDoctrine()->getManager();
+            return $this->render('observations/add_observation.html.twig', array('form' => $form->createView(), 'users' => $user));
 
-                $user = $session->get('users');
-                $userid = $user->getId();
-
-                $newObservation->setUser($userid);
-                // Par défaut, on attribue cette valeur à 0 pour permettre le lien en validation via la modification de cette valeur
-                $newObservation->setBird(0);
-
-                $em->persist($newObservation);
-                $em->flush();
-
-                $this->addFlash("success", "Merci pour votre participation, votre soumission a bien été transmise à nos experts !");
-                return $this->redirectToRoute('addObservation');
-            }
         }
-
-        return $this->render('observations/add_observation.html.twig', array('form' => $form->createView()));
+        
+        return $this->render('connexion/connexion.html.twig');
     }
 
     /**
@@ -102,9 +115,11 @@ class ObservationController extends Controller
     /**
      * @Route("/validateObsBird/{id}", name="validateObsBird")
      */
-    public function validateObsBird($id)
+    public function validateObsBird($id, ExperienceService $ExperienceService)
     {
+        
         $birdID = $_POST['birdID'];
+        
         // On vérifie que la valeur saisie corresponde bien à un oiseau existant en BDD
         $birdExistant = $this->container->get('appbundle.birds')->getExistingBird($birdID);
         if($birdExistant == null) {
@@ -112,7 +127,8 @@ class ObservationController extends Controller
             return $this->redirectToRoute('validateObs');
         }
         else{
-
+            dump($id);
+            $ExperienceService->ExpObservation($id);
             // On update via DQL en fonction de l'id
             $this->container->get('appbundle.observations')->updateBirdID($birdExistant,$id);
             return $this->redirectToRoute('validateObs');
