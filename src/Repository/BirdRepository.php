@@ -94,7 +94,7 @@ class BirdRepository extends ServiceEntityRepository
         return $qb->getQuery()->execute();
     }
 
-    public function getBirdByIdObs($birdId)
+    public function getBirdByIdObs($birdId, $userId)
     {
         $em = $this->getEntityManager();
         $query = $em->createQuery(
@@ -103,10 +103,12 @@ class BirdRepository extends ServiceEntityRepository
             bf.label as family, bs.label as status
             FROM App\Entity\Bird b
             JOIN App\Entity\Observation o WITH o.bird = b.id
+            JOIN APP\Entity\Users u WITH u.id = o.user
             LEFT OUTER JOIN App\Entity\BirdFamily bf WITH  bf.id = b.birdFamily 
             LEFT OUTER JOIN App\Entity\BirdStatus bs WITH bs.id = b.birdStatus 
-            WHERE b.id = :birdId AND o.comment <> '' ")
-            ->setParameter('birdId', $birdId);
+            WHERE b.id = :birdId AND o.comment <> '' AND o.user = :userId")
+            ->setParameter('birdId', $birdId)
+            ->setParameter('userId', $userId);
         return $query->execute();
     }
 
