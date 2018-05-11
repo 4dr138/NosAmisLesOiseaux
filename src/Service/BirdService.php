@@ -57,15 +57,17 @@ class BirdService extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $bird = $em->getRepository('App:Bird')->getLast10Birds();
-//        $top5Bird = [];
-//        for($i = 0; $i < 5; $i++)
-//        {
-//            $bird5 = $bird[$i];
-//            $top5Bird[$i] = $bird5;
-//        }
-//        dump($top5Bird);exit;
+
         return $bird;
 
+    }
+
+    public function getBirdIdObs($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $bird = $em->getRepository('App:Bird')->getBirdIdObs($id);
+
+        return $bird;
     }
 
 }

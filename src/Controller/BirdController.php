@@ -32,4 +32,15 @@ class BirdController extends Controller
         return new Response(json_encode($birds));
     }
 
+    /**
+     * @Route("/getBirdIdObs/{id}", name="getBirdIdObs")
+     */
+    public function getBirdIdObs($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $bird = $em->getRepository('App:Bird')->getBirdIdObs($id);
+
+        return $this->render('observations/birdInformations.html.twig', array('bird' => $bird));
+    }
+
 }

@@ -32,7 +32,7 @@ class ConnexionController extends Controller
             if ($role == 'ROLE_AMATEUR') {
                 return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user, 'userLevel' => $userLevel));
 
-            } else if ($role == 'ROLE_NATURALISTE') {
+            } else if ($role == 'ROLE_NATURALISTE' or $role == 'ROLE_ADMIN') {
                 return $this->render('panelcontrol/panelcontrolnaturaliste.html.twig', array('users' => $user, 'userLevel' => $userLevel));
             }
         }
@@ -75,7 +75,7 @@ class ConnexionController extends Controller
 
                 if ($role == 'ROLE_AMATEUR') {
                     return $this->render('panelcontrol/panelcontrolamateur.html.twig', array('users' => $user, 'userLevel'=> $userLevel));
-                } else if ($role == 'ROLE_NATURALISTE') {
+                } else if ($role == 'ROLE_NATURALISTE' or $role == 'ROLE_ADMIN') {
                     return $this->render('panelcontrol/panelcontrolnaturaliste.html.twig', array('users' => $user, 'userLevel'=> $userLevel));
                 }
             }

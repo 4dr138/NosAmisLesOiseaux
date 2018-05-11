@@ -44,7 +44,7 @@ easy_admin:
                 - { property: 'password', label: 'users.password' }
                 - { property: 'newsletter', label: 'users.newsletter' }
                 - { property: 'is_active', label: 'users.actif', type: 'text' }
-                - { property: 'roles', label: 'users.roles', type: 'choice', type_options: { expanded: false, multiple: true, choices: {'ROLE_NATURALISTE' : 'ROLE_NATURALISTE', 'ROLE_AMATEUR' : 'ROLE_AMATEUR'}, choice_attr: {'style' : 'width: 100px'}}}
+                - { property: 'roles', label: 'users.roles', type: 'choice', type_options: { expanded: false, multiple: true, choices: {'ROLE_NATURALISTE' : 'ROLE_NATURALISTE', 'ROLE_AMATEUR' : 'ROLE_AMATEUR', 'ROLE_ADMIN' : 'ROLE_ADMIN'}, choice_attr: {'style' : 'width: 100px'}}}
                 - { property: 'imageFile', labe: 'users.image', type: 'vich_image' }
             edit:
               title: 'Edition du profil'
@@ -57,7 +57,7 @@ easy_admin:
                 - { property: 'newsletter', label: 'users.newsletter' }
                 - { property: 'is_active', label: 'users.actif', type: 'text' }
                 - { property: 'imageFile', labe: 'users.image', type: 'vich_image' }
-                - { property: 'roles', label: 'users.roles', type: 'choice', type_options: { expanded: false, multiple: true, choices: {'ROLE_NATURALISTE' : 'ROLE_NATURALISTE', 'ROLE_AMATEUR' : 'ROLE_AMATEUR'}, choice_attr: {'style' : 'width: 100px'}}}
+                - { property: 'roles', label: 'users.roles', type: 'choice', type_options: { expanded: false, multiple: true, choices: {'ROLE_NATURALISTE' : 'ROLE_NATURALISTE', 'ROLE_AMATEUR' : 'ROLE_AMATEUR', 'ROLE_ADMIN' : 'ROLE_ADMIN'}, choice_attr: {'style' : 'width: 100px'}}}
        Article:
             class: App\Entity\Article
             new:
