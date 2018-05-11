@@ -37,14 +37,14 @@ class BirdRepository extends ServiceEntityRepository
     {
         $em = $this->getEntityManager();
         $query = $em->createQuery('
-            SELECT o.dateObservation, o.latitude, o.longitude, o.comment,
+            SELECT o.dateObservation, o.latitude, o.longitude, o.comment, o.image,
             b.taxrefClass, b.taxrefCdName, b.taxrefVern, b.taxrefUrlImage, b.protected,b.id,
             bf.label as family, bs.label as status
             FROM App\Entity\Bird b
             LEFT OUTER JOIN App\Entity\Observation o WITH o.bird = b.id
             LEFT OUTER JOIN App\Entity\BirdFamily bf WITH b.birdFamily = bf.id 
             LEFT OUTER JOIN App\Entity\BirdStatus bs WITH b.birdStatus = bs.id
-            WHERE b.id = :birdId
+            WHERE o.id = :birdId
             ')
             ->setParameter('birdId', $id);
         return $query->execute();
@@ -109,6 +109,20 @@ class BirdRepository extends ServiceEntityRepository
             WHERE b.id = :birdId AND o.comment <> '' AND o.user = :userId")
             ->setParameter('birdId', $birdId)
             ->setParameter('userId', $userId);
+        return $query->execute();
+    }
+
+    public function getLast10Birds()
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            "SELECT o.id, o.image, b.id AS idBird
+            FROM App\Entity\Observation o
+            LEFT OUTER JOIN App\Entity\Bird b WITH b.id = o.bird
+            ORDER BY o.id DESC
+            ")
+            ->setMaxResults(12);
+
         return $query->execute();
     }
 

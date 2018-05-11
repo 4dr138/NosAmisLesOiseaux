@@ -5,6 +5,8 @@
     {% for birdSolo in bird %}
         <h1 id = 'titleBird'>Nom de l'espèce : <strong>{{ birdSolo.taxrefVern }}</strong></h1>
         <div id = 'birdSolo' class = 'col-lg-12'>
+            <div class = 'col-lg-3'></div>
+            <div class ='col-lg-4'>
             <p>Date de référencement : {{ birdSolo.dateObservation|date('d-m-Y') }}</p>
             <p>Référence TAXREF : {{ birdSolo.taxrefCdName }}</p>
             <p>Classe : {{ birdSolo.taxrefClass }}</p>
@@ -18,6 +20,12 @@
             {% endif %}
             <p>Lien vers plus d'informations sur la base nationale INPI : <a href = "{{ birdSolo.taxrefUrlImage }}">Ici ! </a></p>
             <p>Commentaire : {{ birdSolo.comment }}</p>
+            </div>
+            <div class = 'col-lg-2'>
+                <img id = 'birdImage' src = "{{ asset('assets/img/') }}{{ birdSolo.image }}" />
+            </div>
+            <div class = 'col-lg-2'></div>
+
         </div>
         <hr />
     {% endfor %}

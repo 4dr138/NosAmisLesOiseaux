@@ -117,4 +117,8 @@
         width: 50%;
         margin-left: 25%;
     }
+    #birdsPic
+    {
+        display:inline-flex;
+    }
 }
