@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a31f6aa78dd40c2dae3cf6cc52975f92",
+    "content-hash": "936b3c801ee2486249e03dc1a47f5910",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -818,7 +818,6 @@
         },
         {
             "name": "doctrine/migrations",
-
             "version": "v1.7.2",
             "source": {
                 "type": "git",
@@ -888,9 +887,7 @@
                 "database",
                 "migrations"
             ],
-
             "time": "2018-05-09T21:04:56+00:00"
-
         },
         {
             "name": "doctrine/orm",

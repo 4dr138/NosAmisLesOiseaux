@@ -24,6 +24,9 @@ class IndexController extends Controller
         $newsletter = new Newsletter();
         $LastArticleId = $ArticlesService->getLastArticleId();
 
+        $birds = $this->container->get('appbundle.birds')->getLast10Birds();
+
+
         $accessToProtectedBirds = false;
         if (null !== $user) {
             $userRoles = $user->getRoles();
@@ -50,6 +53,7 @@ class IndexController extends Controller
             'newsletter'            => $newsletter,
             'LastArticleId'         => $LastArticleId,
             'accessToProtectedBird' => $accessToProtectedBirds,
+            'birds'                 => $birds,
             'form'                  => $form->createView())
         );
 
