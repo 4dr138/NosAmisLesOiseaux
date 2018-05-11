@@ -20,7 +20,7 @@
                 {% endif %}
                 <p>Commentaire : {{ birdSolo.comment }}</p>
                 <p>Lien vers plus d'informations sur la base nationale INPI : <a href = "{{ birdSolo.taxrefUrlImage }}">Ici ! </a></p>
-                <a href = "{{ path('birdInfos',{'id': birdSolo.id }) }}"><button id = 'btnBirdInfos' class = 'btn btn-default'>Voir la fiche détaillée de l'espèce</button></a>
+                <a href = "{{ path('getBirdIdObs',{'id': birdSolo.id }) }}"><button id = 'btnBirdInfos' class = 'btn btn-default'>Voir la fiche détaillée de l'espèce</button></a>
                 <hr />
             {% endfor %}
         {% endfor %}

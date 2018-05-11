@@ -22,7 +22,11 @@
             <p>Commentaire : {{ birdSolo.comment }}</p>
             </div>
             <div class = 'col-lg-2'>
-                <img id = 'birdImage' src = "{{ asset('assets/img/') }}{{ birdSolo.image }}" />
+                {% if birdSolo.image %}
+                    <img id = 'birdImage' src = "{{ asset('assets/img/') }}{{ birdSolo.image }}" />
+                {% else %}
+                    <h3 id = 'birdNoImg' >Pas d'image associée</h3>
+                {% endif %}
             </div>
             <div class = 'col-lg-2'></div>
 
