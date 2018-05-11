@@ -105,6 +105,25 @@ class ObservationRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
     }
 
+    public function getObservationsWithFamilyForMap($birdFamilyId = 0)
+    {
+        $qb = $this->createQueryBuilder('o');
+        $qb
+            ->select('o.bird', 'o.latitude', 'o.longitude')
+            ->leftJoin('App:Bird', 'b', 'WITH', 'o.bird = b.id')
+            ->addSelect('b.protected', 'b.taxrefVern');
+
+        dump($birdFamilyId);
+
+        if (0 !== $birdFamilyId) {
+            $qb
+                ->where('b.birdFamily = :birdFamilyId' )
+                ->setParameter('birdFamilyId', $birdFamilyId);
+        }
+
+        return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
+    }
+
 //    /**
 //     * @return Observation[] Returns an array of Observation objects
 //     */

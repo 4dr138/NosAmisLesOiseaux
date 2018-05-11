@@ -19,6 +19,10 @@ class BirdFamilyRepository extends ServiceEntityRepository
         parent::__construct($registry, BirdFamily::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('label' => 'ASC'));
+    }
 //    /**
 //     * @return BirdFamily[] Returns an array of BirdFamily objects
 //     */

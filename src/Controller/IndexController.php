@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\BirdFamily;
 use App\Entity\Newsletter;
 use App\Form\NewsletterType;
 use App\Service\ArticlesService;
@@ -13,7 +14,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class IndexController extends Controller
 {
-
     /**
      * @Route("/", name="homepage")
      */
@@ -33,6 +33,8 @@ class IndexController extends Controller
             }
         }
 
+        $birdFamilies = $this->getDoctrine()->getRepository(BirdFamily::class)->findAll();
+
         $form = $this->createForm(NewsletterType::class, $newsletter);
         $form->handleRequest($request);
 
@@ -50,6 +52,7 @@ class IndexController extends Controller
             'newsletter'            => $newsletter,
             'LastArticleId'         => $LastArticleId,
             'accessToProtectedBird' => $accessToProtectedBirds,
+            'birdFamilies'          => $birdFamilies,
             'form'                  => $form->createView())
         );
 

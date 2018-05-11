@@ -161,4 +161,19 @@ class ObservationController extends Controller
 
         return new Response(json_encode($obs));
     }
+
+    /**
+     * @Route("/getObservationsWithFamilyForMap/{birdFamilyId}", name="getObservationsWithFamilyForMap", options={"expose"=true})
+     *
+     * @param null $birdFamilyId
+     *
+     * @return Response
+     */
+    public function getObservationsWithFamilyForMap($birdFamilyId = null)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $obs = $em->getRepository('App:Observation')->getObservationsWithFamilyForMap($birdFamilyId);
+
+        return new Response(json_encode($obs));
+    }
 }
