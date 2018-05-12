@@ -104,12 +104,13 @@ class ObservationController extends Controller
     /**
      * @Route("/validateObs", name="validateObs")
      */
-    public function validateObs()
+    public function validateObs(SessionInterface $session)
     {
+        $user = $session->get('users');
         // On récupère les observations avec la valeur Bird à 0
         $obs = $this->container->get('appbundle.observations')->getUnvalidateObs();
 
-        return $this->render('observations/validate_observations.html.twig', array('obs' => $obs));
+        return $this->render('observations/validate_observations.html.twig', array('obs' => $obs, 'users' => $user));
     }
 
     /**
@@ -127,7 +128,7 @@ class ObservationController extends Controller
             return $this->redirectToRoute('validateObs');
         }
         else{
-            dump($id);
+            
             $ExperienceService->ExpObservation($id);
             // On update via DQL en fonction de l'id
             $this->container->get('appbundle.observations')->updateBirdID($birdExistant,$id);
