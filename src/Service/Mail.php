@@ -52,8 +52,8 @@
         // Variables concernant l'email
 
         $message = (new \Swift_Message('Nouveau message de contact reçu.')) 
-             ->setFrom(self::EMAIL) 
-             ->setTo('contact@nos-amis-les-oiseaux.fr') 
+             ->setFrom('agautier38@gmail.com')
+             ->setTo('contact@nos-amis-les-oiseaux.fr')
              ->setBody( 
                  $this->twig->render('contact/mailMessageContact.html.twig', [ 
                      'nom'=>$nom, 'email'=>$email, 'message'=>$message
