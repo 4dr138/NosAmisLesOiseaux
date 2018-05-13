@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Newsletter;
+use App\Entity\Users;
 use App\Form\NewsletterType;
 use App\Service\ArticlesService;
 use Symfony\Component\HttpFoundation\Request;
