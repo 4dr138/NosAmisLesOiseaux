@@ -79,7 +79,8 @@
     }
     #birdsPic
     {
-        display:inline-flex;
+        display: inline-flex;
         width: 150px;
+        margin-left: -15%;
     }
 }
