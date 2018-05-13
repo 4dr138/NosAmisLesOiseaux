@@ -25,7 +25,7 @@ class ObservationController extends Controller
     //        On récupère les observations selon l'id de l''user
             $observations = $this->container->get('appbundle.observations')->getObservationsById($userId);
     //        On récupère ensuite un array des oiseaux associés à une ou plusieurs obs pour un même user
-        $birds = $this->container->get('appbundle.birds')->getBirdsByObs($observations, $userId);
+            $birds = $this->container->get('appbundle.birds')->getBirdsByObs($observations, $userId);
 
             return $this->render('observations/user_observation.html.twig', array('birds' => $birds, 'users' =>$user));
         }
@@ -104,12 +104,13 @@ class ObservationController extends Controller
     /**
      * @Route("/validateObs", name="validateObs")
      */
-    public function validateObs()
+    public function validateObs(SessionInterface $session)
     {
+        $user = $session->get('users');
         // On récupère les observations avec la valeur Bird à 0
         $obs = $this->container->get('appbundle.observations')->getUnvalidateObs();
 
-        return $this->render('observations/validate_observations.html.twig', array('obs' => $obs));
+        return $this->render('observations/validate_observations.html.twig', array('obs' => $obs, 'users' => $user));
     }
 
     /**
@@ -127,7 +128,7 @@ class ObservationController extends Controller
             return $this->redirectToRoute('validateObs');
         }
         else{
-            dump($id);
+            
             $ExperienceService->ExpObservation($id);
             // On update via DQL en fonction de l'id
             $this->container->get('appbundle.observations')->updateBirdID($birdExistant,$id);

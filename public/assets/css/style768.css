@@ -60,6 +60,10 @@
     {
         margin-top: -5%;
     }
+    #birdsPic
+    {
+        display:inline-flex;
+    }
 }
 @media (min-width:768px) and (max-width: 768px)
 {

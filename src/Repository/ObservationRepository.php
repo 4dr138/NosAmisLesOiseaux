@@ -113,9 +113,7 @@ class ObservationRepository extends ServiceEntityRepository
             ->leftJoin('App:Bird', 'b', 'WITH', 'o.bird = b.id')
             ->addSelect('b.protected', 'b.taxrefVern');
 
-        dump($birdFamilyId);
-
-        if (0 !== $birdFamilyId) {
+        if (0 !== intval($birdFamilyId)) {
             $qb
                 ->where('b.birdFamily = :birdFamilyId' )
                 ->setParameter('birdFamilyId', $birdFamilyId);

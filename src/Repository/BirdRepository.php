@@ -37,11 +37,11 @@ class BirdRepository extends ServiceEntityRepository
     {
         $em = $this->getEntityManager();
         $query = $em->createQuery('
-            SELECT o.dateObservation, o.latitude, o.longitude, o.comment,
+            SELECT o.dateObservation, o.latitude, o.longitude, o.comment, o.image,
             b.taxrefClass, b.taxrefCdName, b.taxrefVern, b.taxrefUrlImage, b.protected,b.id,
             bf.label as family, bs.label as status
             FROM App\Entity\Bird b
-            LEFT OUTER JOIN App\Entity\Observation o WITH o.bird = b.id
+            LEFT OUTER JOIN App\Entity\Observation o WITH b.id = o.bird
             LEFT OUTER JOIN App\Entity\BirdFamily bf WITH b.birdFamily = bf.id 
             LEFT OUTER JOIN App\Entity\BirdStatus bs WITH b.birdStatus = bs.id
             WHERE b.id = :birdId
@@ -99,7 +99,7 @@ class BirdRepository extends ServiceEntityRepository
         $em = $this->getEntityManager();
         $query = $em->createQuery(
             "SELECT distinct o.longitude, o.dateObservation, o.latitude,  o.comment,
-            b.taxrefClass, b.taxrefCdName, b.taxrefVern, b.taxrefUrlImage, b.protected,b.id,
+            b.taxrefClass, b.taxrefCdName, b.taxrefVern, b.taxrefUrlImage, b.protected,o.id,
             bf.label as family, bs.label as status
             FROM App\Entity\Bird b
             JOIN App\Entity\Observation o WITH o.bird = b.id
@@ -109,6 +109,39 @@ class BirdRepository extends ServiceEntityRepository
             WHERE b.id = :birdId AND o.comment <> '' AND o.user = :userId")
             ->setParameter('birdId', $birdId)
             ->setParameter('userId', $userId);
+        return $query->execute();
+    }
+
+    public function getLast10Birds()
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            "SELECT o.id, o.image, b.id AS idBird
+            FROM App\Entity\Observation o
+            LEFT OUTER JOIN App\Entity\Bird b WITH b.id = o.bird
+            WHERE o.image <> '' AND o.bird <> 0
+            ORDER BY o.id DESC
+            ")
+            ->setMaxResults(12);
+
+        return $query->execute();
+    }
+
+    public function getBirdIdObs($obsId)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            "SELECT distinct o.longitude, o.dateObservation, o.latitude,  o.comment, o.image,
+            b.taxrefClass, b.taxrefCdName, b.taxrefVern, b.taxrefUrlImage, b.protected,o.id,
+            bf.label as family, bs.label as status
+            FROM App\Entity\Bird b
+            JOIN App\Entity\Observation o WITH o.bird = b.id
+            JOIN APP\Entity\Users u WITH u.id = o.user
+            LEFT OUTER JOIN App\Entity\BirdFamily bf WITH  bf.id = b.birdFamily 
+            LEFT OUTER JOIN App\Entity\BirdStatus bs WITH bs.id = b.birdStatus 
+            WHERE o.id = :obsId")
+            ->setParameter('obsId', $obsId);
+
         return $query->execute();
     }
 

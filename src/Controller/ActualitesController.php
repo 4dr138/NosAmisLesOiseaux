@@ -19,7 +19,6 @@ class ActualitesController extends Controller
     	$user = $session->get('users');
 //        Récupération de la liste d'articles avant injection dans la vue
         $articles = $ArticlesService->getArticles();
-        //$articles = $this->container->get('appbundle.articlesservice')->getArticles();
 
         return $this->render('actualites/actualites.html.twig', array('articles' => $articles, 'users' => $user));
     }
