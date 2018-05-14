@@ -1,5 +1,6 @@
 @media (max-width: 565px) {
 
+
     #titreObs
     {
         height:auto;
@@ -82,5 +83,17 @@
         display: inline-flex;
         width: 150px;
         margin-left: -15%;
+    }
+    #histoireAssoc, #descProfils, #progRecherche, #blocDon
+    {
+        text-align:center;
+    }
+    #imgOiseau1
+    {
+        float:none;
+    }
+    #titreHist
+    {
+        text-align:center;
     }
 }

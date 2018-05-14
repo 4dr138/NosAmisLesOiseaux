@@ -33,7 +33,7 @@
                     <br />
                     <div class = 'row'>
                         <div class="ui-widget">
-                            <select name="selectBirdFamily" id="selectBirdFamily">
+                            <select  class="form-control" name="selectBirdFamily" id="selectBirdFamily">
                                 <option value=0></option>
                                 {% for birdFamily in birdFamilies %}
                                     <option value="{{ birdFamily.id }}">{{ birdFamily.label }}</option>
