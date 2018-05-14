@@ -40,6 +40,11 @@
         margin-left: 91%;
         width: 325px;
     }
+    #selectBirdFamily
+    {
+        margin-left: 33%;
+        width: 35%;
+    }
     .container
     {
         min-height:67%;

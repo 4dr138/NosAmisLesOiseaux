@@ -1,0 +1,6 @@
+swiftmailer:
+    url: '%env(MAILER_URL)%'
+    transport: smtp
+    username:  contact@nos-amis-les-oiseaux.fr
+    password:  ThjKgKufWT38*
+    spool:     { type: memory }

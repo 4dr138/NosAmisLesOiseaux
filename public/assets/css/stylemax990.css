@@ -29,7 +29,7 @@
             height:300px;
             padding:2%;
         }
-        #titreObs, #addObs, #searchBird, #searchObs, #searchLoc, #submitLoc
+        #titreObs, #addObs, #searchBird, #searchObs, #searchLoc, #submitLoc, #selectBirdFamily
         {
             height: auto;
         }
@@ -59,8 +59,8 @@
         {
             margin-left: 59%;
             width: 340px;
-
         }
+
         #map
         {
             width: 100%;
