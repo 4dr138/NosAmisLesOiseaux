@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\BirdFamily;
 use App\Entity\Newsletter;
 use App\Entity\Users;
 use App\Form\NewsletterType;
@@ -14,7 +15,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class IndexController extends Controller
 {
-
     /**
      * @Route("/", name="homepage")
      */
@@ -27,7 +27,6 @@ class IndexController extends Controller
 
         $birds = $this->container->get('appbundle.birds')->getLast10Birds();
 
-
         $accessToProtectedBirds = false;
         if (null !== $user) {
             $userRoles = $user->getRoles();
@@ -36,6 +35,8 @@ class IndexController extends Controller
                 $accessToProtectedBirds = true;
             }
         }
+
+        $birdFamilies = $this->getDoctrine()->getRepository(BirdFamily::class)->getFamiliesObserved();
 
         $form = $this->createForm(NewsletterType::class, $newsletter);
         $form->handleRequest($request);
@@ -54,12 +55,12 @@ class IndexController extends Controller
             'newsletter'            => $newsletter,
             'LastArticleId'         => $LastArticleId,
             'accessToProtectedBird' => $accessToProtectedBirds,
+            'birdFamilies'          => $birdFamilies,
             'birds'                 => $birds,
             'form'                  => $form->createView())
         );
 
     }
-
 
     /**
      * @Route("/mentions", name="mentions")

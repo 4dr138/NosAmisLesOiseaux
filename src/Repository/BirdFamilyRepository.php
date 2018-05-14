@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\BirdFamily;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\Query;
 
 /**
  * @method BirdFamily|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,6 +20,23 @@ class BirdFamilyRepository extends ServiceEntityRepository
         parent::__construct($registry, BirdFamily::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('label' => 'ASC'));
+    }
+
+    public function getFamiliesObserved()
+    {
+        $qb = $this->createQueryBuilder('f');
+        $qb
+            ->leftJoin('App:Bird', 'b', 'WITH', 'b.birdFamily = f.id')
+            ->join('App:Observation', 'o', 'WITH', 'o.bird = b.id')
+            ->groupBy('f')
+            ->orderBy('f.label');
+
+        return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
+
+    }
 //    /**
 //     * @return BirdFamily[] Returns an array of BirdFamily objects
 //     */

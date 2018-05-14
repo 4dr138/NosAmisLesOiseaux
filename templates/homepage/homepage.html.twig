@@ -2,8 +2,6 @@
 
 {% block title %}Accueil{% endblock %}
 {% block body %}
-
-
 	 <div class="container">
         
             <div class="row">
@@ -26,22 +24,32 @@
                         <h3>Carte des observations</h3>
                     </div>
                     <div class = 'row'>
-                        <!--<a href = "javascript:window.open('{{ path('addObservation') }}', 'popup','toolbar=0, location=0, directories=0, status=0, scrollbars=0, resizable=0, copyhistory=0, width=500, height=350,screenX=200,screenY=200)')" id ='btnAddObs' class="btn btn-default">Ajouter une observation</a>-->
                         {% if users == null %}
-                        <a href = "{{ path('connexion') }}" id ='btnAddObs' class="btn btn-default">Ajouter une observation</a>
+                            <a href = "{{ path('connexion') }}" id ='btnAddObs' class="btn btn-default">Ajouter une observation</a>
                         {% else %}
-                        <a href = "{{ path('addObservation') }}" id ='btnAddObs' class="btn btn-default">Ajouter une observation</a>
+                            <a href = "{{ path('addObservation') }}" id ='btnAddObs' class="btn btn-default">Ajouter une observation</a>
                         {% endif %}
                     </div>
                     <br />
                     <div class = 'row'>
                         <div class="ui-widget">
-                            <input id = 'searchBird' type="text" class="form-control" placeholder="Espèces...">
-                            <span class="input-group-btn"></span>
+                            <select name="selectBirdFamily" id="selectBirdFamily">
+                                <option value=0></option>
+                                {% for birdFamily in birdFamilies %}
+                                    <option value="{{ birdFamily.id }}">{{ birdFamily.label }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
                     </div>
-                    <div>
-                        <input id="birdId" type="text" class="hidden" />
+                    <br />
+                    <div class = 'row'>
+                        <div class="ui-widget">
+                            <input id = 'searchBird' type="text" class="form-control" placeholder="Espèces">
+                            <span class="input-group-btn"></span>
+                        </div>
+                        <div>
+                            <input id="birdId" type="text" class="hidden" />
+                        </div>
                     </div>
                     <br />
                     <div class = 'row'>

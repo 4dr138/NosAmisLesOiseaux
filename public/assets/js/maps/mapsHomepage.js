@@ -16,6 +16,7 @@ function initMap(observations = null) {
             type: 'GET',
             dataType: "json",
             success: function(data){
+                markers = [];
                 for(var i = 0; i < data.length; i++) {
                     var latLng = {
                         'lat': parseFloat(data[i].latitude),
@@ -45,6 +46,7 @@ function initMap(observations = null) {
         }
         else
         {
+            markers = [];
             for(var i = 0; i < observations.length; i++) {
                 var latLng = {
                     'lat': parseFloat(observations[i].latitude),
