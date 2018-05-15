@@ -30,8 +30,9 @@ class IndexController extends Controller
         $accessToProtectedBirds = false;
         if (null !== $user) {
             $userRoles = $user->getRoles();
+            $nbPoint = $user->getExperience();
 
-            if (in_array('ROLE_ADMIN', $userRoles) || in_array('ROLE_NATURALISTE', $userRoles)) {
+            if (in_array('ROLE_ADMIN', $userRoles) || in_array('ROLE_NATURALISTE', $userRoles) || $nbPoint >= 5000) {
                 $accessToProtectedBirds = true;
             }
         }
