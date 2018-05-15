@@ -76,11 +76,9 @@ class ExperienceService extends Controller
     {
         
         $em = $this->getDoctrine()->getManager();
-         dump($id); 
         $userID = $em->getRepository('App:Observation')->getUserIdByObs($id);
-        dump($userID);
         $user =  $em->getRepository('App:Users')->findOneBy(['id' =>$userID]);
-        dump($user);
+
         $user->setExperience($user->getExperience() + self::OBSERVATION_XP);
         $em->merge($user);
         $em->flush();
