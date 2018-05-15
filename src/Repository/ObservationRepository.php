@@ -93,12 +93,13 @@ class ObservationRepository extends ServiceEntityRepository
         $qb
             ->select('o.bird', 'o.latitude', 'o.longitude')
             ->leftJoin('App:Bird', 'b', 'WITH', 'o.bird = b.id')
-            ->addSelect('b.protected', 'b.taxrefVern');
+            ->addSelect('b.protected', 'b.taxrefVern')
+            ->where('o.bird <> 0');
 
         $bird = $this->getEntityManager()->getRepository('App:Bird')->findOneBy(['id' => $birdID,]);
         if (null !== $bird) {
             $qb
-                ->where('o.bird = :birdID' )
+                ->andWhere('o.bird = :birdID' )
                 ->setParameter('birdID', $birdID);
         }
 
@@ -111,11 +112,12 @@ class ObservationRepository extends ServiceEntityRepository
         $qb
             ->select('o.bird', 'o.latitude', 'o.longitude')
             ->leftJoin('App:Bird', 'b', 'WITH', 'o.bird = b.id')
-            ->addSelect('b.protected', 'b.taxrefVern');
+            ->addSelect('b.protected', 'b.taxrefVern')
+            ->where('o.bird <> 0');
 
         if (0 !== intval($birdFamilyId)) {
             $qb
-                ->where('b.birdFamily = :birdFamilyId' )
+                ->andWhere('b.birdFamily = :birdFamilyId' )
                 ->setParameter('birdFamilyId', $birdFamilyId);
         }
 

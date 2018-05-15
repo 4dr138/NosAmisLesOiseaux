@@ -10,7 +10,6 @@ use Doctrine\ORM\Query;
 /**
  * @method BirdFamily|null find($id, $lockMode = null, $lockVersion = null)
  * @method BirdFamily|null findOneBy(array $criteria, array $orderBy = null)
- * @method BirdFamily[]    findAll()
  * @method BirdFamily[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class BirdFamilyRepository extends ServiceEntityRepository
@@ -31,6 +30,7 @@ class BirdFamilyRepository extends ServiceEntityRepository
         $qb
             ->leftJoin('App:Bird', 'b', 'WITH', 'b.birdFamily = f.id')
             ->join('App:Observation', 'o', 'WITH', 'o.bird = b.id')
+            ->where('o.bird <> 0')
             ->groupBy('f')
             ->orderBy('f.label');
 
