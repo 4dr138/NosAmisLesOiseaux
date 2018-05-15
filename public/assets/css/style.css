@@ -193,7 +193,11 @@ h2
 }
 #titreObs
 {
-    height:280px;
+    height:100px;
+    color: #4cab3d;
+}
+#addObs h3
+{
     color: #4cab3d;
 }
 .input-group
@@ -370,6 +374,7 @@ h2
 #actualites
 {
     text-align:left;
+    padding-bottom:2%;
 }
 #btnDeleteArt, #btnDeleteArt button
 {
