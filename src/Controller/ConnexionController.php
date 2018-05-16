@@ -108,7 +108,7 @@ class ConnexionController extends Controller
         }
         else {
             $randompassword = $ForgotMail->randomPassword($email);
-            $Mail->sendRandomPassword($randompassword, $email);
+//            $Mail->sendRandomPassword($randompassword, $email);
             
             //            mail($destinataire, $sujet, $contenu, $headers);
             $this->addFlash("success", "Un mail contenant votre nouveau mot de passe vient de vous être envoyé ! ");

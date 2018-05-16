@@ -48,7 +48,7 @@ class DonationController extends AbstractController
             
             
             $StripeGift->chargeVisa($request);
-            $Mail->sendDonationMail($email, $amount, $name, $firstname);
+//            $Mail->sendDonationMail($email, $amount, $name, $firstname);
             
             return $this->render('donation/sucess.html.twig', array('amount'=> $amount, 'name'=> $name, 'firstname'=> $firstname, 'users' =>$user));
         } catch(\Stripe\Error\Card $e) {

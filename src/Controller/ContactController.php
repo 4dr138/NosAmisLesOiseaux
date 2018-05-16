@@ -36,7 +36,7 @@ class ContactController extends Controller
             }
             else {
                 
-                $Mail->sendContactMail($nom, $email, $message);
+//                $Mail->sendContactMail($nom, $email, $message);
 
                 $this->addFlash("success", "Votre mail a bien été envoyé !");
                 return $this->render('contact/contact.html.twig', array('users' => $user));
