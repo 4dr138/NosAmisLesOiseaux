@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Newsletter;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,7 +15,7 @@ class NewsletterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('mail', TextType::class, array('attr' => array(
+            ->add('mail', EmailType::class, array('attr' => array(
             'placeholder' => 'Entrez votre email...',
             'id' => 'searchNews',
             'data' => 'form-control'

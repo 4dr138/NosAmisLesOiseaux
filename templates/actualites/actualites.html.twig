@@ -22,7 +22,7 @@
                     </div>
                     <div id = 'article' class="col-sm-6">
                         <h3 id = 'articleTitle'>{{ article.title }}</h3><br />
-                        <div id = 'contentArticle'>{{ article.content|slice(1, 500) }}...</div>
+                        <div id = 'contentArticle'>{{ article.content|slice(0, 500) }}...</div>
                         <br />
                         <a href = "{{ path('blog',{'id': article.id }) }}"><button id = 'btnArticle' class = 'btn btn-default'>Lire l'article</button></a>
                         <br />
